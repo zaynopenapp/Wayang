@@ -9,7 +9,7 @@ or you can ask chatGpt
 
 To run the plugin, there are several steps. First, open the menu and choose the option that suits your needs. Then enter waypoint input mode and run the plugin again. When you enter edit or input mode, you will be placed in the negative timeline. The data will be stored in the negative timeline, so make sure you do not delete it. To avoid losing your work, don’t forget to back up your file before running the plugin
 
-Menu plugin
+*Menu plugin*
 ***
 <img width="396" height="466" alt="menuWayang" src="https://github.com/user-attachments/assets/3b5abd47-0690-4268-9d4c-9930ece38d83" />
 
@@ -29,11 +29,18 @@ If you want to create a controller without a template, make sure to add the code
 ## Demo and Tutorial
 
 1. <details><summary>Demo</summary>
-    - demo 1
-    - demo 2
+    
+    - *demo 1 coming soon*
+    - *demo 2 coming soon*
+      
    </details>
 
 2. <details><summary>Tutorial</summary>
-    - Tuto1
-    - Tuto2
+    
+    - *Tuto1 coming soon*
+    - *Tuto2 coming soon*
+      
    </details>
+
+## Donwload Synfig 1.5.6 exp
+>[google drive](https://drive.google.com/file/d/13pyL3rrpPGlnWr4X7nhsDfhl26prmkL8/view?usp=drive_link)
