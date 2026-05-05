@@ -1,0 +1,2002 @@
+<canvas version="1.2" width="1920" height="1080" xres="2834.645669" yres="2834.645669" gamma-r="1.000000" gamma-g="1.000000" gamma-b="1.000000" view-box="-16.000000 9.000000 16.000000 -9.000000" antialias="1" fps="25" begin-time="-4s -20.000f" end-time="-2s -20f" bgcolor="0.500000 0.500000 0.500000 1.000000">
+  <name>awal1.sif</name>
+  <meta name="background_first_color" content="0.880000 0.880000 0.880000" />
+  <meta name="background_rendering" content="0" />
+  <meta name="background_second_color" content="0.650000 0.650000 0.650000" />
+  <meta name="background_size" content="15.000000 15.000000" />
+  <meta name="end-time" content="5s" />
+  <meta name="grid_color" content="0.623529 0.623529 0.623529" />
+  <meta name="grid_show" content="0" />
+  <meta name="grid_size" content="0.250000 0.250000" />
+  <meta name="grid_snap" content="0" />
+  <meta name="guide_color" content="0.435294 0.435294 1.000000" />
+  <meta name="guide_show" content="1" />
+  <meta name="guide_snap" content="0" />
+  <meta name="jack_offset" content="0.000000" />
+  <meta name="onion_skin" content="0" />
+  <meta name="onion_skin_future" content="0" />
+  <meta name="onion_skin_keyframes" content="1" />
+  <meta name="onion_skin_past" content="1" />
+  <meta name="shapekey_aktif" content="shapekey_0" />
+  <meta name="shapekey_count" content="1" />
+  <meta name="shapekey_mode" content="inputkey" />
+  <meta name="status_ruler" content="1" />
+  <keyframe time="-4s -20f" active="true" />
+  <keyframe time="-2s" active="false" />
+  <keyframe time="0f" active="false" />
+  <bones>
+    <bone_root type="bone_object" guid="A4ADDF63FFFFF414FFFFB217FFFF4B54" />
+    <bone type="bone_object" guid="51AF06DAFFFF892AFFFFB506FFFF6225">
+      <name>
+        <join type="string">
+          <strings>
+            <dynamic_list type="string">
+              <entry>
+                <switch guid="08A6B6B44F0AB2AF8137D43C6E0CD05D" type="string">
+                  <link_off>
+                    <reference type="string">
+                      <link>
+                        <string guid="28377723FFFF4E42FFFFB1D8FFFF5A00">shapekey_0</string>
+                      </link>
+                    </reference>
+                  </link_off>
+                  <link_on>
+                    <realstring type="string">
+                      <real>
+                        <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+                      </real>
+                      <width>
+                        <integer value="0" />
+                      </width>
+                      <precision>
+                        <integer value="3" />
+                      </precision>
+                      <zero_pad>
+                        <bool value="false" />
+                      </zero_pad>
+                    </realstring>
+                  </link_on>
+                  <switch>
+                    <bool value="false" />
+                  </switch>
+                </switch>
+              </entry>
+            </dynamic_list>
+          </strings>
+          <before>
+            <string />
+          </before>
+          <separator>
+            <string />
+          </separator>
+          <after>
+            <string>@shapekey_cont</string>
+          </after>
+        </join>
+      </name>
+      <parent>
+        <bone_valuenode type="bone_object" guid="A4ADDF63FFFFF414FFFFB217FFFF4B54" />
+      </parent>
+      <origin>
+        <vector guid="DA93AA85FFFF4535FFFFBAAEFFFF7F61" static="true">
+          <x>0.0000000000</x>
+          <y>0.0000000000</y>
+        </vector>
+      </origin>
+      <angle>
+        <fromreal type="angle">
+          <link>
+            <switch guid="002F8C88FFFF7FB7FFFFB9EEFFFF785A" type="real">
+              <link_off>
+                <animated type="real">
+                  <waypoint time="-4.80000019s" before="linear" after="linear">
+                    <real value="45.0000000000" />
+                  </waypoint>
+                  <waypoint time="-2.79999995s" before="linear" after="linear">
+                    <real value="135.0000000000" />
+                  </waypoint>
+                </animated>
+              </link_off>
+              <link_on>
+                <real value="111.5454788208" />
+              </link_on>
+              <switch>
+                <bool value="false" />
+              </switch>
+            </switch>
+          </link>
+        </fromreal>
+      </angle>
+      <scalelx>
+        <real value="1.0000000000" static="true" />
+      </scalelx>
+      <width>
+        <real value="0.1000000000" static="true" />
+      </width>
+      <scalex>
+        <switch type="real">
+          <link_off>
+            <real value="1.0000000000" />
+          </link_off>
+          <link_on>
+            <average type="real">
+              <entry>
+                <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+              </entry>
+            </average>
+          </link_on>
+          <switch>
+            <bool value="false" />
+          </switch>
+        </switch>
+      </scalex>
+      <tipwidth>
+        <real value="0.1000000000" static="true" />
+      </tipwidth>
+      <bone_depth>
+        <real value="0.0000000000" static="true" />
+      </bone_depth>
+      <length>
+        <real value="1.0000000000" static="true" />
+      </length>
+    </bone>
+  </bones>
+  <defs>
+    <add type="vector" id="shapekey_1">
+      <lhs>
+        <add type="vector">
+          <lhs>
+            <scale type="vector">
+              <link>
+                <vector>
+                  <x>-4.2757906914</x>
+                  <y>0.1407900900</y>
+                </vector>
+              </link>
+              <scalar>
+                <real value="0.0000000000" />
+              </scalar>
+            </scale>
+          </lhs>
+          <rhs>
+            <vector>
+              <x>-4.2757906914</x>
+              <y>0.1407900900</y>
+            </vector>
+          </rhs>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </add>
+      </lhs>
+      <rhs>
+        <scale type="vector">
+          <link>
+            <average type="vector">
+              <entry>
+                <timeloop guid="32746CB7AE51FC5DA3A7BA031AC9454A" type="vector">
+                  <link>
+                    <animated guid="A2A67D77FFFF19E9FFFFB8ACFFFF6CAD" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.2372307777</x>
+                          <y>-0.3596154451</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link>
+                  <link_time>
+                    <fromreal type="time">
+                      <link>
+                        <scale type="real">
+                          <link>
+                            <map_range type="real">
+                              <interpolation>
+                                <integer value="0" />
+                              </interpolation>
+                              <clamp>
+                                <bool value="true" />
+                              </clamp>
+                              <link>
+                                <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+                              </link>
+                              <from_min>
+                                <real value="0.0000000000" />
+                              </from_min>
+                              <from_max>
+                                <real value="100.0000000000" />
+                              </from_max>
+                              <to_min>
+                                <real value="-180.0000000000" />
+                              </to_min>
+                              <to_max>
+                                <map_range type="real">
+                                  <interpolation>
+                                    <integer value="0" />
+                                  </interpolation>
+                                  <clamp>
+                                    <bool value="true" />
+                                  </clamp>
+                                  <link>
+                                    <switch guid="002F8C88FFFF7FB7FFFFB9EEFFFF785A" type="real">
+                                      <link_off>
+                                        <animated type="real">
+                                          <waypoint time="-4.80000019s" before="linear" after="linear">
+                                            <real value="45.0000000000" />
+                                          </waypoint>
+                                          <waypoint time="-2.79999995s" before="linear" after="linear">
+                                            <real value="135.0000000000" />
+                                          </waypoint>
+                                        </animated>
+                                      </link_off>
+                                      <link_on>
+                                        <real value="111.5454788208" />
+                                      </link_on>
+                                      <switch>
+                                        <bool value="false" />
+                                      </switch>
+                                    </switch>
+                                  </link>
+                                  <from_min>
+                                    <real value="45.0000000000" />
+                                  </from_min>
+                                  <from_max>
+                                    <real value="135.0000000000" />
+                                  </from_max>
+                                  <to_min>
+                                    <real value="-180.0000000000" />
+                                  </to_min>
+                                  <to_max>
+                                    <real value="-130.0000000000" />
+                                  </to_max>
+                                </map_range>
+                              </to_max>
+                            </map_range>
+                          </link>
+                          <scalar>
+                            <reciprocal type="real">
+                              <link>
+                                <real value="25.0000000000" />
+                              </link>
+                              <epsilon>
+                                <real value="0.0000010000" />
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000" />
+                              </infinite>
+                            </reciprocal>
+                          </scalar>
+                        </scale>
+                      </link>
+                    </fromreal>
+                  </link_time>
+                  <local_time>
+                    <time value="0s" />
+                  </local_time>
+                  <duration>
+                    <time value="0s" static="true" />
+                  </duration>
+                </timeloop>
+              </entry>
+            </average>
+          </link>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </scale>
+      </rhs>
+      <scalar>
+        <real value="1.0000000000" />
+      </scalar>
+    </add>
+    <add type="vector" id="shapekey_2">
+      <lhs>
+        <add type="vector">
+          <lhs>
+            <scale type="vector">
+              <link>
+                <vector>
+                  <x>-4.2757906914</x>
+                  <y>0.1407900900</y>
+                </vector>
+              </link>
+              <scalar>
+                <real value="0.0000000000" />
+              </scalar>
+            </scale>
+          </lhs>
+          <rhs>
+            <vector>
+              <x>-4.2757906914</x>
+              <y>0.1407900900</y>
+            </vector>
+          </rhs>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </add>
+      </lhs>
+      <rhs>
+        <scale type="vector">
+          <link>
+            <average type="vector">
+              <entry>
+                <timeloop guid="32746CB7AE51FC5DA3A7BA031AC9454A" type="vector">
+                  <link>
+                    <animated guid="A2A67D77FFFF19E9FFFFB8ACFFFF6CAD" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.2372307777</x>
+                          <y>-0.3596154451</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link>
+                  <link_time>
+                    <fromreal type="time">
+                      <link>
+                        <scale type="real">
+                          <link>
+                            <map_range type="real">
+                              <interpolation>
+                                <integer value="0" />
+                              </interpolation>
+                              <clamp>
+                                <bool value="true" />
+                              </clamp>
+                              <link>
+                                <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+                              </link>
+                              <from_min>
+                                <real value="0.0000000000" />
+                              </from_min>
+                              <from_max>
+                                <real value="100.0000000000" />
+                              </from_max>
+                              <to_min>
+                                <real value="-180.0000000000" />
+                              </to_min>
+                              <to_max>
+                                <map_range type="real">
+                                  <interpolation>
+                                    <integer value="0" />
+                                  </interpolation>
+                                  <clamp>
+                                    <bool value="true" />
+                                  </clamp>
+                                  <link>
+                                    <switch guid="002F8C88FFFF7FB7FFFFB9EEFFFF785A" type="real">
+                                      <link_off>
+                                        <animated type="real">
+                                          <waypoint time="-4.80000019s" before="linear" after="linear">
+                                            <real value="45.0000000000" />
+                                          </waypoint>
+                                          <waypoint time="-2.79999995s" before="linear" after="linear">
+                                            <real value="135.0000000000" />
+                                          </waypoint>
+                                        </animated>
+                                      </link_off>
+                                      <link_on>
+                                        <real value="111.5454788208" />
+                                      </link_on>
+                                      <switch>
+                                        <bool value="false" />
+                                      </switch>
+                                    </switch>
+                                  </link>
+                                  <from_min>
+                                    <real value="45.0000000000" />
+                                  </from_min>
+                                  <from_max>
+                                    <real value="135.0000000000" />
+                                  </from_max>
+                                  <to_min>
+                                    <real value="-180.0000000000" />
+                                  </to_min>
+                                  <to_max>
+                                    <real value="-130.0000000000" />
+                                  </to_max>
+                                </map_range>
+                              </to_max>
+                            </map_range>
+                          </link>
+                          <scalar>
+                            <reciprocal type="real">
+                              <link>
+                                <real value="25.0000000000" />
+                              </link>
+                              <epsilon>
+                                <real value="0.0000010000" />
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000" />
+                              </infinite>
+                            </reciprocal>
+                          </scalar>
+                        </scale>
+                      </link>
+                    </fromreal>
+                  </link_time>
+                  <local_time>
+                    <time value="0s" />
+                  </local_time>
+                  <duration>
+                    <time value="0s" static="true" />
+                  </duration>
+                </timeloop>
+              </entry>
+            </average>
+          </link>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </scale>
+      </rhs>
+      <scalar>
+        <real value="1.0000000000" />
+      </scalar>
+    </add>
+    <add type="vector" id="shapekey_3">
+      <lhs>
+        <add type="vector">
+          <lhs>
+            <scale type="vector">
+              <link>
+                <vector>
+                  <x>-4.2757906914</x>
+                  <y>0.1407900900</y>
+                </vector>
+              </link>
+              <scalar>
+                <real value="0.0000000000" />
+              </scalar>
+            </scale>
+          </lhs>
+          <rhs>
+            <vector>
+              <x>-4.2757906914</x>
+              <y>0.1407900900</y>
+            </vector>
+          </rhs>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </add>
+      </lhs>
+      <rhs>
+        <scale type="vector">
+          <link>
+            <average type="vector">
+              <entry>
+                <timeloop guid="8B9ACDCC6E6DF1A6CAC4382FB3811BEC" type="vector">
+                  <link>
+                    <animated guid="8ED86A85FFFF488DFFFFB530FFFF5C6E" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.2372307777</x>
+                          <y>-0.3596154451</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link>
+                  <link_time>
+                    <fromreal type="time">
+                      <link>
+                        <scale type="real">
+                          <link>
+                            <map_range type="real">
+                              <interpolation>
+                                <integer value="0" />
+                              </interpolation>
+                              <clamp>
+                                <bool value="true" />
+                              </clamp>
+                              <link>
+                                <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+                              </link>
+                              <from_min>
+                                <real value="0.0000000000" />
+                              </from_min>
+                              <from_max>
+                                <real value="100.0000000000" />
+                              </from_max>
+                              <to_min>
+                                <real value="-180.0000000000" />
+                              </to_min>
+                              <to_max>
+                                <map_range type="real">
+                                  <interpolation>
+                                    <integer value="0" />
+                                  </interpolation>
+                                  <clamp>
+                                    <bool value="true" />
+                                  </clamp>
+                                  <link>
+                                    <switch guid="002F8C88FFFF7FB7FFFFB9EEFFFF785A" type="real">
+                                      <link_off>
+                                        <animated type="real">
+                                          <waypoint time="-4.80000019s" before="linear" after="linear">
+                                            <real value="45.0000000000" />
+                                          </waypoint>
+                                          <waypoint time="-2.79999995s" before="linear" after="linear">
+                                            <real value="135.0000000000" />
+                                          </waypoint>
+                                        </animated>
+                                      </link_off>
+                                      <link_on>
+                                        <real value="111.5454788208" />
+                                      </link_on>
+                                      <switch>
+                                        <bool value="false" />
+                                      </switch>
+                                    </switch>
+                                  </link>
+                                  <from_min>
+                                    <real value="45.0000000000" />
+                                  </from_min>
+                                  <from_max>
+                                    <real value="135.0000000000" />
+                                  </from_max>
+                                  <to_min>
+                                    <real value="-180.0000000000" />
+                                  </to_min>
+                                  <to_max>
+                                    <real value="-130.0000000000" />
+                                  </to_max>
+                                </map_range>
+                              </to_max>
+                            </map_range>
+                          </link>
+                          <scalar>
+                            <reciprocal type="real">
+                              <link>
+                                <real value="25.0000000000" />
+                              </link>
+                              <epsilon>
+                                <real value="0.0000010000" />
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000" />
+                              </infinite>
+                            </reciprocal>
+                          </scalar>
+                        </scale>
+                      </link>
+                    </fromreal>
+                  </link_time>
+                  <local_time>
+                    <time value="0s" />
+                  </local_time>
+                  <duration>
+                    <time value="0s" static="true" />
+                  </duration>
+                </timeloop>
+              </entry>
+            </average>
+          </link>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </scale>
+      </rhs>
+      <scalar>
+        <real value="1.0000000000" />
+      </scalar>
+    </add>
+    <add type="vector" id="shapekey_4">
+      <lhs>
+        <add type="vector">
+          <lhs>
+            <scale type="vector">
+              <link>
+                <vector>
+                  <x>-4.2757906914</x>
+                  <y>0.1407900900</y>
+                </vector>
+              </link>
+              <scalar>
+                <real value="0.0000000000" />
+              </scalar>
+            </scale>
+          </lhs>
+          <rhs>
+            <vector>
+              <x>-4.2757906914</x>
+              <y>0.1407900900</y>
+            </vector>
+          </rhs>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </add>
+      </lhs>
+      <rhs>
+        <scale type="vector">
+          <link>
+            <average type="vector">
+              <entry>
+                <timeloop guid="8B9ACDCC6E6DF1A6CAC4382FB3811BEC" type="vector">
+                  <link>
+                    <animated guid="8ED86A85FFFF488DFFFFB530FFFF5C6E" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.2372307777</x>
+                          <y>-0.3596154451</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2s" before="linear" after="linear">
+                        <vector>
+                          <x>-4.2757906914</x>
+                          <y>0.1407900900</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link>
+                  <link_time>
+                    <fromreal type="time">
+                      <link>
+                        <scale type="real">
+                          <link>
+                            <map_range type="real">
+                              <interpolation>
+                                <integer value="0" />
+                              </interpolation>
+                              <clamp>
+                                <bool value="true" />
+                              </clamp>
+                              <link>
+                                <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+                              </link>
+                              <from_min>
+                                <real value="0.0000000000" />
+                              </from_min>
+                              <from_max>
+                                <real value="100.0000000000" />
+                              </from_max>
+                              <to_min>
+                                <real value="-180.0000000000" />
+                              </to_min>
+                              <to_max>
+                                <map_range type="real">
+                                  <interpolation>
+                                    <integer value="0" />
+                                  </interpolation>
+                                  <clamp>
+                                    <bool value="true" />
+                                  </clamp>
+                                  <link>
+                                    <switch guid="002F8C88FFFF7FB7FFFFB9EEFFFF785A" type="real">
+                                      <link_off>
+                                        <animated type="real">
+                                          <waypoint time="-4.80000019s" before="linear" after="linear">
+                                            <real value="45.0000000000" />
+                                          </waypoint>
+                                          <waypoint time="-2.79999995s" before="linear" after="linear">
+                                            <real value="135.0000000000" />
+                                          </waypoint>
+                                        </animated>
+                                      </link_off>
+                                      <link_on>
+                                        <real value="111.5454788208" />
+                                      </link_on>
+                                      <switch>
+                                        <bool value="false" />
+                                      </switch>
+                                    </switch>
+                                  </link>
+                                  <from_min>
+                                    <real value="45.0000000000" />
+                                  </from_min>
+                                  <from_max>
+                                    <real value="135.0000000000" />
+                                  </from_max>
+                                  <to_min>
+                                    <real value="-180.0000000000" />
+                                  </to_min>
+                                  <to_max>
+                                    <real value="-130.0000000000" />
+                                  </to_max>
+                                </map_range>
+                              </to_max>
+                            </map_range>
+                          </link>
+                          <scalar>
+                            <reciprocal type="real">
+                              <link>
+                                <real value="25.0000000000" />
+                              </link>
+                              <epsilon>
+                                <real value="0.0000010000" />
+                              </epsilon>
+                              <infinite>
+                                <real value="999999.0000000000" />
+                              </infinite>
+                            </reciprocal>
+                          </scalar>
+                        </scale>
+                      </link>
+                    </fromreal>
+                  </link_time>
+                  <local_time>
+                    <time value="0s" />
+                  </local_time>
+                  <duration>
+                    <time value="0s" static="true" />
+                  </duration>
+                </timeloop>
+              </entry>
+            </average>
+          </link>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </scale>
+      </rhs>
+      <scalar>
+        <real value="1.0000000000" />
+      </scalar>
+    </add>
+  </defs>
+  <layer type="solid_color" active="true" exclude_from_rendering="false" version="0.1" desc="Background">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="0" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.000000</r>
+        <g>0.310000</g>
+        <b>0.253446</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+  </layer>
+  <layer type="skeleton" active="true" exclude_from_rendering="true" version="0.1" desc="Bone_controller_1">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="0.5000000000" />
+    </param>
+    <param name="name">
+      <string>skeleton</string>
+    </param>
+    <param name="color">
+      <color>
+        <r>0.820000</r>
+        <g>0.500000</g>
+        <b>1.000000</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="bones">
+      <static_list type="bone_object">
+        <entry>
+          <bone type="bone_object" guid="51AF06DAFFFF892AFFFFB506FFFF6225" />
+        </entry>
+      </static_list>
+    </param>
+  </layer>
+  <layer type="region" active="true" exclude_from_rendering="false" version="0.1" desc="NewSpline029 Region">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="13" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.932828</r>
+        <g>0.464627</g>
+        <b>0.000000</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="origin">
+      <vector guid="ECC14CCA599B06732F99760D69E9DEB1">
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="invert">
+      <bool value="false" />
+    </param>
+    <param name="antialias">
+      <bool value="true" />
+    </param>
+    <param name="feather">
+      <real value="0.0000000000" />
+    </param>
+    <param name="blurtype">
+      <integer value="1" static="true" />
+    </param>
+    <param name="winding_style">
+      <integer value="0" static="true" />
+    </param>
+    <param name="bline">
+      <bline guid="68A5FFB2839EFC32C31FF0A9ECAB99D5" type="bline_point" loop="true">
+        <entry>
+          <composite guid="DC41CE1332719689D7268B1D714B27E2" type="bline_point">
+            <point>
+              <animated guid="A2A67D77FFFF19E9FFFFB8ACFFFF6CAD" type="vector">
+                <waypoint time="-4.80000019s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="linear" after="linear">
+                  <vector>
+                    <x>-3.2372307777</x>
+                    <y>-0.3596154451</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0000000000" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0000000000" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="62D8ACC15DDE416C3854207749ABC6F4" type="bline_point">
+            <point>
+              <animated type="vector">
+                <waypoint time="-4.80000019s" before="clamped" after="clamped">
+                  <vector guid="4B1E3749F04053F80DB8BCA062E284E9">
+                    <x>-2.1024007797</x>
+                    <y>-1.9729751348</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="clamped" after="clamped">
+                  <vector guid="4E51A5C0C6172E9CA1766DD86B3ED182">
+                    <x>-1.9183503389</x>
+                    <y>-2.3250050545</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.4433226235" />
+                </radius>
+                <theta>
+                  <angle value="-112.706352" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.4433226235" />
+                </radius>
+                <theta>
+                  <angle value="-112.706352" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="519423D3F0A2964C640094889EBCFC91" type="bline_point">
+            <point>
+              <animated type="vector">
+                <waypoint time="-4.80000019s" before="clamped" after="clamped">
+                  <vector guid="FDF47E8C1A5F84F2B0AD98C073E9825E">
+                    <x>-6.6789793968</x>
+                    <y>-2.6832010746</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="clamped" after="clamped">
+                  <vector guid="50FC43F0BB7B5C88DFF8D2AF068D7483">
+                    <x>-3.6604249477</x>
+                    <y>-3.0581614971</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.4220501759" />
+                </radius>
+                <theta>
+                  <angle value="170.016632" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.4220501759" />
+                </radius>
+                <theta>
+                  <angle value="170.016632" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+      </bline>
+    </param>
+  </layer>
+  <layer type="outline" active="true" exclude_from_rendering="false" version="0.3" desc="NewSpline029 Outline">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="13" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.991260</r>
+        <g>0.855088</g>
+        <b>0.081679</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="origin">
+      <vector guid="ECC14CCA599B06732F99760D69E9DEB1">
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="invert">
+      <bool value="false" />
+    </param>
+    <param name="antialias">
+      <bool value="true" />
+    </param>
+    <param name="feather">
+      <real value="0.0000000000" />
+    </param>
+    <param name="blurtype">
+      <integer value="1" static="true" />
+    </param>
+    <param name="winding_style">
+      <integer value="0" static="true" />
+    </param>
+    <param name="bline">
+      <bline guid="68A5FFB2839EFC32C31FF0A9ECAB99D5" type="bline_point" loop="true">
+        <entry>
+          <composite guid="DC41CE1332719689D7268B1D714B27E2" type="bline_point">
+            <point>
+              <animated guid="A2A67D77FFFF19E9FFFFB8ACFFFF6CAD" type="vector">
+                <waypoint time="-4.80000019s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="linear" after="linear">
+                  <vector>
+                    <x>-3.2372307777</x>
+                    <y>-0.3596154451</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0000000000" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0000000000" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="62D8ACC15DDE416C3854207749ABC6F4" type="bline_point">
+            <point>
+              <animated type="vector">
+                <waypoint time="-4.80000019s" before="clamped" after="clamped">
+                  <vector guid="4B1E3749F04053F80DB8BCA062E284E9">
+                    <x>-2.1024007797</x>
+                    <y>-1.9729751348</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="clamped" after="clamped">
+                  <vector guid="4E51A5C0C6172E9CA1766DD86B3ED182">
+                    <x>-1.9183503389</x>
+                    <y>-2.3250050545</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.4433226235" />
+                </radius>
+                <theta>
+                  <angle value="-112.706352" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.4433226235" />
+                </radius>
+                <theta>
+                  <angle value="-112.706352" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="519423D3F0A2964C640094889EBCFC91" type="bline_point">
+            <point>
+              <animated type="vector">
+                <waypoint time="-4.80000019s" before="clamped" after="clamped">
+                  <vector guid="FDF47E8C1A5F84F2B0AD98C073E9825E">
+                    <x>-6.6789793968</x>
+                    <y>-2.6832010746</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="clamped" after="clamped">
+                  <vector guid="50FC43F0BB7B5C88DFF8D2AF068D7483">
+                    <x>-3.6604249477</x>
+                    <y>-3.0581614971</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.4220501759" />
+                </radius>
+                <theta>
+                  <angle value="170.016632" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.4220501759" />
+                </radius>
+                <theta>
+                  <angle value="170.016632" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+      </bline>
+    </param>
+    <param name="width">
+      <real value="0.0166666667" />
+    </param>
+    <param name="expand">
+      <real value="0.0000000000" />
+    </param>
+    <param name="sharp_cusps">
+      <bool value="true" />
+    </param>
+    <param name="round_tip[0]">
+      <bool value="true" />
+    </param>
+    <param name="round_tip[1]">
+      <bool value="true" />
+    </param>
+    <param name="homogeneous_width">
+      <bool value="true" />
+    </param>
+  </layer>
+  <layer type="region" active="true" exclude_from_rendering="false" version="0.1" desc="NewSpline030 Region">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="13" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.932828</r>
+        <g>0.464627</g>
+        <b>0.000000</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="origin">
+      <vector guid="C4B53787F622D756B0BDCCB73530F472">
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="invert">
+      <bool value="false" />
+    </param>
+    <param name="antialias">
+      <bool value="true" />
+    </param>
+    <param name="feather">
+      <real value="0.0000000000" />
+    </param>
+    <param name="blurtype">
+      <integer value="1" static="true" />
+    </param>
+    <param name="winding_style">
+      <integer value="0" static="true" />
+    </param>
+    <param name="bline">
+      <bline guid="C7D9CB6B59B778E20927F8BD45939043" type="bline_point">
+        <entry>
+          <composite guid="AE1DCFC03C4042BB87AB684E51CDF91A" type="bline_point">
+            <point>
+              <vector>
+                <x>-2.6524097919</x>
+                <y>2.6680994034</y>
+              </vector>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0920413655" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0920413655" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="28D3EFDDBEF023A9C9FFC249F9099E1A" type="bline_point">
+            <point>
+              <vector>
+                <x>-1.3105601072</x>
+                <y>0.9876586795</y>
+              </vector>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.3045222268" />
+                </radius>
+                <theta>
+                  <angle value="-109.426865" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.3045222268" />
+                </radius>
+                <theta>
+                  <angle value="-109.426865" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="63C8A1E332A5FE6BD53840CDEB893D4F" type="bline_point">
+            <point>
+              <animated guid="8ED86A85FFFF488DFFFFB530FFFF5C6E" type="vector">
+                <waypoint time="-4.80000019s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="linear" after="linear">
+                  <vector>
+                    <x>-3.2372307777</x>
+                    <y>-0.3596154451</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.7659962687" />
+                </radius>
+                <theta>
+                  <angle value="131.475403" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.7659962687" />
+                </radius>
+                <theta>
+                  <angle value="131.475403" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+      </bline>
+    </param>
+  </layer>
+  <layer type="outline" active="true" exclude_from_rendering="false" version="0.3" desc="NewSpline030 Outline">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="13" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.991260</r>
+        <g>0.855088</g>
+        <b>0.081679</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="origin">
+      <vector guid="C4B53787F622D756B0BDCCB73530F472">
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="invert">
+      <bool value="false" />
+    </param>
+    <param name="antialias">
+      <bool value="true" />
+    </param>
+    <param name="feather">
+      <real value="0.0000000000" />
+    </param>
+    <param name="blurtype">
+      <integer value="1" static="true" />
+    </param>
+    <param name="winding_style">
+      <integer value="0" static="true" />
+    </param>
+    <param name="bline">
+      <bline guid="C7D9CB6B59B778E20927F8BD45939043" type="bline_point">
+        <entry>
+          <composite guid="AE1DCFC03C4042BB87AB684E51CDF91A" type="bline_point">
+            <point>
+              <vector>
+                <x>-2.6524097919</x>
+                <y>2.6680994034</y>
+              </vector>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0920413655" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="0.0920413655" />
+                </radius>
+                <theta>
+                  <angle value="0.000000" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="28D3EFDDBEF023A9C9FFC249F9099E1A" type="bline_point">
+            <point>
+              <vector>
+                <x>-1.3105601072</x>
+                <y>0.9876586795</y>
+              </vector>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.3045222268" />
+                </radius>
+                <theta>
+                  <angle value="-109.426865" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="2.3045222268" />
+                </radius>
+                <theta>
+                  <angle value="-109.426865" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+        <entry>
+          <composite guid="63C8A1E332A5FE6BD53840CDEB893D4F" type="bline_point">
+            <point>
+              <animated guid="8ED86A85FFFF488DFFFFB530FFFF5C6E" type="vector">
+                <waypoint time="-4.80000019s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2.79999995s" before="linear" after="linear">
+                  <vector>
+                    <x>-3.2372307777</x>
+                    <y>-0.3596154451</y>
+                  </vector>
+                </waypoint>
+                <waypoint time="-2s" before="linear" after="linear">
+                  <vector>
+                    <x>-4.2757906914</x>
+                    <y>0.1407900900</y>
+                  </vector>
+                </waypoint>
+              </animated>
+            </point>
+            <width>
+              <real value="1.0000000000" />
+            </width>
+            <origin>
+              <real value="0.5000000000" />
+            </origin>
+            <split>
+              <bool value="false" />
+            </split>
+            <t1>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.7659962687" />
+                </radius>
+                <theta>
+                  <angle value="131.475403" />
+                </theta>
+              </radial_composite>
+            </t1>
+            <t2>
+              <radial_composite type="vector">
+                <radius>
+                  <real value="1.7659962687" />
+                </radius>
+                <theta>
+                  <angle value="131.475403" />
+                </theta>
+              </radial_composite>
+            </t2>
+            <split_radius>
+              <bool value="true" />
+            </split_radius>
+            <split_angle>
+              <bool value="false" />
+            </split_angle>
+          </composite>
+        </entry>
+      </bline>
+    </param>
+    <param name="width">
+      <real value="0.0166666667" />
+    </param>
+    <param name="expand">
+      <real value="0.0000000000" />
+    </param>
+    <param name="sharp_cusps">
+      <bool value="true" />
+    </param>
+    <param name="round_tip[0]">
+      <bool value="true" />
+    </param>
+    <param name="round_tip[1]">
+      <bool value="true" />
+    </param>
+    <param name="homogeneous_width">
+      <bool value="true" />
+    </param>
+  </layer>
+  <layer type="text" active="true" exclude_from_rendering="true" version="0.5" desc="sk_name" group="name_SK">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="0" static="true" />
+    </param>
+    <param name="text">
+      <string guid="28377723FFFF4E42FFFFB1D8FFFF5A00">shapekey_0</string>
+    </param>
+    <param name="color">
+      <color>
+        <r>0.749783</r>
+        <g>0.749783</g>
+        <b>0.749783</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="family">
+      <string>Sans Serif</string>
+    </param>
+    <param name="style">
+      <integer value="0" static="true" />
+    </param>
+    <param name="weight">
+      <integer value="400" static="true" />
+    </param>
+    <param name="direction">
+      <integer value="0" static="true" />
+    </param>
+    <param name="compress">
+      <real value="1.0000000000" />
+    </param>
+    <param name="vcompress">
+      <switch type="real">
+        <link_off>
+          <real value="1.0000000000" />
+        </link_off>
+        <link_on>
+          <average type="real">
+            <entry>
+              <real guid="B08E0665FFFFB5A7FFFFBC2DFFFF6BF7" value="100.0000000000" />
+            </entry>
+          </average>
+        </link_on>
+        <switch>
+          <bool value="false" />
+        </switch>
+      </switch>
+    </param>
+    <param name="size">
+      <vector>
+        <x>0.1500000060</x>
+        <y>0.1500000060</y>
+      </vector>
+    </param>
+    <param name="orient">
+      <vector>
+        <x>0.5000000000</x>
+        <y>0.5000000000</y>
+      </vector>
+    </param>
+    <param name="origin">
+      <add type="vector">
+        <lhs>
+          <vector>
+            <x>0.0269958284</x>
+            <y>-0.4897979796</y>
+          </vector>
+        </lhs>
+        <rhs>
+          <vector guid="DA93AA85FFFF4535FFFFBAAEFFFF7F61" static="true">
+            <x>0.0000000000</x>
+            <y>0.0000000000</y>
+          </vector>
+        </rhs>
+        <scalar>
+          <real value="1.0000000000" />
+        </scalar>
+      </add>
+    </param>
+    <param name="use_kerning">
+      <bool value="true" />
+    </param>
+    <param name="grid_fit">
+      <bool value="false" />
+    </param>
+    <param name="invert">
+      <bool value="false" />
+    </param>
+  </layer>
+  <layer type="group" active="true" exclude_from_rendering="true" version="0.3" desc="INFO_temporary">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="0" static="true" />
+    </param>
+    <param name="origin">
+      <vector>
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="transformation">
+      <composite type="transformation">
+        <offset>
+          <vector>
+            <x>0.0000000000</x>
+            <y>0.0000000000</y>
+          </vector>
+        </offset>
+        <angle>
+          <angle value="0.000000" />
+        </angle>
+        <skew_angle>
+          <angle value="0.000000" />
+        </skew_angle>
+        <scale>
+          <vector>
+            <x>1.0000000000</x>
+            <y>1.0000000000</y>
+          </vector>
+        </scale>
+      </composite>
+    </param>
+    <param name="canvas">
+      <canvas>
+        <layer type="rectangle" active="true" exclude_from_rendering="false" version="0.2" desc="info">
+          <param name="z_depth">
+            <real value="0.0000000000" />
+          </param>
+          <param name="amount">
+            <real value="1.0000000000" />
+          </param>
+          <param name="blend_method">
+            <integer value="0" static="true" />
+          </param>
+          <param name="color">
+            <composite type="color">
+              <red>
+                <real value="0.7432220000" />
+              </red>
+              <green>
+                <real value="0.0000000000" />
+              </green>
+              <blue>
+                <real value="0.0022350000" />
+              </blue>
+              <alpha>
+                <real value="1.0000000000" />
+              </alpha>
+            </composite>
+          </param>
+          <param name="point1">
+            <vector>
+              <x>-15.8532819748</x>
+              <y>8.8586750031</y>
+            </vector>
+          </param>
+          <param name="point2">
+            <vector>
+              <x>-11.6587562561</x>
+              <y>8.0634031296</y>
+            </vector>
+          </param>
+          <param name="expand">
+            <real value="0.0000000000" />
+          </param>
+          <param name="invert">
+            <bool value="false" />
+          </param>
+          <param name="feather_x">
+            <real value="0.0000000000" />
+          </param>
+          <param name="feather_y">
+            <real value="0.0000000000" />
+          </param>
+          <param name="bevel">
+            <real value="0.0000000000" />
+          </param>
+          <param name="bevCircle">
+            <bool value="true" />
+          </param>
+        </layer>
+        <layer type="text" active="true" exclude_from_rendering="false" version="0.5" desc="edit shapekey">
+          <param name="z_depth">
+            <real value="0.0000000000" />
+          </param>
+          <param name="amount">
+            <real value="1.0000000000" />
+          </param>
+          <param name="blend_method">
+            <integer value="0" static="true" />
+          </param>
+          <param name="text">
+            <string>edit shapekey</string>
+          </param>
+          <param name="color">
+            <color>
+              <r>1.000000</r>
+              <g>1.000000</g>
+              <b>1.000000</b>
+              <a>1.000000</a>
+            </color>
+          </param>
+          <param name="family">
+            <string>Sans Serif</string>
+          </param>
+          <param name="style">
+            <integer value="0" static="true" />
+          </param>
+          <param name="weight">
+            <integer value="400" static="true" />
+          </param>
+          <param name="direction">
+            <integer value="0" static="true" />
+          </param>
+          <param name="compress">
+            <real value="1.0000000000" />
+          </param>
+          <param name="vcompress">
+            <real value="1.0000000000" />
+          </param>
+          <param name="size">
+            <vector>
+              <x>0.1833333373</x>
+              <y>0.1833333373</y>
+            </vector>
+          </param>
+          <param name="orient">
+            <vector>
+              <x>0.5000000000</x>
+              <y>0.5000000000</y>
+            </vector>
+          </param>
+          <param name="origin">
+            <vector>
+              <x>-13.4011993408</x>
+              <y>8.4766035080</y>
+            </vector>
+          </param>
+          <param name="use_kerning">
+            <bool value="true" />
+          </param>
+          <param name="grid_fit">
+            <bool value="false" />
+          </param>
+          <param name="invert">
+            <bool value="false" />
+          </param>
+        </layer>
+        <layer type="circle" active="true" exclude_from_rendering="false" version="0.2" desc="only when edit,inputmode">
+          <param name="z_depth">
+            <real value="0.0000000000" />
+          </param>
+          <param name="amount">
+            <real value="1.0000000000" />
+          </param>
+          <param name="blend_method">
+            <integer value="0" static="true" />
+          </param>
+          <param name="color">
+            <color>
+              <r>1.000000</r>
+              <g>1.000000</g>
+              <b>1.000000</b>
+              <a>1.000000</a>
+            </color>
+          </param>
+          <param name="radius">
+            <real value="0.2403819007" />
+          </param>
+          <param name="feather">
+            <real value="0.0000000000" />
+          </param>
+          <param name="origin">
+            <vector>
+              <x>-15.3708677292</x>
+              <y>8.4397315979</y>
+            </vector>
+          </param>
+          <param name="invert">
+            <bool value="false" />
+          </param>
+        </layer>
+      </canvas>
+    </param>
+    <param name="time_dilation">
+      <real value="1.0000000000" />
+    </param>
+    <param name="time_offset">
+      <time value="0s" />
+    </param>
+    <param name="children_lock">
+      <bool value="false" static="true" />
+    </param>
+    <param name="outline_grow">
+      <real value="0.0000000000" />
+    </param>
+    <param name="z_range">
+      <bool value="false" static="true" />
+    </param>
+    <param name="z_range_position">
+      <real value="0.0000000000" />
+    </param>
+    <param name="z_range_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="z_range_blur">
+      <real value="0.0000000000" />
+    </param>
+  </layer>
+</canvas>
