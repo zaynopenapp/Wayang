@@ -1,5 +1,3 @@
-# Wayang
-
 <div align="center">
 	<br>
 	<a>
