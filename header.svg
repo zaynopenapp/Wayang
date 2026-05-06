@@ -36,7 +36,7 @@
           margin-bottom: 10px;
           text-shadow:
             0 2px 5px rgba(0,0,0,0.2);
-          animation: fadeBlink 3s infinite;
+          animation: fadeBlink 5s infinite;
         }
 
         .subtitle {
