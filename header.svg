@@ -1,54 +1,53 @@
-<svg width="100%" height="80" viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="100" viewBox="0 0 1500 100" xmlns="http://www.w3.org/2000/svg">
   <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <style>
         @keyframes gradientBackground {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
 
-        @keyframes marquee {
-          0% {
-            transform: translateX(100%);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
+        @keyframes fadeBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
 
         .container {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
           width: 100%;
-          height: 80px;
-          overflow: hidden;
+          height: 100px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           background: linear-gradient(-45deg, #fc5c7d, #6a82fb, #05dfd7);
           background-size: 600% 400%;
           animation: gradientBackground 10s ease infinite;
           color: white;
           font-family: Arial, sans-serif;
+          text-align: center;
         }
 
-        .text {
-          white-space: nowrap;
-          font-size: 50px;
-          padding-left: 100%;
-          animation: marquee 8s linear infinite;
+        .line {
+          font-size: 18px;
+          line-height: 1.5;
+          animation: fadeBlink 2s infinite;
+        }
+
+        /* Delay biar tidak berkedip barengan */
+        .line:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+
+        .line:nth-child(3) {
+          animation-delay: 1s;
         }
       </style>
 
       <div class="container">
-        <div class="text">
-          🚀 Wayang Smart bone synfig
-        </div>
+        <div class="line">🚀 WAYANG</div>
+        <div class="line">🔥 controller shape key</div>
+        <div class="line">✨ Synfig Plugin</div>
       </div>
     </div>
   </foreignObject>
