@@ -1,5 +1,16 @@
 # Wayang
 
+<div align="center">
+	<br>
+	<a>
+		<picture>
+		  <source media="(min-width: 720px)" srcset="header.svg">
+		  <img src="header-mobile.svg" width="1200" height="200" alt="Click to see the source">
+		</picture>
+	</a>
+	<br>
+</div>
+
 ### Synfig plugin controller shapekey
 
 
