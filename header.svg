@@ -30,7 +30,7 @@
         }
 
         .title {
-          font-size: 48px;
+          font-size: 70px;
           font-weight: bold;
           letter-spacing: 3px;
           margin-bottom: 10px;
