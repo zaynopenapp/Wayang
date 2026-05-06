@@ -1,23 +1,55 @@
-<svg width="100%" height="60" viewBox="0 0 500 60">
-  <style>
-    .marquee {
-      font-size: 24px;
-      font-family: Arial, sans-serif;
-      fill: black;
-      animation: jalan 8s linear infinite;
-    }
+<svg width="100%" height="80" viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        @keyframes gradientBackground {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
 
-    @keyframes jalan {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  </style>
+        @keyframes marquee {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
 
-  <text y="35" class="marquee">
-    Ini adalah contoh teks berjalan di dalam SVG 🚀
-  </text>
+        .container {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          height: 80px;
+          overflow: hidden;
+          background: linear-gradient(-45deg, #fc5c7d, #6a82fb, #05dfd7);
+          background-size: 600% 400%;
+          animation: gradientBackground 10s ease infinite;
+          color: white;
+          font-family: Arial, sans-serif;
+        }
+
+        .text {
+          white-space: nowrap;
+          font-size: 20px;
+          padding-left: 100%;
+          animation: marquee 8s linear infinite;
+        }
+      </style>
+
+      <div class="container">
+        <div class="text">
+          🚀 Ini adalah teks berjalan dengan background gradient animasi
+        </div>
+      </div>
+    </div>
+  </foreignObject>
 </svg>
