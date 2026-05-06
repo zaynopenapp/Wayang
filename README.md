@@ -42,5 +42,5 @@ If you want to create a controller without a template, make sure to add the code
       
    </details>
 
-## Donwload Synfig 1.5.6 exp
+## Donwload Synfig 1.5.6 exp for linux Mint 21
 >[google drive](https://drive.google.com/file/d/13pyL3rrpPGlnWr4X7nhsDfhl26prmkL8/view?usp=drive_link)
