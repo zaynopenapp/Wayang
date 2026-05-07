@@ -46,7 +46,7 @@ If you want to create a controller without a template, make sure to add the code
 
 2. <details><summary>Tutorial</summary>
     
-    - *Tuto1 coming soon*
+    - [Make controller with IK bone ](https://youtu.be/JMWsmjfSqi8)
     - *Tuto2 coming soon*
       
    </details>
