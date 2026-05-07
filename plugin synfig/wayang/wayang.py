@@ -4313,7 +4313,30 @@ def replace_data():
 
 	convert_keys_tolinear(varglo.root_file)
 	erase_shapekey() #modul erase when edit but not edit but user erase keys
+	
+def convert_export_toguidlink():
 
+	def find_exported(name_id,el_ini): # find it and append that elements
+		
+		for el_this in varglo.root_file.iter():
+			for attr, value in list(el_this.attrib.items()):
+				if value == name_id:
+					a = ET.Element(attr)
+					a.append(el_ini)
+					el_this.attrib.pop(attr)
+					el_this.append(a)
+
+	layer_defs = get_defs()
+	
+	for el_export in layer_defs.findall(".//*[@id]"): # find in export valuenode
+		name_id = el_export.get('id')
+		el_ini = copy.deepcopy(el_export)
+		el_ini.attrib.pop('id')
+		layer_defs.remove(el_export)
+		guid_this =str(uuid.uuid4())
+		el_ini.set('guid',guid_this)
+		find_exported(name_id,el_ini)
+		
 def mulai_process():
 
 	if varglo.mode_smartkey == 'editmode':  #dari play ke mode edit
@@ -4358,8 +4381,9 @@ def wayang(file, namafile):
 	varglo.id = str(uuid.uuid4()) #id_sudut
 	#varglo.fps = float(varglo.root_file.get('fps')) # get fps # sebaiknya fps 25
 	varglo.root_file.set('fps','25') #set defaul to 25 fps
-	varglo.fps = 25
+	varglo.fps = 25 # default fps don't change
 
+	convert_export_toguidlink() # will convert export value node to normal but still conected because have guid id
 	get_set_mode() # menu GTK and setting
 	update_skname()
 	simpan_fileundo(path_undo,root_undo)
