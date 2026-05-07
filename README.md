@@ -51,5 +51,5 @@ If you want to create a controller without a template, make sure to add the code
       
    </details>
 
-## Donwload Synfig 1.5.6 exp for linux Mint 21
->[google drive](https://drive.google.com/file/d/13pyL3rrpPGlnWr4X7nhsDfhl26prmkL8/view?usp=drive_link)
+## Donwload Synfig 1.5.5 converter IK angle ready
+>[appimage synfig linux](https://github.com/BobSynfig/synfig/releases/download/UNOFFICIAL-1.5.5-2026.05.06-test-pr-3623/SynfigStudio-UNOFFICIAL-1.5.5-2026.05.06-linux64-97f56.AppImage)
