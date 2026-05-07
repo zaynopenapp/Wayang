@@ -4330,6 +4330,8 @@ def convert_export_toguidlink():
 	
 	for el_export in layer_defs.findall(".//*[@id]"): # find in export valuenode
 		name_id = el_export.get('id')
+		if 'shapekey' in name_id:
+			continue
 		el_ini = copy.deepcopy(el_export)
 		el_ini.attrib.pop('id')
 		layer_defs.remove(el_export)
@@ -4341,18 +4343,18 @@ def mulai_process():
 
 	if varglo.mode_smartkey == 'editmode':  #dari play ke mode edit
 		hide_hook(True)
-		print("1645 :",'Enter Edit MODE')
+		#print("1645 :",'Enter Edit MODE')
 		find_controller_and_editkey()
 
 	else: #to mode play
 		if varglo.mode_before == 'inputkey': # dari input key to play
-			print("1621 :from inputkey to play MODE ")
+			#print("1621 :from inputkey to play MODE ")
 			varglo.controller_data = []
 			buat_controller() #convert bone to be controller bone
 			create_list_shapekeys() #create name of controller text
 
 		if varglo.mode_before == 'editmode': #dari mode edit ke play
-			print("1631 :frrom editmode to Play MODE")
+			#print("1631 :frrom editmode to Play MODE")
 			set_get_controller_active()
 			
 		find_animasi_dan_convert(varglo.mode_before )#baru
