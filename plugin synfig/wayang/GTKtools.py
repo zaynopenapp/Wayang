@@ -1,9 +1,10 @@
 # Synfig plugin: Shapekey 1.0
 # Helps controller shape/animated node
-# (c) 2025 2026 ABIDIN IDN
+# (c) 2025 2026 ZAINAL IDN
 
 import varglo
 import math
+
 
 try:
 	import gi
@@ -17,6 +18,49 @@ except ModuleNotFoundError:
 if varglo.modul_GTK:
 	settings = Gtk.Settings.get_default()
 	settings.set_property("gtk-application-prefer-dark-theme", True)
+
+
+def cari_file():
+
+	class MainWindow(Gtk.Window):
+		Gtk.filepath = None
+
+		def __init__(self):
+			Gtk.Window.__init__(self, title="Pilih File")
+
+			self.set_default_size(300, 50)
+			button = Gtk.Button(label="Cari ... ")
+			button.connect("clicked", self.on_open_file)
+			self.add(button)
+
+		def on_open_file(self, widget):
+
+			dialog = Gtk.FileChooserDialog(
+			title="Pilih File",
+			parent=self,
+			action=Gtk.FileChooserAction.OPEN
+			)
+
+			dialog.add_buttons(
+			Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+			Gtk.STOCK_OPEN, Gtk.ResponseType.OK
+			)
+
+			response = dialog.run()
+
+			if response == Gtk.ResponseType.OK:
+				Gtk.filepath = dialog.get_filename()
+				Gtk.main_quit()
+
+			dialog.destroy()
+
+
+	win = MainWindow()
+	win.connect("destroy", Gtk.main_quit)
+	win.show_all()
+	Gtk.main()
+
+	return Gtk.filepath
 
 def select_bone(list_bones):
 
@@ -50,8 +94,6 @@ def select_bone(list_bones):
 			main_vbox.pack_start(page1, False, False, 0)
 
 			# Daftar pilihan radio
-
-			choices = ["Pilihan 1", "Pilihan 2", "Pilihan 3", "Pilihan 4", "Pilihan 4", "Pilihan 4", "Pilihan 4"]
 			radio_group = None
 			idx=0
 
@@ -254,7 +296,6 @@ def show_shapekey_dialog(awal):
 				row.add(hbox)
 				listbox2.add(row)
 				hbox.pack_start(check, False, False, 0)
-				#hbox.pack_start(label, False, False, 0)
 				if i ==1:
 					row_temp2 = row
 	        
@@ -286,14 +327,10 @@ def show_shapekey_dialog(awal):
 			self.connect("switch-page", self.on_tab_switched)
 			self.set_tab_pos(Gtk.PositionType.TOP)
 
-			#page2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-			#page2.set_border_width(10)
 
 			self.isiSmartkey = isieditsk()
 			self.append_page(self.isiSmartkey, Gtk.Label(label="Edit or Bind"))
 
-			#self.isislider = dataisislider()
-			#self.append_page(self.isislider, Gtk.Label(label="Slider"))
 
 			self.isiik = frezesk()
 			self.append_page(self.isiik, Gtk.Label(label="frezze"))
@@ -304,7 +341,6 @@ def show_shapekey_dialog(awal):
 				Gtk.apa = 'edit'
 			else:
 				Gtk.apa = 'frezze'
-
 
 	class frezesk(Gtk.Box):
 		def __init__(self):
@@ -396,7 +432,6 @@ def show_shapekey_dialog(awal):
 			self.button_boxp1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 
 			listbox.select_row(row_temp) # slect pertmana
-			#listbox.connect("row-selected", self.on_row_selected)
 			listbox.connect("row-activated", self.on_activate)
 
 			sk_first = varglo.smartkey_list[0][1]
@@ -444,11 +479,6 @@ def show_shapekey_dialog(awal):
 		def on_entry_changed(self, entry):
 			try:
 				textnya = entry.get_text()
-
-				#if not self.dataklik[1] == None:
-					#self.dataklik[1].set_text(textnya)
-						#self.dataklik[0] = textnya
-						#print(self.dataklik[2].text)
 						
 			except ValueError:
 				pass
@@ -468,11 +498,9 @@ def show_shapekey_dialog(awal):
 			super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=10)
 
 			button_box_ikjenis2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
-			#button_box_ikjenis2.set_size_request(200, 238)
 			self.set_border_width(10)
 			self.listcheckbutton = []
 
-			#gambar
 			boxgambar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40)
 			boxgambar.set_size_request(200, 121)
 			self.image = Gtk.Image.new_from_file("icon1.png")
@@ -514,7 +542,6 @@ def show_shapekey_dialog(awal):
 			ok_button = Gtk.Button(label="OK")
 			ok_button.connect("clicked", self.on_ok_New_clicked)
 			cancel_button = Gtk.Button(label="Cancel")
-			#cancel_button.connect("clicked", self.on_cancel_clicked)
 
 			check_editable = Gtk.CheckButton(label="With Template")
 			check_editable.connect("toggled", self.on_template_toggled)
@@ -818,46 +845,6 @@ def show_shapekey_dialog(awal):
 			self.entry_min.set_text(str(int(val)))
 			self.drawing_area.queue_draw()
 
-	class dataisislider(Gtk.Box): # unused
-		def __init__(self):
-			super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-
-			#Gtk.wtemplate = False
-			self.set_border_width(10)
-			boxutama = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-			boxutama.set_size_request(200, 268)
-			#boxutama.set_hexpand(True)
-			boxgambar = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40)
-			boxgambar.set_size_request(200, 121)
-			self.image = Gtk.Image.new_from_file("iconslider.png")
-			boxgambar.pack_start(self.image, True, True, 0)
-			button_boxp1 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-			ok_button = Gtk.Button(label="OK")
-			ok_button.connect("clicked", self.on_ok_slider_clicked)
-			cancel_button = Gtk.Button(label="Cancel")
-			cancel_button.connect("clicked", self.on_cancel_clicked)
-			check_editable = Gtk.CheckButton(label="With Template")
-			check_editable.connect("toggled", self.on_template_toggled)
-			check_editable.set_active(False)
-			button_boxp1.pack_start(check_editable, False, False, 0)
-			boxutama.pack_start(boxgambar, True, True, True)
-
-			self.pack_start(boxutama, False, False, 0)
-			self.pack_start(button_boxp1, False, False, 0)
-
-		def on_ok_slider_clicked(self, button):
-
-			Gtk.jenis = 'new smartkey'
-			Gtk.apa = 'slider'
-			
-			Gtk.main_quit()		
-
-		def on_cancel_clicked(self, button):
-			Gtk.main_quit()
-
-		def on_template_toggled(self, button):
-
-			value = button.get_active()
 
 	class InnerNotebook(Gtk.Notebook):
 		def __init__(self):
