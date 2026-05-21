@@ -1,6 +1,6 @@
 # Synfig plugin: Shapekey(Wayang)
 # Helps controller shape/animated node
-# (c) 2025/2026 ABIDIN IDN
+# (c) 2025/2026 ZAINAL IDN
 
 import uuid
 import xml.etree.ElementTree as ET
@@ -874,6 +874,9 @@ def get_totalcontroller(mode):
 
 def make_el_linktime(el_temp_valueattime):
 
+	if len(varglo.data_error)>0:
+		return
+
 	if el_temp_valueattime == None:
 
 		for el_lts in varglo.root_file.findall(".//link_time/fromreal"):
@@ -1155,9 +1158,30 @@ def convert_to_real(el_animated):
 	for el_angle in el_animated.findall('.//integer'):
 		el_angle.tag = 'real'
 
+
+def set_wp_linear(wp,z_depth):
+
+	atr_before = wp.get('before')
+	atr_after = wp.get('after')
+
+	if atr_before != 'constant':
+		wp.set('before','linear')
+		if z_depth:
+			wp.set('before','constant')
+		
+
+	if atr_after != 'constant':
+		wp.set('after','linear')
+		if z_depth:
+			wp.set('after','constant')
+
+
 def ganti_timez(el_layer_f,selisih_time, influence = False):
 
-	#animated = False
+	z_depth = False
+	if 'name' in el_layer_f.attrib:
+		if el_layer_f.get('name') == 'z_depth':
+			z_depth = True
 
 	for el_ani_f in el_layer_f.findall(".//waypoint/.."):# cari animasi perbagian, misal point, radius, (bagian di bline) dan param di layer umum
 		if  el_ani_f.get('type') in ['vector','real','angle','integer','time']:
@@ -1169,6 +1193,8 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 			last_key = False
 
 			for wp in el_ani_f.findall(".//waypoint"):
+				set_wp_linear(wp,z_depth)
+
 				timet = wp.get('time')
 				timef = float(timet.strip("s"))
 				timer = round(timef, 3)
@@ -1331,39 +1357,6 @@ def convert_to_realcolor(el_this):
 
 	replace(el_this,el_color[0])
 
-def convert_shapekeylama(el_link):
-
-	el_link_parent = get_parent(el_link,6)
-
-	el_add = el_link_parent[0]
-
-	selisih_time = get_selisih_time()
-
-	value_this = get_shapekey_aktif()
-	if value_this == 'None': # mode inputkey bukan edit
-
-		# new shapekey in layer shapekeyed
-		el_link = el_add.find('.//link')
-
-		if el_link[0].tag == 'animated':
-			type_ani = el_link[0].get('type')
-			ganti_timez(el_link,selisih_time)
-
-			el_ani_timeloop = copy.deepcopy(el_link[0])
-			if 'guid' in el_ani_timeloop.attrib:
-				guid_this = el_ani_timeloop.get('guid')
-				el_ani_timeloop.attrib.pop('guid')
-
-			update_all_base_new(el_add,el_ani_timeloop)
-
-			el_skala = el_add.find('.//scalar/')
-			el_skala.set('value','0')
-
-			el_skala2 = el_tobe_export.find('.//rhs/scale/scalar/')
-
-			val_average = 1
-			el_skala2.set('value',str(val_average))
-
 def cek_waypoint_atcont(el_animateds): # check is waypoints in controller angle, if yes remove all animated at contoller angle
 
 	def set_to_nonanimated(el_animated,el_this,tipe):
@@ -1371,7 +1364,7 @@ def cek_waypoint_atcont(el_animateds): # check is waypoints in controller angle,
 		def print_tipe(tipe):
 
 			if tipe == 'angle':
-					print("       >>> found animated in angle controller not processing!!")
+				print("       >>> found animated in angle controller not processing!!")
 
 			if tipe == 'scalelx':
 				print("       >>> found animated in length bone controller not processing!!")
@@ -1386,8 +1379,6 @@ def cek_waypoint_atcont(el_animateds): # check is waypoints in controller angle,
 			el_name = el_layer.find(".//name/join")
 
 			if el_name != None:
-				print_tipe(tipe)
-				
 				if tipe in ['angle','scalelx']:
 					guid_this = el_animated[0].get('guid')
 					el_real = el_this.find(".//real")
@@ -1454,10 +1445,8 @@ def waypoint_samevalue(el_param_f):
 
 	if len(waypoints)== 2:
 		if waypoints[0][0].tag == 'vector':
-
 			x_t1 = waypoints[0][0][0].text
 			y_t1 = waypoints[0][0][1].text
-
 			x_t2 = waypoints[1][0][0].text
 			y_t2 = waypoints[1][0][1].text
 
@@ -1497,7 +1486,6 @@ def cari_in_layer(): # di param umum
 	cek_waypoint_atcont(el_animateds)
 
 	for el_param_f in el_animateds:
-
 		if el_param_f.tag == 'defs':
 			print("   >>> animated in exported not processing!!")
 			continue
@@ -1523,23 +1511,6 @@ def cari_in_layer(): # di param umum
 
 		set_split_bline_point(el_param_f)
 
-		# if el_param_f.tag in ['origin']: #'width', tebal line 
-
-		# 	if el_param_f[0].get('type')== 'real':
-		# 		el_this = el_param_f.find(".//real")
-		# 		el_realss = el_param_f.findall(".//real")
-		# 		val_base = el_this.get('value')
-		# 		val_same =False
-				
-		# 		if len(el_realss)>=2:
-		# 			for val in el_realss:
-		# 				val_this = val.get('value')
-		# 				if val_base == val_this:
-		# 					val_same = True
-
-		# 		if val_same:
-		# 			replace(el_param_f,el_this)
-		
 		if el_param_f[0].get('type') in ['vector','real','integer','angle','time','color']:
 			if 'guid' in el_param_f[0].attrib:
 				if el_param_f[0].get('guid') in varglo.list_guid_inf:
@@ -1787,13 +1758,6 @@ def find_di_defs(type):
 			ada_shapekey = False
 			varglo.found_keys += 1
 
-			#find_inf_controlled(el_add)
-			#find_waypoint_incont(el_add)
-
-			#if 'inf_' in el_add.get('id'):
-				#el_defs.remove(el_add)
-				#continue
-
 			if 'guid' in el_add.attrib:
 				print('    ada guidnya at |',el_add.get('id'))
 			
@@ -1813,11 +1777,6 @@ def find_di_defs(type):
 					if 'guid' in el_add_parent.attrib:
 						el_add_parent.attrib.pop('guid')
 
-					#if 'shapekey_21' == el_add.get('id'): # apa fungsinya???
-						#el_link.set('temp','shapekey') 
-						#el_add_parent = varglo.root_file.find(".//*[@temp='shapekey']/..")
-						#el_link.attrib.pop('temp')
-
 					move_timeto_data(el_link[0],selisih_time)
 					update_all_base(el_add,el_link[0])
 
@@ -1826,13 +1785,12 @@ def find_di_defs(type):
 
 					el_add_copy.attrib.pop('id')
 					el_defs.remove(el_add) #
-					# ganti semua timeloop dan del sementara
+					
 					for el_awal in varglo.root_file.findall(".//*/[@guid='{no}']/..".format(no=guid_this)):
 						el_awal.remove(el_awal[0])
 						varglo.valueattime_list.append([el_awal,el_add_copy])
 
 			if not ada_shapekey:
-
 				el_rhs = el_add.find('.//lhs/add/rhs')
 
 				if el_rhs != None:
@@ -1845,7 +1803,6 @@ def find_di_defs(type):
 						if 'guid' in el_ani_timeloop.attrib:
 							guid_this = el_ani_timeloop.get('guid')
 							el_ani_timeloop.attrib.pop('guid')
-
 
 						update_all_base(el_add,el_ani_timeloop)
 
@@ -1969,51 +1926,6 @@ def cari_link_inf(el_this,defs):
 						replace(el_link,el_inf)
 
 			replace(el_this,el_inf)
-
-def find_keyed_influence():
-
-	defs = get_defs()
-
-	print('   [.] get influence')
-	selisih_time = get_selisih_time()
-
-	el_bones = varglo.root_file.find(".//bones")
-
-	for el_this in el_bones.findall('.//scalex/switch//link_on/average/entry'):
-		if el_this[0].tag == 'animated':
-			#print('    found animated influence |',el_this[0].attrib)
-			el_wp_base = el_this[0].find(".//*[@time='-2s']") 
-			
-			if el_wp_base == None:
-				ganti_timez(el_this[0],selisih_time)
-				convert_to_timeloop(el_this,False,True)
-			else:
-				guid_this = el_this[0].get('guid')
-				ganti_timez(el_this[0],selisih_time)
-				el_this[0].attrib.pop('guid')
-				el_new_animated= copy.deepcopy(el_this[0])
-				defs = get_defs()
-
-				el_influence = None
-				el_defs_ada_this = cari_defs_this(guid_this)# cari defs sesuai guid this
-
-				if el_defs_ada_this != None:
-					el_defs_ada_this.attrib.pop('id')
-					el_defs_ada_this.set('guid',guid_this)
-					el_influence  = copy.deepcopy(el_defs_ada_this)
-					varglo.el_influence = el_influence
-
-					for el_inf in el_influence.findall(".//*/[@guid='{no}']/..".format(no=guid_this)):
-						replace(el_inf,el_new_animated)
-
-					defs.remove(el_defs_ada_this)
-					replace(el_this,el_influence)
-
-		else:
-			#masih ada yg error. tidak bisa balik data influence  
-			cari_link_inf(el_this,defs)
-
-	print('   [..] done')
 
 def find_animasi_dan_convert(type):
 
@@ -2455,8 +2367,10 @@ def erase_export_shapekeys():
 		el_defs.remove(el)
 
 def set_infcontroller(): #set back
+
+
 	print(" ")
-	print("[.. setback infuence controller ..]")
+	print("   <<< setback infuence controller .")
 
 	def convert_nonswitch(bone,entry):
 
@@ -2487,6 +2401,7 @@ def set_infcontroller(): #set back
 def find_infcontroller():#set to switch data
 
 	print("   >>> inf searching")
+	
 	def convert_switch(entry,tipe):
 		guid_this = entry[0].get('guid')
 
@@ -2533,7 +2448,6 @@ def find_controller_and_editkey():
 	for el_add in varglo.root_file.findall(".//add/lhs/add/../../.."):
 		influence = False 
 
-		#print(varglo.id_controller)
 		if cek_parent_loop(el_add) == "OK":
 			del_onoff_key(el_add)
 			apa_terkoneksi(el_add, varglo.id_controller ,el_defs)
@@ -2760,6 +2674,7 @@ def make_ik_minmax(origin_target,el_origin_base):
 	del_guid(el_base_origin)
 	varglo.el_origin_ik_pole = el_base_origin
 	
+
 def create_controller_ik(el_origin_target,el):
 
 	selisih_time = get_selisih_time()
@@ -2813,7 +2728,9 @@ def create_controller_ik(el_origin_target,el):
 	varglo.controller_data.append([el_name,el_name_copy,"replace"])
 
 	el_origin_base = el_bone.find(".//origin")
+
 	make_ik_minmax(el_origin_target,el_origin_base)
+
 	el_vec_original = el_origin_base.find(".//lhs/vector")
 	el_vec_original_new = copy.deepcopy(el_vec_original)
 
@@ -2827,9 +2744,12 @@ def create_controller_ik(el_origin_target,el):
 
 		else:
 			el_vec_original = el_origin_base[0]
+
 	else:
 		pass # mungkin animasi bukan add, convert dulu 
+
 	el_vec_original_lhs = el_origin_base.find(".//rhs//vector") # add pos
+
 	if el_vec_original_lhs != None:
 		x_lhs = float(el_vec_original[0].text)+float(el_vec_original_lhs[0].text)
 		y_lhs = float(el_vec_original[1].text)+float(el_vec_original_lhs[1].text)
@@ -2843,12 +2763,14 @@ def create_controller_ik(el_origin_target,el):
 	if el_origin_base != None:
 		el_animasi_ik = el_origin_target.find(".//animated")
 		move_animasi_thiske_editmode(el_animasi_ik, False)
+		
 		#CREATE DATA ORIGIN FOR BASE:
 		el_origin_base_c = copy.deepcopy(el_origin_base[0])
 		get_setdata_sud(el_animasi_ik,el_vec_original_new)
 
 		if 'guid' in el_origin_base_c.attrib:
 			el_origin_base_c.attrib.pop('guid')
+
 		else:
 			new_guid = str(uuid.uuid4())
 			el_origin_base[0].set('guid',new_guid)
@@ -2907,6 +2829,7 @@ def create_controller_ik(el_origin_target,el):
 			print('    >>> !!! missing template ik bone')
 			varglo.data_error['ik template']= 'missing'
 			return
+
 	print('    >>> create ik controller done')
 
 def set_static_bone(el_file, tipe):
@@ -3227,6 +3150,62 @@ def find_bone_with_ani(el):
 					if el_angle != None:
 						do_greyed(el_angle,el)
 
+def code_greyed(cari_el): # smart detect controller
+
+	found_code_greyed = False
+	list_bone_cont = []
+	OK = False
+
+	for bone in cari_el:
+
+		name_bone = bone.find(".//name/greyed/..")
+		
+		if name_bone != None:
+			found_code_greyed = True
+			print("   >>> found controller new")
+			OK = True
+			break
+		else:
+			after = bone.find(".//name/join/after/greyed/..")
+			if after != None:
+				print("   >>> found controller add")
+				found_code_greyed = True
+				OK = True
+				break
+
+			else:
+				name_bone = bone.find(".//name/join/..")
+				list_bone_cont.append(bone)
+
+	if not found_code_greyed:
+
+		for bone  in list_bone_cont:
+			el_angle_an = bone.findall(".//angle/fromreal//animated/waypoint")
+
+			if len(el_angle_an) >= 2:
+				el_after = bone.find(".//name/join/after/string/..")
+				copy_link = copy.deepcopy(el_after[0])
+				a = ET.Element('greyed')
+				a.set("type", "string")
+				b = ET.SubElement(a, 'link')
+				b.append(copy_link)
+				replace(el_after,a)
+				print("   >>> add code 'greyed'")
+				OK = True
+				break
+
+		return OK
+
+	else:
+		 return OK
+
+				
+
+
+
+				
+
+
 def buat_controller():
 
 	from GTKtools import show_message
@@ -3242,6 +3221,13 @@ def buat_controller():
 			return
 			
 		cari_el = varglo.root_file.findall(type[i])
+
+		OK = code_greyed(cari_el)
+
+		if not OK:
+			 # not found all code
+			break
+
 		for el in cari_el:
 
 			if varglo.id_edit_sub_smartkey == None:
@@ -3333,12 +3319,14 @@ def buat_controller():
 											varglo.controller_data.append([el_name,varglo.el_name_bone,"replace"])
 											print('..] done')
 											return
+
 							
 	if missing_target_bone:
 		print('    !!! bone missing / missing controller/ code greyed not found')
 		#show_message("!!! bone missing / missing controller/ code greyed not found")
 
 	print('[..]')
+
 	varglo.data_error['bone controller']='missing'
 	return
 
@@ -3363,28 +3351,16 @@ def export_todefs(el_add, el_defs):
 
 	varglo.valueattime_elcounter +=1
 	idname = ''
-	#if influence:
-		#idname +='inf_'
 
 	idname += 'shapekey_'+str(varglo.valueattime_elcounter)
 	el_tobe_export = copy.deepcopy(el_add[0])
 
-	#ET.dump(el_tobe_export)
 	el_tobe_export.set('id',idname)
 	el_defs.append(el_tobe_export)
-	#varglo.controller_data.append([el_defs,el_tobe_export,"append"])
+	
 	el_rhs = el_tobe_export.find('.//lhs/add/rhs')
-
 	el_rhs[0].set('guid',guid_this)
-	#varglo.valueattime_list.append([el_add,el_rhs[0]])
-	#if influence:
-		#guid_this = el_tobe_export.get('guid')
-
-		#for el_this in varglo.root_file.findall(".//*/[@guid='{no}']/..".format(no=guid_this)):
-			#if el_this.tag == 'link':
-
-				#replace(el_this,el_rhs[0])
-
+	
 	replace(el_add,el_rhs[0])
 
 def set_nulreal(el_real):
@@ -3446,8 +3422,6 @@ def change_timeloop_to_basevalue():
 
 	print('[..] OK')
 		
-
-	
 def append_timeloop():
 
 	if len(varglo.data_error) >0:
@@ -3460,7 +3434,7 @@ def append_timeloop():
 
 def influence_data(bone):
 
-	print('    >>> create data influence')
+	print('   >>> create data influence')
 
 	if varglo.influence == None:
 		varglo.influence = str(uuid.uuid4())
@@ -3602,8 +3576,8 @@ def get_el_angle_IK(bone_base):
 def update_sudut_min_max():
 
 	el_defs = get_defs()
+	
 	for el_entrytime in el_defs.findall('.//timeloop/..'):
-			
 		id_shapekey = get_id_shapekey(el_entrytime) # jadi scalar
 		
 		if varglo.id_controller == id_shapekey:
@@ -3614,7 +3588,6 @@ def update_sudut_min_max():
 			if varglo.jenis_ik != 'ik_angle':
 				el_sud_min.set('value',varglo.sudut_min)
 				el_sud_max.set('value',varglo.sudut_max)
-
 
 def set_back_origin(bone_base):
 
@@ -3715,7 +3688,6 @@ def set_get_controller_active():
 					update(el_ani,el_scalex)
 
 				else:
-					#varglo.influence = cari_guid_influence(el_bone)
 					varglo.influence =varglo.id_controller
 					bone_base = find_bone_baseik()
 					reverse_to_normal(bone_base)
@@ -3751,7 +3723,6 @@ def set_get_controller_active():
 					el_target_animasi_original = copy.deepcopy(ani_temp[0])
 					el_target_animasi_original.set('guid',guid_this)
 					replace(origin_target,el_target_animasi_original)
-					#varglo.controller_data.append([ani_temp,origin_target_awal,'replace'])
 					replace(ani_temp,origin_target_awal)
 
 					for el_sud in  varglo.root_file.findall(".//*/[@guid='{no}']/..".format(no = guid_this)):
@@ -4061,7 +4032,6 @@ def key_time_add(time):
 def set_mode():
 
 	def convert_totime(datatime):
-		
 		pos = datatime.find("f")
 		dt1=datatime[:pos]
 		dt2 = float(dt1)/float(varglo.fps)
@@ -4081,7 +4051,6 @@ def set_mode():
 	turnoff_keyframes()	
 
 	if varglo.mode_smartkey == 'inputkey':
-
 		set_range_beginandendtime('inputkey')
 		key_time_add(convert_totime(varglo.root_file.get('begin-time')))
 		return 'inputkey'
@@ -4094,7 +4063,6 @@ def set_mode():
 	if varglo.mode_smartkey == 'editmode':
 		set_range_beginandendtime('edit')
 		turn_on_keyframes_editmode()
-		#key_time_add(convert_totime(varglo.root_file.get('begin-time')))
 		return 'editmode'
 
 def simpan_fileundo(path_undo,root_undo):
@@ -4104,8 +4072,6 @@ def simpan_fileundo(path_undo,root_undo):
 			copy_file = copy.deepcopy(varglo.root_file)
 			meta_mode = copy_file.find(".//*[@name='shapekey_mode']")
 			meta_mode.set('content','inputkey')
-			#tree_copy = ET.ElementTree(copy_file)
-			#tree_copy.write(path_undo)
 
 			try:
 				tree_copy = ET.ElementTree(copy_file)
@@ -4512,7 +4478,7 @@ def replace_data():
 			new_text = do[1]
 			do[0].text = new_text
 
-	convert_keys_tolinear(varglo.root_file)
+	#convert_keys_tolinear(varglo.root_file) # perbaiki
 	erase_shapekey() #modul erase when edit but not edit but user erase keys
 
 def convert_export_toguidlink():
@@ -4596,6 +4562,46 @@ def wayang(file, namafile):
 	if not varglo.synfig_above_154:# old synfig , convert element range to map range
 		convert_to_maprange() # becouse old synfig not have map_range converter so we use range converter manualy calculation
 		#to_min + (seek - from_min) * (to_max - to_min) / (from_max - from_min) formula map_range
+
+	#set_meta()
+
+	#1. buat ik angle controllern
+	#2. tambahkan controller baru dalam satu layer OK
+	#3.  ada hitungan salah jika ada penambhan new controller. data animasi yg lama jadi rusak bisa jadi di [update_all_base] #done OK
+	#4. coba cek jika base di ubah lihat hasilnya OK
+	#4. buat controller di bone yang sama ok done
+	#5. ik angle contollr
+	#6.  dari edit ik manual ke play lagi. di bagian layer umum masih ada errror OK done
+	#7.  uji edit untuk ik manual 3 bone ok DONE
+	#8.  uji ik angle ? done
+	#9.  uji ik angle 3 bone
+	#10. edit dari ik angle atau ik manual. tapi dalam satu timeloop ada controller non iK. lihat edit2.sif DONE OK
+	#11.  coba buat influence OK
+	#12.  edit ada influencenya?? cek lagi
+	#13, terjadi double jika bline di bagian outline dan regionnya. harusnya tidak dibuat dua2nya atau cek dulu aja OK DONE
+	#14.  edit free time OK done
+	#15. saat edit lalu ada tambhan bline key  malah ada yg tidak berindex. terutaman di bline bagian radius dan theta. OK DONE
+	#16. hasil edit unutk ik angle error. cek dimn salahnya. DONE ketemu masalahnya
+	#17.  uji coba buat ik dengan telapak kaki!!
+	#18.  buat ik manual bagian footnya
+	#19.  error saat ada ik dan shapekey baru lalu di baru ini basenay di revisi
+	#20.  fix IK cloning error done
+	#21.  shapekey ke 2 error. harusnya masuk mode input semua layer shapekey. tidak terlock harusnya. done
+	#22 . cek copy/clone @
+	#CARI BAGIAN ERASE DI SAAT APA AJA DI EXECUSI
+	#23.  controller lengt setelah edit perbaiki @done[Done]
+	#24.   fix clone ik [Done]
+	#25.  rename  cara baru dan cloning nama, jika ada dua shapekey di satu controller [Done]
+	#26.  error ik posisi awal rusak jika ada ik angle conctroller. tambagh baru cont ik [Done]
+	#27. cek error jika ada hook, ke bone balikin lagi saaat create hook bagian base terkonek ke bone bukan ke hook lagi.[Done]
+	#28.  saat ik di edit eror khusus target beda layer bone. [Done]
+	#29. buat bone ik angle elastik pilihan . sudah di plugin convert to i k angle ?
+	#30. coba awal1 bisa convert to smartbone. ik sudah berganti ik angle elastic [Done]
+	#31. coba cek influence di sk in?? [Done]
+	#32 . edit influence?? [Done]
+	#34.  timelink coba buat ada guid mungkin lebih efisien!! [Done]
+	#35.  buat data jarak awal ke akhir dengan data vector dari 2 buah titik. sebelumnya pake rumus untuk jarak awal dan akhir [Done]
+
 
 	if varglo.mode_smartkey != 'None':
 		if varglo.mode_smartkey in ['editmode','inputkey'] or varglo.mode_before == 'inputkey':
