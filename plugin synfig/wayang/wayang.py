@@ -920,7 +920,6 @@ def make_el_linktime(el_temp_valueattime):
 		replace(el_sud_max_target,varglo.el_max_ik_target)
 		replace(el_sud_max_pole,varglo.el_origin_ik_pole)
 
-		#insert to el_temp_valueattime
 		replace(el_sud_min,el_min)
 		replace(el_sud_max,el_max)
 
@@ -1237,8 +1236,8 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 						end_wp.set('time',str(new_timer)+'s')
 						el_ani_f.append(end_wp) # append close wp. with last wp
 				
-				if 'guid' in base_wp.attrib:
-					base_wp.attrib.pop('guid')
+				#if 'guid' in base_wp.attrib:
+				base_wp.attrib.pop('guid',None)
 
 				base_wp.set('time',str(varglo.time_base)+'s')
 				el_ani_f.append(base_wp)
@@ -1253,8 +1252,8 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 
 				if begin_wp != None:
 					guid_el = begin_wp[0]
-					if 'guid' in guid_el.attrib:
-						guid_el.attrib.pop('guid')
+					#if 'guid' in guid_el.attrib:
+					guid_el.attrib.pop('guid',None)
 
 					new_timer = round(selisih_time+varglo.time_left,6)
 					begin_wp.set('time',str(new_timer)+'s')
@@ -1307,12 +1306,18 @@ def cek_time_2s(el_animated):
 def convert_time_toreal(el_this):
 
 	for wp in el_this.findall('.//waypoint'):
-		wp[0].tag = 'real'
-		time = wp[0].get('value')
-		timef = float(time.strip("s"))
-		timef = round(timef, 5)
-		timef = timef*varglo.fps
-		wp[0].set('value',str(timef))
+		real = wp[0]
+		real.tag = "real"
+
+		value = float(real.get("value").rstrip("s"))
+		real.set("value", str(round(value * varglo.fps, 5)))
+
+		# wp[0].tag = 'real'
+		# time = wp[0].get('value')
+		# timef = float(time.strip("s"))
+		# timef = round(timef, 5)
+		# timef = timef*varglo.fps
+		# wp[0].set('value',str(timef))
 
 def cek_wp_negatif(el_animated):
 
@@ -1352,8 +1357,8 @@ def convert_to_realcolor(el_this):
 		warna = data[kode]
 		el_warna_this = el_color.find('.//'+warna)
 
-		for el_wp in el_wp:
-			el_warna_this[0].append(el_wp)
+		for el_p in el_wp:
+			el_warna_this[0].append(el_p)
 
 	replace(el_this,el_color[0])
 
@@ -1751,15 +1756,14 @@ def find_di_defs(type):
 	print("   [.. searching in defs")
 
 	el_defs = varglo.root_file.find(".//defs")
-	
 	if el_defs != None:
 		selisih_time = get_selisih_time()
 		for el_add in el_defs.findall(".//*[@id]"):
 			ada_shapekey = False
-			varglo.found_keys += 1
+			#varglo.found_keys += 1
 
-			if 'guid' in el_add.attrib:
-				print('    ada guidnya at |',el_add.get('id'))
+			#if 'guid' in el_add.attrib:
+				#print('    ada guidnya at |',el_add.get('id'))
 			
 			for el_entry in el_add.findall(".//average/entry"):
 				
@@ -1774,8 +1778,8 @@ def find_di_defs(type):
 
 					el_add_parent = get_parent(el_link,1)
 
-					if 'guid' in el_add_parent.attrib:
-						el_add_parent.attrib.pop('guid')
+					#if 'guid' in el_add_parent.attrib:
+					el_add_parent.attrib.pop('guid',None)
 
 					move_timeto_data(el_link[0],selisih_time)
 					update_all_base(el_add,el_link[0])
@@ -2225,8 +2229,8 @@ def ganti_animasi_keawal(el_animated): # pindahkan ke area edit
 
 	if type_ani == "real":
 		val_r_awal = float(el_base.get('value'))
-
 		idx =0 
+		
 		for wp in el_animated.findall('.//waypoint'):
 			if idx == 0:
 				wp.set('time','-4.8s')
@@ -2258,8 +2262,6 @@ def set_controller_toeditmode(el_add,el_entrytime):
 		el_from_max = el_entrytime.find('.//to_max/map_range/from_max/')
 		varglo.sudut_min = el_from_min.get('value') # get isi buat bone
 		varglo.sudut_max = el_from_max.get('value')
-
-
 
 		if el_link_value.tag in ['animated','real']:
 			varglo.id_edit_sub_smartkey=el_link_value.get('guid')
