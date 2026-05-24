@@ -39,7 +39,8 @@ If you want to create a controller without a template, make sure to add the code
 
 1. <details><summary>Demo</summary>
     
-    - *demo 1 coming soon*
+    -  https://github.com/user-attachments/assets/c4a2326a-d1ca-4b1d-ae75-cddd29c4991e
+
     - *demo 2 coming soon*
       
    </details>
