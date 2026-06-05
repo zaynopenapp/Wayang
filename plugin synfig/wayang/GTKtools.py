@@ -195,7 +195,7 @@ def show_warning(pesan ,parent=None):
 def show_shapekey_dialog(awal):
 
 	Gtk.awal = awal
-	Gtk.tab2 = 'smartkey'
+	Gtk.tab2 = None
 	Gtk.apa = 'smartkey'
 	Gtk.jenis = 'smartkey'
 	if len(varglo.smartkey_list)!=0:
@@ -238,14 +238,10 @@ def show_shapekey_dialog(awal):
 				row.add(hbox)
 				listbox2.add(row)
 				hbox.pack_start(check, False, False, 0)
-				#hbox.pack_start(label, False, False, 0)
-				#if i ==1:
-					#row_temp2 = row
 
 			else:
 				nama_label = "Not found yourgroup>clone!!"
 	        
-			#listbox2.select_row(1) # slect pertmana
 			button_box3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 
 			ok_button3 = Gtk.Button(label="OK")
@@ -327,14 +323,11 @@ def show_shapekey_dialog(awal):
 			self.connect("switch-page", self.on_tab_switched)
 			self.set_tab_pos(Gtk.PositionType.TOP)
 
-
 			self.isiSmartkey = isieditsk()
 			self.append_page(self.isiSmartkey, Gtk.Label(label="Edit or Bind"))
 
-
 			self.isiik = frezesk()
 			self.append_page(self.isiik, Gtk.Label(label="frezze"))
-
 
 		def on_tab_switched(self, notebook, current_page, page_num):
 			if page_num == 0:
@@ -358,9 +351,7 @@ def show_shapekey_dialog(awal):
 			scrolled_window.add(listbox)
 
 			self.daftar_list = listbox
-
 			row_temp = None
-
 			self.sk = []
 			self.dataklik=[None,None]
 
@@ -372,7 +363,6 @@ def show_shapekey_dialog(awal):
 				self.row.id = i[0]
 				self.row.text = i[1]
 				listbox.add(self.row)# awal
-
 				self.sk.append([i[0],i[1],i[1]]) # 0=guid,1=orinal name,2=new name
 				if i ==1:
 					row_temp = row
@@ -579,8 +569,9 @@ def show_shapekey_dialog(awal):
 
 			value = button.get_active()
 			if value:
+				Gtk.jenis = 'ik'
 				Gtk.ikjenis = jenis
-				#print("jenis ik: ",jenis)
+				print("jenis ik: ",jenis)
 				if jenis in ['ik1','ik3']:
 					self.image.set_from_file("icon1.png")
 
@@ -845,7 +836,6 @@ def show_shapekey_dialog(awal):
 			self.entry_min.set_text(str(int(val)))
 			self.drawing_area.queue_draw()
 
-
 	class InnerNotebook(Gtk.Notebook):
 		def __init__(self):
 			super().__init__()
@@ -866,6 +856,8 @@ def show_shapekey_dialog(awal):
 			self.append_page(self.isiik, Gtk.Label(label="IK controller"))
 
 		def on_tab_switched(self, notebook, current_page, page_num):
+
+			print("tab ",page_num)
 			
 			if len(varglo.smartkey_list)==0:
 				if page_num == 1:
@@ -875,13 +867,13 @@ def show_shapekey_dialog(awal):
 					Gtk.jenis = 'smartkey'
 
 			else:
+				if page_num == 1:
+					Gtk.tab2  = 'ik'
+					Gtk.wtemplate = Gtk.IKtemplate
+
 				if page_num == 0:
 					Gtk.tab2 = 'smartkey'
 					Gtk.wtemplate = Gtk.SKtemplate
-
-				if page_num == 1:
-					Gtk.wtemplate = Gtk.IKtemplate
-					Gtk.tab2  = 'ik'
 			
 	class MyWindow(Gtk.Window):
 		def __init__(self):
@@ -941,7 +933,8 @@ def show_shapekey_dialog(awal):
 			print("Ok exit dialog gtk ")
 
 			if Gtk.apa == 'new smartkey':
-				Gtk.jenis = Gtk.tab2
+				if not Gtk.tab2 == None:
+					Gtk.jenis = Gtk.tab2
 
 			if Gtk.apa == 'merge':
 				if len(varglo.skeleton_list)== 0:
