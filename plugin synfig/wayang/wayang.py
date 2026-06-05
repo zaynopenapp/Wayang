@@ -83,7 +83,7 @@ def masukan_templateIK(bone_path,bone_layer_path):
 	def isi_guidbaru(el_guid,data_guid,guid_root):
 
 		if el_guid.get('guid') == guid_root:
-			return
+			return	
 
 		if not el_guid.get('guid') in data_guid:
 			new_guid = str(uuid.uuid4())
@@ -143,7 +143,7 @@ def masukan_templateSK():
 
 	el_bones = varglo.root_file.find(".//bones") # cari ada bone awal
 	el_layer_bone = load_template(".//*[@kunci='SK2_layerbonesm']")
-	el_bones_baru = load_template(".//*[@kunci='SK2_bonesk']")
+	el_bones_baru = load_template(".//*[@kunci='SK2_BONESK']")
 
 	ganti_nama_layer(el_layer_bone)
 
@@ -1043,6 +1043,8 @@ def convert_to_timeloop(el_param,base_ik,influence = False):
 
 	el_temp_valueattime = load_template(".//*[@kunci='SK_shapekey145']")
 
+	print('hello',el_param[0].get('type'))
+
 	for el_type in el_temp_valueattime.findall(".//*[@type='tipe_key']"):
 		if el_param[0].get('type') in ['angle','integer','time']:
 			el_type.set('type','real')
@@ -1063,12 +1065,12 @@ def convert_to_timeloop(el_param,base_ik,influence = False):
 		el_tambahan = None
 
 		if el_param[0].get('type') == 'time':
-			el_tambahan = load_template(".//*[@kunci='SK_timetoreal']")
+			el_tambahan = load_template(".//*[@kunci='SK2_TIMETOREAL']")
 			el_fps = el_tambahan.find(".//*[@value='fps']")
 			el_fps.set('value',str(varglo.fps))
 
 		if el_param[0].get('type') == 'angle':
-			el_tambahan = load_template(".//*[@kunci='SK2_angle_toreal']")
+			el_tambahan = load_template(".//*[@kunci='SK2_ANGLE_TOREAL']")
 
 		if el_param[0].get('type') == 'integer':
 			el_tambahan = load_template(".//*[@kunci='SK2_integer_toreal']")
@@ -1479,6 +1481,9 @@ def waypoint_samevalue(el_param_f):
 
 					replace(el_param_f,el_vector)
 		else:
+			if waypoints[0][0].tag == 'color':
+				return False
+
 			#value1 = waypoints[0][0].get('value')
 			#value2 = waypoints[1][0].get('value')
 
@@ -1491,6 +1496,24 @@ def waypoint_samevalue(el_param_f):
 
 	return same_value
 
+def convert_to_booltoreal(el_param_f):
+
+	copy_animated = copy.deepcopy(el_param_f.find(".//animated"))
+	copy_animated.set('type','real')
+	for el_this in copy_animated.findall(".//bool"):
+		el_this.tag = 'real'
+		el_val = el_this.get('value')=='false'
+		if el_val:
+			el_this.set('value','0.0')
+		else:
+			el_this.set('value','1.0')
+
+	el_bool_t = load_template(".//*[@kunci='SK2_BOOLTOREAL']/")
+	el_bool_t[0].append(copy_animated)
+
+	replace(el_param_f,el_bool_t)
+
+
 def cari_in_layer(): # di param umum
 
 	print(' ')
@@ -1502,7 +1525,7 @@ def cari_in_layer(): # di param umum
 	el_defs = get_defs()
 
 	el_animateds = varglo.root_file.findall(".//animated/..")
-	cek_waypoint_atcont(el_animateds)
+	#cek_waypoint_atcont(el_animateds)
 
 	for el_param_f in el_animateds:
 		if el_param_f.tag == 'defs':
@@ -1521,7 +1544,7 @@ def cari_in_layer(): # di param umum
 			continue
 
 		base_ik = False
-
+		#print(el_param_f.tag)
 		if el_param_f.tag == 'angle':
 			el_param_f_parent = get_parent(el_param_f,1)
 
@@ -1531,10 +1554,16 @@ def cari_in_layer(): # di param umum
 
 		set_split_bline_point(el_param_f)
 
-		if el_param_f[0].get('type') in ['vector','real','integer','angle','time','color']:
+		print(el_param_f[0].get('type'))
+
+		if el_param_f[0].get('type') in ['vector','real','integer','angle','time','color','bool']:
 			if 'guid' in el_param_f[0].attrib:
 				if el_param_f[0].get('guid') in varglo.list_guid_inf:
 					el_param_f[0].set("inf","animated")
+
+			if el_param_f[0].get('type')== 'bool':
+				convert_to_booltoreal(el_param_f)
+				el_param_f = el_param_f[0][0]
 
 			if  el_param_f[0].get('type')== 'color':
 				convert_to_realcolor(el_param_f)
@@ -2618,7 +2647,7 @@ def get_defs():
 		return el_defs
 
 	else:
-		el_defs = load_template(".//*[@kunci='SK_defs']")
+		el_defs = load_template(".//*[@kunci='SK_DEFS']")
 		varglo.root_file.insert(0,el_defs[0])
 		el_defs =varglo.root_file.find(".//defs")
 		return el_defs
@@ -3086,7 +3115,7 @@ def delete_angleani(el_angle):
 
 def set_grayed_bone(el):
 
-	el_grey = load_template(".//*[@kunci='SK_greykode']/")
+	el_grey = load_template(".//*[@kunci='SK_GREYKODE']/")
 
 	el_after_val = None
 	el_after = el.find(".//name/join/after")
@@ -4612,7 +4641,7 @@ def wayang(file, namafile):
 		print("create output for cek in edit script")
 		ET.indent(varglo.root_file)
 		tree_copy = ET.ElementTree(varglo.root_file)
-		
+		#tree_copy.write(path+namafile+'__hasil'+'.sif')
 		tree_copy.write('/home/mint/Documents/'+'cek_output2025.sif')
 		print("process file: [",namafile+'.sif ]',' done')
 		print('path at :[/home/mint/Documents/cek_output2025.sif]')
