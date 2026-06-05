@@ -41,8 +41,8 @@ If you want to create a controller without a template, make sure to add the code
     
     -  https://github.com/user-attachments/assets/c4a2326a-d1ca-4b1d-ae75-cddd29c4991e
 
-    - *demo 2 coming soon*
-      
+    -  [wayang.webm](https://github.com/user-attachments/assets/219f23a9-b5e3-4ee9-97e3-7b9d0cf8b638)
+
    </details>
 
 2. <details><summary>Tutorial</summary>
