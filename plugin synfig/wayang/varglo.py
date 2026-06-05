@@ -1,8 +1,8 @@
 # Synfig plugin: Wayang/Shapekey/Controller
 # Helps controller shape/animated node
-# (c) 2025/2026 ABIDIN IDN
+# (c) 2025/2026 ZA
 
-namafile = 'awal1.sif'
+namafile = 'edit2.sif' #file plugin run in text editor python(IDE)
 jenis_ik = None
 bone_ik = ''
 guid_flip = None
@@ -31,6 +31,9 @@ el_animasi_controller_bone = None# untuk data min max berasal dari sudut
 main_template = None
 el_angle_IK = None
 el_influence = None
+el_min_ik_target = None
+el_origin_ik_pole = None
+el_max_ik_target= None
 
 ada_freetime = False
 hook = False  # if you need hook set to True
@@ -69,6 +72,8 @@ el_name_bone = None
 el_name_current_cont = None
 user_animated_target = None
 hook_idx = 0
+el_linktime ={}
+guid_linktime = None
 
 #clone
 clone_layergroup = 'none'
