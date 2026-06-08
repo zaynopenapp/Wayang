@@ -40,14 +40,18 @@ def ganti_nama_layer(el_layer_bone):
 
 def cari_skeleton():
 
+	print('    >>> get skeleton merge data')
+
 	varglo.skeleton_list = []
 	list_skeleton = varglo.root_file.findall(".//*[@type='skeleton']")
-
 	idx = 1
+
 	for layer in list_skeleton:
 		desc = "skeleton"
+
 		if 'desc' in layer.attrib:
 			desc = layer.get('desc')
+
 		varglo.skeleton_list.append(['skeleton_'+str(idx),desc,layer])
 		idx +=1
 
@@ -69,7 +73,7 @@ def merge_skeletons(jenis):
 			else:
 				el_p[0].remove(el)
 
-	print("Merge skeletons Done!")
+	print("    >>> Merge skeletons Done!")
 
 def set_static_bones():
 
@@ -93,8 +97,8 @@ def masukan_templateIK(bone_path,bone_layer_path):
 		else:
 			el_guid.set('guid',data_guid[el_guid.get('guid')])
 			
+	print('    >>> append IK controller template')
 	el_bones_baru = load_template(bone_path)
-
 	el_layer_bone = load_template(bone_layer_path)
 	ganti_nama_layer(el_layer_bone)
 
@@ -140,6 +144,8 @@ def masukan_templateIK(bone_path,bone_layer_path):
 	set_static_bones()
 
 def masukan_templateSK():
+
+	print('    >>> add template controller')
 
 	el_bones = varglo.root_file.find(".//bones") # cari ada bone awal
 	el_layer_bone = load_template(".//*[@kunci='SK2_layerbonesm']")
@@ -193,11 +199,11 @@ def masukan_templateSK():
 def fileundo_load(jenis):
 	
 	varglo.root_file = varglo.file_undo
-	print("    Undo plugin done!")
+	print("    >>> Undo plugin done!")
 
 def cari_clone_data():
 
-	print('[.] searching group clone shapekey')
+	print('    >>> get clone shapekey data')
 
 	varglo.clone_layergroup = 'none'
 	list_new_el_bone = []
@@ -300,7 +306,7 @@ def set_create_layer_skname(list_name_SK,el_nama_new,guid_this):
 
 def masukan_bonebaru(copy_group):
 
-	print('[.] create bone')
+	print('    >>> create new bone')
 
 	bones = varglo.root_file.find(".//bones")
 	list_bone = []
@@ -326,12 +332,10 @@ def masukan_bonebaru(copy_group):
 	list_bone.reverse()
 
 	if varglo.total_controller == 0:
-		print("!!! missing bone")
+		print("    !!! missing bone")
 
 	for bone in list_bone:
 		bones.append(bone)
-
-	print('[..] create bone done')
 
 def set_new_namelayerbone_cont(copy_group,total_cont):
 
@@ -342,7 +346,7 @@ def set_new_namelayerbone_cont(copy_group,total_cont):
 
 def set_new_shapekey(copy_group):
 
-	print('[.] create all new value at layer')
+	print('   >>> create new shapekeys')
 	code = 0
 	#total_cont = varglo.root_file.find(".//*[@name='smartkey_tcont']") #for valueattime
 	total_cont = varglo.root_file.find(".//*[@name='shapekey_count']") # for manual range 
@@ -378,7 +382,7 @@ def update_shapekey_count(list_shapekey):
 	if total_cont== None:
 		cont = 1
 		add_metamenu('shapekey_count','1')
-		print("create_shapekey_count")
+		print("    >>> create_shapekey_count")
 		
 	else:
 		cont = int(float(total_cont.get('content')))
@@ -395,7 +399,7 @@ def erase_shapekey_group(): # cek shapekey apakah terkonek dengan controller di 
 		el_maprange = el_entry.find('.//map_range/..')
 
 		if el_maprange == None:
-			print("not synfig 2025!! map range not ready!!")
+			print("    !!! not synfig 2025!! map range not ready!!")
 
 		else:
 			el_link_controller = el_maprange.find('.//to_max/map_range/link/')
@@ -430,7 +434,7 @@ def erase_shapekey_group(): # cek shapekey apakah terkonek dengan controller di 
 			if not ada_controller:
 				if not id_shapekey in list_shapekey:
 					list_shapekey.append(id_shapekey)
-					print("!!! missing controller !!! ",id_shapekey)
+					print("    !!! missing controller !!! ",id_shapekey)
 				
 				el_entry_parent= get_parent(el_entry,3)
 				
@@ -441,7 +445,6 @@ def erase_shapekey_group(): # cek shapekey apakah terkonek dengan controller di 
 					el_entry_parent2 = get_parent(el_entry_parent,3)
 					el_dasar = el_entry_parent2.find('.//add/lhs/add/rhs/')
 
-					#if 'guid' in el_dasar.attrib:
 					el_dasar.attrib.pop('guid',None)
 
 					el_dasar_c = copy.deepcopy(el_dasar)
@@ -476,7 +479,7 @@ def clone_shapekey():
 	#erase_unusedbone(copy_group)
 	buat_bone_baru(copy_group)
 	if len(varglo.list_new_bone) == 0:
-		print(" !!! missing bone controller")
+		print("    !!! missing bone controller")
 		return
 
 	ganti_guidnya(copy_group)
@@ -485,7 +488,7 @@ def clone_shapekey():
 	varglo.root_file.append(copy_group)
 	erase_shapekey_group()
 	
-	print('>>>>>>>> cloning shapekey OK <<<<<<<<')
+	print('    >>> cloning shapekey OK')
 
 def get_parent(el,level): # mode lama
 
@@ -536,7 +539,7 @@ def find_controller_nonlist(list_guid_SK):
 
 	for cont in list_guid_SK:
 		if not cont[0] in list_guid_sk:
-			print("  >>> found controller no name,name bone is: ",cont[1])
+			print("    >>> found controller no name,name bone is: ",cont[1])
 			varglo.smartkey_list.append([cont[0],cont[1]])
 
 			create_namesk(cont[2],cont[0])
@@ -546,6 +549,7 @@ def get_shapekey_list():
 	if len(varglo.smartkey_list)>0:
 		return
 
+	print('    >>> get shapekeys data')
 	entry_namesk = varglo.root_file.findall(".//name/join//dynamic_list/entry") # get inf guid code
 
 	if len(entry_namesk) == 0:
@@ -558,7 +562,6 @@ def get_shapekey_list():
 		if el_namesk == None: # get controller aktif
 			link_off = entry.find(".//link_off")
 			el_namesk = link_off.find(".//string")
-			#replace(link_off,el_namesk)
 			varglo.nama_controller = el_namesk.text
 			el_inf = entry.find(".//link_on/realstring/real/")
 			varglo.id_controller = el_inf.get('guid')
@@ -570,7 +573,7 @@ def get_shapekey_list():
 	list_name_SK = varglo.root_file.findall(".//*[@group='name_SK']")
 
 	if len(list_name_SK) == 0:
-		print(" >>> data shapekeys name missing! <<<")
+		print("    !!! layers text shapekeys name missing or disable")
 
 		for guid_this in list_guid_SK:
 			varglo.smartkey_list.append([guid_this[0],guid_this[1]])
@@ -609,6 +612,7 @@ def get_guid_SK(jenis):
 	for d in varglo.smartkey_list:
 		if jenis == d[1]:
 			return d[1],d[0]
+
 	return 'none','none'
 
 def frezzesk(name_shapekey): # still development
@@ -640,12 +644,10 @@ def frezzesk(name_shapekey): # still development
 								wp_temp = wp
 						if wp_temp !=None:
 							found_sk = True
-							print("found")
 							vec_c = copy.deepcopy(wp_temp[0])
 							replace(point_bline,vec_c)
 
 				if not found_sk:
-					print("not found")
 					el_vec = point_bline.find(".//add/lhs/add//link/vector")
 					el_vec_copy = copy.deepcopy(el_vec)
 					replace(point_bline,el_vec_copy)
@@ -711,14 +713,14 @@ def cari_smartkey(awal):
 			return apa
 
 		if apa == 'clone':
-			print("   >>> clone doing", jenis)
+			print("    >>> clone doing", jenis)
 			if not jenis == None:
 				clone_shapekey()
 			return apa
 
 		if apa == 'frezze':
-			print("   >>> frezze "+jenis+" keys doing")
-			print("   >>> undercontruction maybe not work!")
+			print("    >>> frezze "+jenis+" keys doing")
+			print("    >>> undercontruction maybe not work!")
 			frezzesk(jenis)
 
 			return apa
@@ -728,7 +730,7 @@ def cari_smartkey(awal):
 		cari_clone_data()
 		get_shapekey_list()
 		apa,jenis,wtemplate,ikjenis = show_shapekey_dialog(awal)
-		print("awal :",apa,jenis,wtemplate,ikjenis)
+		print("    >>> exit menu: [",apa,jenis,wtemplate,ikjenis," ]")
 
 		if apa == None:
 			return None
@@ -743,7 +745,7 @@ def cari_smartkey(awal):
 
 		if len(varglo.smartkey_list) != 0:
 			apa,jenis,wtemplate,ikjenis = show_shapekey_dialog(awal)
-			print("no awal :",apa,jenis,wtemplate,ikjenis)
+			print("    >>> exit menu: [",apa,jenis,wtemplate,ikjenis," ]")
 
 			if apa == None:
 				return None
@@ -760,7 +762,7 @@ def turn_on_keyframes_editmode():
 		el_keyframe_this.set('active','true')
 
 	else:
-		print("   >>> not found keyframe edit mode!")
+		print("    >>> create keyframe edit mode!")
 		metaadd = ET.Element('keyframe')
 		metaadd.attrib['time']='-4s -20f'
 		metaadd.attrib['active']='true'
@@ -869,9 +871,7 @@ def make_el_linktime(el_temp_valueattime):
 			varglo.guid_linktime = str(uuid.uuid4())
 
 		el_linktime.set('guid',varglo.guid_linktime)
-		print(" ")
-		print("[..create linktime..]")
-		print(" ")
+		print("    >>> create linktime")
 		varglo.el_linktime[varglo.influence] = copy.deepcopy(el_linktime)
 
 def isi_timelooptemplate(el_temp_valueattime,el_animated):
@@ -882,7 +882,6 @@ def isi_timelooptemplate(el_temp_valueattime,el_animated):
 	if varglo.influence in varglo.el_linktime:
 		el_linktime = el_temp_valueattime.find(".//*[@guid='SK_guidTL']/..")
 		replace(el_linktime,varglo.el_linktime[varglo.influence])
-		print("   >>> linktime connected")
 		return
 
 	#<< akan di hapus
@@ -910,7 +909,7 @@ def isi_timelooptemplate(el_temp_valueattime,el_animated):
 	if not varglo.influence in varglo.el_linktime :
 		el_linktime = el_temp_valueattime.find(".//*[@guid='SK_guidTL']")
 		el_linktime.set('guid',str(uuid.uuid4()))
-		print("   >>> create linktime")
+		print("    >>> create linktime")
 		varglo.el_linktime[varglo.influence] = copy.deepcopy(el_linktime)
 
 	#>> akan di hapus
@@ -950,7 +949,7 @@ def create_ikmanual_angle(el_link,base_ik):
 		replace(el_vector_t,el_subtract)
 
 	else:
-		print('!!! element SK_angle_IK missing')
+		print('    !!! element SK_angle_IK missing')
 	
 	return el_angle[0]
 
@@ -961,8 +960,6 @@ def convert_to_timeloop(el_param,base_ik,influence = False):
 		el_param[0].attrib.pop('inf',None)
 
 	el_temp_valueattime = load_template(".//*[@kunci='SK_shapekey145']")
-
-	print('hello',el_param[0].get('type'))
 
 	for el_type in el_temp_valueattime.findall(".//*[@type='tipe_key']"):
 		if el_param[0].get('type') in ['angle','integer','time']:
@@ -1038,7 +1035,7 @@ def convert_to_timeloop(el_param,base_ik,influence = False):
 def ganti_animated_zero(el_animated):
 
 	if len(el_animated) == 0:
-		print("found delete shapekey")
+		print("    >>> found delete shapekey")
 
 	vec_x = 0
 	vec_y = 0
@@ -1064,14 +1061,11 @@ def ganti_animated_zero(el_animated):
 		else:
 			if timet != '-2s':
 
-				#if 'guid' in wp[0].attrib:
 				wp[0].attrib.pop('guid',None)
 
 				if el_animated.get('type')== 'vector':
 
-					#if 'guid' in wp[0].attrib:
 					wp[0].attrib.pop('guid',None)
-
 					vec_x_new = float(wp[0][0].text)
 					vec_y_new = float(wp[0][1].text)
 
@@ -1159,7 +1153,7 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 
 			if base_wp != None: # masukan base value di -50f/-2s
 				if key_total == 1: # if user fill only first key / only one key
-					print("       >>> found only 1 waypoint on [ "+(el_layer_f.tag)+" ] auto create new waypoint at last time")
+					print("    >>> found only 1 waypoint on [ "+(el_layer_f.tag)+" ] auto create new waypoint at last time")
 					
 					end_wp = copy.deepcopy(base_wp)
 					new_timer = round(selisih_time+varglo.time_right,6)
@@ -1169,12 +1163,11 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 				if key_total >1: # jika last key not in time_right /-2.8
 
 					if not last_key:
-						print("       >>> missing waypoint End time on [ "+(el_layer_f.tag)+" ] auto create new waypoint at End time")
+						print("    >>> missing waypoint End time on [ "+(el_layer_f.tag)+" ] auto create new waypoint at End time")
 						new_timer = round(selisih_time+varglo.time_right,6)
 						end_wp.set('time',str(new_timer)+'s')
 						el_ani_f.append(end_wp) # append close wp. with last wp
 				
-				#if 'guid' in base_wp.attrib:
 				base_wp.attrib.pop('guid',None)
 
 				base_wp.set('time',str(varglo.time_base)+'s')
@@ -1183,10 +1176,10 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 
 			else:
 				#animated = False
-				print("       >>> waypoint start missing on [ "+(el_layer_f.tag)+" ] auto create new waypoint at start time")
+				print("    >>> waypoint start missing on [ "+(el_layer_f.tag)+" ] auto create new waypoint at start time")
 
 				if key_total == 1: 
-					print("       >>> found only 1 waypoint on [ "+(el_layer_f.tag)+" ]")
+					print("    >>> found only 1 waypoint on [ "+(el_layer_f.tag)+" ]")
 
 				if begin_wp != None:
 					guid_el = begin_wp[0]
@@ -1207,7 +1200,7 @@ def ganti_timez(el_layer_f,selisih_time, influence = False):
 					el_ani_f.append(base_wp) #create base wp
 
 				if ada_base_wp:
-					print("<--- not found key at -120f as base shape make sure your key is right!! ")
+					print("    <<< not found key at -120f as base shape make sure your key is right!! ")
 
 			if  el_ani_f.get('type') in ['angle','integer','time']:
 				convert_to_real(el_ani_f)
@@ -1310,13 +1303,13 @@ def cek_waypoint_atcont(el_animateds): # check is waypoints in controller angle,
 		def print_tipe(tipe):
 
 			if tipe == 'angle':
-				print("       >>> found animated in angle controller not processing!!")
+				print("    <<< found animated in angle controller not processing!!")
 
 			if tipe == 'scalelx':
-				print("       >>> found animated in length bone controller not processing!!")
+				print("    <<< found animated in length bone controller not processing!!")
 
 			if tipe == 'origin':
-				print("       >>> found animated in target IK bone controller not processing!!")
+				print("    <<< found animated in target IK bone controller not processing!!")
 
 
 		el_layer = get_parent(el_this,1)
@@ -1374,6 +1367,7 @@ def cek_waypoint_atcont(el_animateds): # check is waypoints in controller angle,
 
 def set_guid_listinf():
 
+	print('    >>> create list influence guid')
 	bones = varglo.root_file.find(".//bones")
 
 	guid_this = None
@@ -1438,10 +1432,9 @@ def convert_to_booltoreal(el_param_f):
 
 def cari_in_layer(): # di param umum
 
-	print(' ')
-	print("   [.. searching common layers")
-
 	set_guid_listinf()
+
+	print("    >>> searching common layers")
 
 	selisih_time = get_selisih_time()
 	el_defs = get_defs()
@@ -1451,7 +1444,7 @@ def cari_in_layer(): # di param umum
 
 	for el_param_f in el_animateds:
 		if el_param_f.tag == 'defs':
-			print("   >>> animated in exported not processing!!")
+			print("    >>> animated in exported not processing!!")
 			continue
 
 		if not cek_wp_negatif(el_param_f): #if waypoint not in negatif timeline ignore it
@@ -1462,7 +1455,7 @@ def cari_in_layer(): # di param umum
 			continue
 
 		if waypoint_samevalue(el_param_f):
-			print("   >>> found waypoint the same value at :[",el_param_f.tag ,"]")
+			print("    >>> found waypoint the same value at :[",el_param_f.tag ,"]")
 			continue
 
 		base_ik = False
@@ -1501,13 +1494,10 @@ def cari_in_layer(): # di param umum
 					if 'type' in el_layer_parent.attrib:
 						if el_layer_parent.get('type') == 'freetime': #if FREETIME LAYER
 							varglo.ada_freetime = True
-							print('>>> found freetime layer convert to shapekey canceled for some layers')
+							print('   >>> found freetime layer convert to shapekey canceled for some layers')
 			
 			ganti_timez(el_param_f,selisih_time)
 			convert_to_timeloop(el_param_f,base_ik)
-
-	print("   ..]")
-	print(" ")
 
 def move_timeto_data(el_ani,selisih_time):
 
@@ -1568,19 +1558,7 @@ def update_all_base(el_add,el_ani): #basedata
 						wp[0].set('value',str(real_temp_v))
 
 	else:
-		print('missing base value')
-
-def find_influence_key(el_add):
-
-	el_inf = el_add.find(".//*/[@info='influence']")
-
-	if el_inf != None:
-		print('    found element influence animated')
-		el_inf.attrib.pop('info',None)
-		varglo.valueattime_list.append([el_inf,varglo.el_influence])
-
-	else:
-		pass
+		print('    !!! missing base value')
 
 def cari_thisname(this_name,el_add_copy,el_defs):
 
@@ -1659,8 +1637,7 @@ def unbind(el_add_copy):# delete some node from current controller in edit mode
 
 def find_di_defs(type):
 
-	print(' ')
-	print("   [.. searching in defs")
+	print("    >>> searching data shapekeys in defs")
 
 	get_parentallguid()
 
@@ -1724,7 +1701,7 @@ def find_di_defs(type):
 				if el_rhs != None:
 
 					if el_rhs[0].tag == 'animated': # new found bind
-						print(">>>found new bind")
+						print("    >>> found new bind")
 						type_ani = el_rhs[0].get('type')
 						ganti_timez(el_rhs,selisih_time)
 
@@ -1812,12 +1789,11 @@ def find_di_defs(type):
 
 						else:
 							el_defs.remove(el_add)
-							print("del export no related")
+							print("    >>> del export no related")
 
 	else:
-		print('   !!! not found in defs')
+		print('    >>> not found in defs')
 
-	print("   ..]")
 
 def convert_keys_tolinear(file):
 
@@ -1838,20 +1814,11 @@ def find_animasi_dan_convert(type):
 		return
 
 	hide_animated_controllerik() # hide el animated key in bone ik
-
-	print(" ")
-	print("[.. searching waypoint and converted to timeloop")
-
-	if varglo.ik_smartkey:
-		pass
-	else:
-		if type == 'editmode':
-			pass
 	split_bline()
+
+	print("    >>> searching waypoint and converted to timeloop")
 	find_di_defs(type) # cari di defs dan hilangkan sementara 
 	cari_in_layer()
-
-	print("..]")
 
 def set_nama_jadireverse(bone):
 
@@ -1892,12 +1859,11 @@ def get_shapekey_aktif():
 
 def set_kode_toreferen(el_bone):
 
-	print('   >>> reference')
-
+	print('    >>> set bone name to reference as code that bone is edit mode')
 	el_string = None
 
 	if varglo.id_controller  == 'none':
-		print(">>> ! id shapekey missing")
+		print("    !!! id shapekey missing")
 		el_string = el_bone.find(".//name//link_off")
 
 	else:
@@ -1970,7 +1936,7 @@ def get_angle_controller(guid_controller,el_bones):
 			if el_bone.tag == "bone":
 				return el_angle
 	else:
-		print(" not found controller!!")
+		print("    !!! not found controller!!")
 		return None
 
 def move_animasi_thiske_editmode(el_animated, edit):
@@ -2078,7 +2044,7 @@ def set_controllertomode_editz(el_add,guid_controller,value_sud): # jadikan bone
 
 		ani_temp = bone.find('.//bone_depth//vectorlength/')
 		if ani_temp == None:
-			print("!!! broken file data controller !!!")
+			print("    !!! broken file data controller !!!")
 			#becarefull dont try to delete this code in file synfig
 
 		el_target_animasi_original = copy.deepcopy(ani_temp[0])
@@ -2154,7 +2120,7 @@ def get_id_shapekey(el_link):
 
 def set_controller_toeditmode(el_add,el_entrytime):
 
-		print('[.] Controller to editmode')
+		print('    >>> set controller to editmode')
 		#BUAT bone conroller menjadi animasi, cukup sekali
 		el_link_value = el_entrytime.find('.//to_max/map_range/link/')
 		el_from_min = el_entrytime.find('.//to_max/map_range/from_min/')
@@ -2176,8 +2142,6 @@ def set_controller_toeditmode(el_add,el_entrytime):
 			varglo.id_edit_sub_smartkey = el_target.get('guid')
 			value_sud = 'o'
 			set_controllertomode_editz(el_add,varglo.id_edit_sub_smartkey,value_sud)	
-
-		print('[..] done')
 
 def apa_terkoneksi(el_add,id_shapekey,el_defs):
 
@@ -2214,7 +2178,6 @@ def apa_terkoneksi(el_add,id_shapekey,el_defs):
 		guid_this = None
 
 		idname += 'shapekey_'+str(varglo.valueattime_elcounter)
-		#print("masukkk ke sini ",idname)
 		el_tobe_export = copy.deepcopy(el_add[0])
 		el_tobe_export.set('id',idname)
 		
@@ -2237,10 +2200,7 @@ def apa_terkoneksi(el_add,id_shapekey,el_defs):
 
 def del_onoff_key(el_valueattime):
 
-	#if 'on' in el_valueattime.attrib:
 	el_valueattime.attrib.pop('on', None)
-
-	#if 'off' in el_valueattime.attrib:
 	el_valueattime.attrib.pop('off',None)
 
 def cek_parent_loop(el_add):
@@ -2260,6 +2220,8 @@ def erase_export_shapekeys():
 	if len(varglo.data_error) >0:
 		return
 
+	print('    >>> erase export data in defs')
+
 	el_defs = get_defs()
 
 	remove_list = []
@@ -2272,8 +2234,7 @@ def erase_export_shapekeys():
 
 def set_infcontroller(): #set back
 
-	print(" ")
-	print("   <<< setback infuence controller .")
+	print("    >>> setback infuence controller .")
 
 	def convert_nonswitch(bone,entry):
 
@@ -2303,7 +2264,7 @@ def set_infcontroller(): #set back
 
 def find_infcontroller():#set to switch data
 
-	print("   >>> inf searching")
+	print("    >>> convert influence to switch data") # make easy read as shapekey, param like other param
 	
 	def convert_switch(entry,tipe):
 		guid_this = entry[0].get('guid')
@@ -2343,14 +2304,14 @@ def find_infcontroller():#set to switch data
 
 def get_parentallguid():
 
+	print('    >>> create data parent')
+
 	list_layer = varglo.root_file.findall(".//layer")
 
 	for layer in list_layer:
 		for el_this in layer.findall(".//*/[@guid]/.."):
 			if el_this.tag not in ['defs','layer','bones','bone']:
 				guid = el_this[0].get('guid')
-				if el_this.tag == 'link':
-					ET.dump(el_this[0])
 
 				if not guid in varglo.parent_paramguid:
 					varglo.parent_paramguid[guid]=[el_this]
@@ -2360,7 +2321,7 @@ def get_parentallguid():
 				
 def find_controller_and_editkey():
 
-	print('[.] searching timeloop')
+	print('    >>> export temp shapekeys to defs')
 
 	#get_parentallguid()
 	set_shapekey_aktif('no efek',True)
@@ -2373,21 +2334,25 @@ def find_controller_and_editkey():
 			del_onoff_key(el_add)
 			apa_terkoneksi(el_add, varglo.id_controller ,el_defs)
 
-	print('[..] OK')
-
 def create_list_shapekeys():
 
-	if len(varglo.data_error)==0:
-		parent_bone_cont= get_parent(varglo.bone_cont_layer,5)
+	if len(varglo.data_error)>0:
+		return
 
-		text_layer = load_template(".//*[@kunci='SK_text_shapekeys']")
-		el_string = text_layer.find(".//param/string/..")
-		replace(el_string,varglo.el_name_current_cont)
-		rhs = text_layer.find(".//*[@guid='GUID_controller_pos']/..")
-		replace(rhs,varglo.el_pos_controller)
-		guid_inf = text_layer.find(".//*[@guid='GUID_toshapekeys']") # konektor
-		guid_inf.set('guid',varglo.influence)
-		parent_bone_cont.append(text_layer[0]) # now must in same layer bone
+	if not varglo.shapekey_show:
+		print('    <<< not create text layer name of controller')
+		return
+
+	print('    >>> create text layer name of controller')
+	parent_bone_cont= get_parent(varglo.bone_cont_layer,5)
+	text_layer = load_template(".//*[@kunci='SK_text_shapekeys']")
+	el_string = text_layer.find(".//param/string/..")
+	replace(el_string,varglo.el_name_current_cont)
+	rhs = text_layer.find(".//*[@guid='GUID_controller_pos']/..")
+	replace(rhs,varglo.el_pos_controller)
+	guid_inf = text_layer.find(".//*[@guid='GUID_toshapekeys']") # konektor
+	guid_inf.set('guid',varglo.influence)
+	parent_bone_cont.append(text_layer[0]) # now must in same layer bone
 
 def set_name_bone(el_string,el_name_bone):
 
@@ -2594,6 +2559,8 @@ def make_ik_minmax(origin_target,el_origin_base):
 	varglo.el_origin_ik_pole = el_base_origin
 	
 def create_controller_ik(el_origin_target,el):
+
+	print('    >>> create controller IK')
 
 	selisih_time = get_selisih_time()
 	
@@ -2861,6 +2828,8 @@ def set_el_pos_controller(el):
 
 def create_controller_lenght(el_lenght,el):
 
+	print('    >>> create controller lenght')
+
 	el_wps = el_lenght.findall(".//waypoint")
 	el_animated = el_lenght.find(".//animated")
 
@@ -2882,7 +2851,7 @@ def create_controller_lenght(el_lenght,el):
 		varglo.type_controller = 'length'
 
 	else:
-		print(" !!! missing waypoint controller")
+		print("    !!! missing waypoint controller")
 		varglo.data_error['waypoint length']="missing"
 
 def create_controller_angle(el_angle,el):
@@ -2891,7 +2860,7 @@ def create_controller_angle(el_angle,el):
 
 	el_an = el_angle.find(".//animated")
 	if el_an == None:
-		print("   !!! Missing animated bone controller")
+		print("    !!! Missing animated bone controller")
 		varglo.data_error['bone_key']="missing"
 		return
 
@@ -2901,7 +2870,7 @@ def create_controller_angle(el_angle,el):
 
 	wps = el_an.findall(".//waypoint")
 	if len(wps)==1:
-		print("   !!! controller need minimal two waypoints ")
+		print("    !!! controller need minimal two waypoints ")
 		varglo.data_error['bone_key']="missing waypoint"
 		return
 
@@ -2949,7 +2918,7 @@ def create_controller_angle(el_angle,el):
 	if varglo.id_edit_sub_smartkey == None:
 		varglo.id_edit_sub_smartkey = str(uuid.uuid4())
 
-	print("   >>> create controller angle done")
+	print("    >>> create controller angle done")
 
 def bone_inlayer(el):
 
@@ -2999,13 +2968,13 @@ def code_greyed(cari_el): # smart detect controller
 		
 		if name_bone != None:
 			found_code_greyed = True
-			print("   >>> found controller new")
+			print("    >>> found controller new")
 			OK = True
 			break
 		else:
 			after = bone.find(".//name/join/after/greyed/..")
 			if after != None:
-				print("   >>> found controller add")
+				print("    >>> found controller add")
 				found_code_greyed = True
 				OK = True
 				break
@@ -3027,7 +2996,7 @@ def code_greyed(cari_el): # smart detect controller
 				b = ET.SubElement(a, 'link')
 				b.append(copy_link)
 				replace(el_after,a)
-				print("   >>> add code 'greyed'")
+				print("    >>> add code 'greyed'")
 				OK = True
 				break
 
@@ -3038,8 +3007,7 @@ def code_greyed(cari_el): # smart detect controller
 
 def buat_controller():
 
-	print(' ')
-	print('[.. searching controller ')
+	print('    >>> searching controller ')
 
 	type = [".//bone[@type='bone_object']"]#,".//*[@type='star']",".//*[@type='rotate']",".//*[@type='text']"]
 	missing_target_bone = True
@@ -3087,9 +3055,8 @@ def buat_controller():
 									el_angle = el.find(".//angle")	
 									set_static_bone(el,'bone')
 									create_controller_angle(el_angle,el) # for angle controler/ vectorangle need animasi target
-
 									varglo.controller_data.append([el_name,varglo.el_name_bone,"replace"])
-									print('..] done')
+									
 									return
 
 								el_origin_file = el.find(".//origin")
@@ -3098,7 +3065,6 @@ def buat_controller():
 									varglo.ik_smartkey = True
 									set_static_bone(el,'bone')
 									create_controller_ik(el_origin_file,el)
-									print('..]')
 									el_string_this = varglo.el_name_bone.find(".//after/string")
 									el_string_this.text = el_string_this.text +'_ik'
 									varglo.controller_data.append([el_name,varglo.el_name_bone,"replace"])
@@ -3112,7 +3078,7 @@ def buat_controller():
 										varglo.ik_smartkey = True
 										set_static_bone(el,'bone')
 										create_controller_ik(el_origin_file,el)
-										print('..] ik controller')
+										
 										el_string_this = varglo.el_name_bone.find(".//after/string")
 										el_string_this.text = el_string_this.text +'_ik'
 										varglo.controller_data.append([el_name,varglo.el_name_bone,"replace"])
@@ -3128,19 +3094,17 @@ def buat_controller():
 
 											set_static_bone(el,'bone')
 											create_controller_lenght(el_lenght,el)
-											print('..] length controller')
+											
 											el_string_this = varglo.el_name_bone.find(".//after/string")
 											el_string_this.text = el_string_this.text +'_lenght'
 											varglo.controller_data.append([el_name,varglo.el_name_bone,"replace"])
-											print('..] done')
+											
 											return
 										else:
 											el_angle = el.find(".//angle")	
 											set_static_bone(el,'bone')
 											create_controller_angle(el_angle,el) # for angle controler/ vectorangle need animasi target
-
 											varglo.controller_data.append([el_name,varglo.el_name_bone,"replace"])
-											print('..] done')
 											return
 
 							
@@ -3148,14 +3112,12 @@ def buat_controller():
 		print('    !!! bone missing / missing controller/ code greyed not found')
 		#show_message("!!! bone missing / missing controller/ code greyed not found")
 
-	print('[..]')
-
 	varglo.data_error['bone controller']='missing'
 	return
 
 def split_bline():
 
-	print("    >>> split set")
+	print("    >>> bline split set")
 	for el_bline in varglo.root_file.findall(".//bline"):
 		for el_boolup in el_bline.findall(".//bool/.."):
 
@@ -3188,8 +3150,7 @@ def export_todefs(el_add, el_defs):
 
 def change_timeloop_to_basevalue():
 
-	print(' ')
-	print('[.] export all value of Wayang to defs')
+	print('    >>> export all value of Wayang to defs')
 
 	split_bline()
 	el_defs = get_defs()
@@ -3203,8 +3164,6 @@ def change_timeloop_to_basevalue():
 					sudah_didefs = True
 					export_todefs(el_add,el_defs) #  model export data
 
-	print('[..] OK')
-		
 def append_timeloop():
 
 	if len(varglo.data_error) >0:
@@ -3217,7 +3176,7 @@ def append_timeloop():
 
 def influence_data(bone):
 
-	print('   >>> create data influence')
+	print('    >>> create data influence')
 
 	if varglo.influence == None:
 		varglo.influence = str(uuid.uuid4())
@@ -3275,7 +3234,7 @@ def find_bone_baseik():
 			return el_bonebases
 
 		varglo.data_error['missing base ik']='missing'
-		print('missing bone base ik')
+		print('    !!! missing bone base ik')
 		return None
 
 def get_originbase(bone_base):
@@ -3335,7 +3294,7 @@ def cek_wps(el_entrytime):
 
 	el_wps = el_entrytime.find(".//timeloop/link/animated/waypoint/..")
 	if len(el_wps)== 1:
-		print("found_unbind")
+		print("    >>> found_unbind")
 		el_wps.set("key","delete")
 
 		return
@@ -3451,11 +3410,11 @@ def update(el_ani,el_link):
 				if varglo.influence == None: #GET GUID INFLUENCE
 					varglo.influence = el_influence.get('guid')
 	else:
-		print("missing animated key controller")
+		print("    !!! missing animated key controller")
 
 def set_get_controller_active():
 
-	print('[.] update controller')
+	print('    >>> update controller')
 
 	get_shapekey_list()
 	get_totalcontroller('editmode')
@@ -3652,7 +3611,7 @@ def is_shapekey_deleted(apa):
 			for id_sk, name, newname in varglo.shapekey_rename_list:
 				if newname == 'deleted':
 					varglo.delete_shapekey = True
-					print(">>> found deleted shapekey <<<")
+					print("    >>> found deleted shapekey <<<")
 					if id_sk == varglo.id_controller:
 						apa = None
 
@@ -3665,19 +3624,21 @@ def is_shapekey_deleted(apa):
 
 def get_set_mode():
 
+	print('[.] begin process')
+
 	def process_editornewsmartkey(meta_mode,apa):
 
 		if apa == None: # jika user cancel atau  tidak milih apapun
 			varglo.mode_smartkey = 'None'
 
 			if varglo.delete_shapekey:
-				print(">>>Delete shapekey done<<<")
+				print("    >>> Delete shapekey done<<<")
 			else: 
-				print(">>>Exit shapekey nothing to do!!")
+				print("    >>> Exit shapekey nothing to do!!")
 
 		else:
 			if apa in ['merge','undo','clone','frezze']:
-				print("   >>> "+apa+" Done")
+				print("    >>> "+apa+" Done")
 				varglo.mode_smartkey = 'None'
 				return
 
@@ -3728,7 +3689,7 @@ def get_set_mode():
 			meta_mode.set('content','play')
 			varglo.mode_smartkey = 'play'
 			varglo.mode_before = 'inputkey'
-			print("bind key to play mode")
+			print("    >>> bind key to play mode")
 			return
 
 def show_info(jenis):
@@ -3872,12 +3833,12 @@ def simpan_fileundo(path_undo,root_undo):
 				tree_copy = ET.ElementTree(copy_file)
 				tree_copy.write(path_undo)
 			except PermissionError:
-				print("   >>> File read-only / please install Wayang download version!")
+				print("    !!! File read-only / please install Wayang download version!")
 			except OSError as e:
 				if e.errno == errno.EACCES:
-					print("    >>> permission denied / read-only !")
+					print("    !!! permission denied / read-only !")
 				else:
-					print(f"   >>> Error no: {e}")
+					print(f"    !!! Error no: {e}")
 
 def convert_to_maprange():
 
@@ -4088,7 +4049,7 @@ def create_hook():
 	if len(varglo.data_error) >0:
 		return
 
-	print("[.] create hook")
+	print("    >>> create hook")
 
 	list_star = get_listhook()
 	list_group_hook = []
@@ -4149,55 +4110,58 @@ def create_hook():
 						make_hook(list_star,guid_bone,parent_this,el_tohook,layer_skeleton,el_name)
 						
 	erase_listhook(list_star)
-	print("[..] done")
 
 def update_skname():
 
 	if len (varglo.shapekey_rename_list) == 0:
 		return
 
-	else:
-		bones = varglo.root_file.find(".//bones")
-		el_controller_bones = bones.findall('.//scalex/switch//link_on/average/entry')
-		data_namebone = []
+	if not varglo.shapekey_show:
+		return
 
-		for layer_bone in el_controller_bones:
-			guid_this = layer_bone[0].get('guid')
-			layer_bone_this = get_parent(layer_bone,5)
+	print('    >>> update name shapekeys')
 
-			el_entry = layer_bone_this.findall('.//name/join//dynamic_list/entry')
+	bones = varglo.root_file.find(".//bones")
+	el_controller_bones = bones.findall('.//scalex/switch//link_on/average/entry')
+	data_namebone = []
 
-			for entry in el_entry:
-				el_name = entry.find(".//link_off/string")
-				el_inf = entry.find(".//link_on/realstring/real/")
-				
-				if guid_this == el_inf.get('guid'):
-					data_namebone.append([guid_this,el_name])
+	for layer_bone in el_controller_bones:
+		guid_this = layer_bone[0].get('guid')
+		layer_bone_this = get_parent(layer_bone,5)
 
-		data_nametext = []
-		list_name_SK = varglo.root_file.findall(".//*[@group='name_SK']")
-		for layer_text in list_name_SK:
-			el_inf = layer_text.find('.//param/switch//link_on/average/entry')
-			if not el_inf == None:
-				guid_this = el_inf[0].get("guid")
-				el_name_text = layer_text.find(".//param/string")
-				data_nametext.append([guid_this,el_name_text])
+		el_entry = layer_bone_this.findall('.//name/join//dynamic_list/entry')
 
-		for dat in varglo.shapekey_rename_list:
+		for entry in el_entry:
+			el_name = entry.find(".//link_off/string")
+			el_inf = entry.find(".//link_on/realstring/real/")
+			
+			if guid_this == el_inf.get('guid'):
+				data_namebone.append([guid_this,el_name])
 
-			if dat[1] == varglo.nama_controller:
-				varglo.nama_controller = dat[2]
-				varglo.id_controller = dat[0]
+	data_nametext = []
+	list_name_SK = varglo.root_file.findall(".//*[@group='name_SK']")
+	for layer_text in list_name_SK:
+		el_inf = layer_text.find('.//param/switch//link_on/average/entry')
+		if not el_inf == None:
+			guid_this = el_inf[0].get("guid")
+			el_name_text = layer_text.find(".//param/string")
+			data_nametext.append([guid_this,el_name_text])
 
-			if not dat[1] == dat[2]:
-				for bone in data_namebone: # in bone
-					if dat[0] == bone[0]:
-						el_name_text = bone[1].text
-						bone[1].text = dat[2]
+	for dat in varglo.shapekey_rename_list:
 
-				for text in data_nametext:
-					if dat[0] == text[0]:
-						text[1].text = dat[2]
+		if dat[1] == varglo.nama_controller:
+			varglo.nama_controller = dat[2]
+			varglo.id_controller = dat[0]
+
+		if not dat[1] == dat[2]:
+			for bone in data_namebone: # in bone
+				if dat[0] == bone[0]:
+					el_name_text = bone[1].text
+					bone[1].text = dat[2]
+
+			for text in data_nametext:
+				if dat[0] == text[0]:
+					text[1].text = dat[2]
 
 def replace_data():
 
@@ -4206,7 +4170,7 @@ def replace_data():
 
 	if varglo.mode_smartkey == 'play':	
 		if len(varglo.valueattime_list) == 0: #if not keys founded
-			print('  !!! not found keys, please create keys !!!')
+			print('    !!! not found keys, please create keys !!!')
 			varglo.root_file = varglo.file_undo 
 			return
 	
@@ -4307,18 +4271,21 @@ def mulai_process():
 
 	if varglo.mode_smartkey == 'editmode':  #dari play ke mode edit
 		hide_hook(True)
-		print("1645 :",'Enter Edit MODE')
+		print('    <<< 3')
+		print('    <<< EDIT MODE')
 		find_controller_and_editkey()
 
 	else: #to mode play
 		if varglo.mode_before == 'inputkey': # dari input key to play
-			print("1621 :from inputkey to play MODE ")
+			print('    <<< 4')
+			print('    <<< TO PLAY MODE')
 			varglo.controller_data = []
 			buat_controller() #convert bone to be controller bone
-			#create_list_shapekeys() #create name of controller text
+			create_list_shapekeys() #create name of controller text
 
 		if varglo.mode_before == 'editmode': #dari mode edit ke play
-			print("1631 :frrom editmode to Play MODE")
+			print('    <<< 5')
+			print('    <<< TO PLAY MODE')
 			set_get_controller_active()
 
 		make_el_linktime(None)	
@@ -4354,7 +4321,7 @@ def wayang(file, namafile):
 
 	convert_export_toguidlink() # will convert export value node to normal but still conected because have guid id/ if user make controller in data influance
 	get_set_mode() # menu GTK and setting
-	#update_skname() #temp non active
+	update_skname() #temp non active
 	#simpan_fileundo(path_undo,root_undo) # save file for undo, mybe not work if plugin in read only
 
 	if not varglo.synfig_above_154:# old synfig , convert element range to map range
@@ -4366,11 +4333,11 @@ def wayang(file, namafile):
 			find_infcontroller()
 
 		if set_mode() in varglo.mode: # mode edit atau play/ dari input key ke play/second after [A]
-			print("880 varglo.mode :",varglo.mode)
 			mulai_process()
 			
 		else:
-			print(">>>  create new controller")
+			print('    <<< 2')
+			print("    >>> INPUT MODE")
 			hide_hook(True)
 			change_timeloop_to_basevalue() #change shapekey to defs data temporary
 			append_timeloop()
@@ -4390,12 +4357,13 @@ def wayang(file, namafile):
 		set_infcontroller()
 
 	#CEK file SYNFIG RESULT FOR DEVELOPER
-	print(" ")
+	print("[..] Done")
+	print('  ')
 	print(bcolors.UNDERLINE + "|||||     Wayang plugin.....Done!     |||||" + bcolors.ENDC)
 		
 	if varglo.developer:# if run non in synfig/ like in Sublime text, VS code , code block IDE
 		print(' ')
-		print("create output for cek in edit script")
+		print("create output for cek in editor script")
 		ET.indent(varglo.root_file)
 		tree_copy = ET.ElementTree(varglo.root_file)
 		tree_copy.write('/home/mint/Documents/'+'cek_output2025.sif')
@@ -4408,7 +4376,7 @@ def update_file():
 
 	if len(varglo.data_error)!= 0: # jika ada error kembalikan ke posisi awal file
 		varglo.root_file = varglo.raw_file
-		print("   ! make controller failed !")
+		print("    !!! make controller failed !")
 		show_message("make controller failed !","ERROR")
 
 	else:
@@ -4466,7 +4434,7 @@ def inti():
 			update_file()
 		
 		else:
-			print(">>> WAYANG plugin canceled <<<")
+			print("!!! WAYANG plugin canceled !!!")
 
 	else: # run in synfig
 		varglo.developer = False
