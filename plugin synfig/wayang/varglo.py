@@ -44,6 +44,7 @@ developer = True
 undo = False
 synfig_above_154= True
 delete_shapekey = False
+shapekey_show = False
 
 controller_data = [] # command injection list
 list_layers = []
@@ -74,6 +75,7 @@ user_animated_target = None
 hook_idx = 0
 el_linktime ={}
 guid_linktime = None
+parent_paramguid = {} #data guid
 
 #clone
 clone_layergroup = 'none'
