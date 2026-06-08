@@ -5,14 +5,13 @@
 import varglo
 import math
 
-
 try:
 	import gi
 	gi.require_version("Gtk", "3.0")
 	from gi.repository import Gtk,Gdk
 
 except ModuleNotFoundError:
-	print("                !!!GTK modul not found. please install GTK!!!                   ")
+	print("    !!! GTK modul not found. please install GTK!!!                   ")
 	varglo.modul_GTK = False
 
 if varglo.modul_GTK:
@@ -194,6 +193,8 @@ def show_warning(pesan ,parent=None):
 
 def show_shapekey_dialog(awal):
 
+
+
 	Gtk.awal = awal
 	Gtk.tab2 = None
 	Gtk.apa = 'smartkey'
@@ -224,7 +225,6 @@ def show_shapekey_dialog(awal):
 			scrolled_window2.add(listbox2)
 
 			self.daftar_list2 = listbox2
-			
 			nama_label = "Clone Shapekey"
 			#varglo.clone_layergroup = 'none'
 			if not varglo.clone_layergroup == 'none':
@@ -279,7 +279,6 @@ def show_shapekey_dialog(awal):
 			scrolled_window2.add(listbox2)
 
 			self.daftar_list2 = listbox2
-			
 			varglo.undo_list.sort()
 
 			row_temp2 = None
@@ -309,7 +308,6 @@ def show_shapekey_dialog(awal):
 
 			Gtk.jenis = self.undo
 			Gtk.apa ='undo'
-			
 			Gtk.main_quit()
 
 		def on_skeleton_toggled(self, checkbutton, index):
@@ -452,7 +450,7 @@ def show_shapekey_dialog(awal):
 				varglo.shapekey_rename_list = self.sk
 
 			else:
-				print(">>> cancel delete shapekey")
+				print("    >>> cancel delete shapekey")
 
 		def on_selesai(self, entry,event):
 
@@ -571,7 +569,7 @@ def show_shapekey_dialog(awal):
 			if value:
 				Gtk.jenis = 'ik'
 				Gtk.ikjenis = jenis
-				print("jenis ik: ",jenis)
+
 				if jenis in ['ik1','ik3']:
 					self.image.set_from_file("icon1.png")
 
@@ -649,14 +647,13 @@ def show_shapekey_dialog(awal):
 
 		def on_ok_merge_clicked(self, button):
 
-			print("KLIK MERGE")
 			if len(self.list_merge)>1:
 				Gtk.jenis = self.list_merge
 				Gtk.apa ='merge'
 				Gtk.main_quit()
 
 			else:
-				print("skeleton must select 2 layers / no layers skeleton found!!")
+				print("    !!! skeleton must select 2 layers / no layers skeleton found!!")
 				Gtk.apa = None
 				Gtk.main_quit()
 
@@ -857,8 +854,6 @@ def show_shapekey_dialog(awal):
 
 		def on_tab_switched(self, notebook, current_page, page_num):
 
-			print("tab ",page_num)
-			
 			if len(varglo.smartkey_list)==0:
 				if page_num == 1:
 					Gtk.jenis = 'ik'
@@ -930,7 +925,7 @@ def show_shapekey_dialog(awal):
 
 		def on_ok_clicked(self, button):
 
-			print("Ok exit dialog gtk ")
+			#print("    >>> Ok exit dialog gtk ")
 
 			if Gtk.apa == 'new smartkey':
 				if not Gtk.tab2 == None:
@@ -945,14 +940,10 @@ def show_shapekey_dialog(awal):
 					if len(Gtk.jenis)<2:
 						Gtk.apa = None
 						Gtk.jenis = None
-						print(">> merge need minimal need 2 skeleton !!")
+						print("    !!! merge need minimal need 2 skeleton")
 
 			if Gtk.apa == 'edit':
 				pass
-				#if not 'shapekey' in Gtk.jenis:
-					#Gtk.apa = None
-					#Gtk.jenis = None
-					#print(">> missing select controller !!")
  
 			if Gtk.apa == 'undo':
 				Gtk.jenis = Gtk.undo
@@ -970,10 +961,8 @@ def show_shapekey_dialog(awal):
 				if page_num == 0:
 					jenispage = 'edit'
 					
-
 				if page_num == 1:
 					jenispage = 'new smartkey'
-
 
 				if page_num == 2:
 					jenispage = 'merge'
@@ -999,12 +988,13 @@ def show_shapekey_dialog(awal):
 				if page_num == 3:
 					jenispage = 'clone'
 
-
 			Gtk.apa = jenispage	
 
 		def on_cancel_clicked(self, button):
 			Gtk.apa = None
 			Gtk.main_quit()
+
+	print('    >>> show menu GTK')
 
 	win = MyWindow()
 	win.connect("destroy", Gtk.main_quit)
