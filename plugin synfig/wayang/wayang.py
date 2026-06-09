@@ -1641,10 +1641,11 @@ def find_di_defs(type):
 
 	get_parentallguid()
 
-	def append_bind(el_add_copy):
-								
+	def append_bind(el_add_copy,guid_this):
 		el_awal = varglo.parent_paramguid[guid_this][0]#++
-		el_awal.remove(el_awal[0])#++
+		if len(el_awal)!= 0:
+			el_awal.remove(el_awal[0])#++
+		
 		varglo.valueattime_list.append([el_awal,el_add_copy])#++
 
 	el_defs = varglo.root_file.find(".//defs")
@@ -1658,17 +1659,9 @@ def find_di_defs(type):
 				
 				if 'shapekey' in el_entry.attrib: # jika mode edit dan masuk ke dalam edit aktif
 					ada_shapekey = True
-
-					#el_link = el_entry.find('.//timeloop/link') #--
 					el_add_parent = el_entry[0] #new way ++
 					el_link = el_add_parent[0] # new way ++
-					#if (len(el_link))== 0: #karena bline ada region dan out line #--
-						#el_defs.remove(el_add) ##--
-						#continue#--
-
-					#el_add_parent = get_parent(el_link,1)#--
-					
-					#if 'guid' in el_add_parent.attrib:
+				
 					el_add_parent.attrib.pop('guid',None)
 
 					move_timeto_data(el_link[0],selisih_time)
@@ -1684,22 +1677,14 @@ def find_di_defs(type):
 
 					if el_del != None:
 						el_add_copy = unbind(el_add_copy)
-						#varglo.valueattime_list.append([el_awal,el_add_copy_new])
-
-					if guid_this in varglo.parent_paramguid: #++
-						append_bind(el_add_copy)
-						
 					
-					#for el_awal in varglo.root_file.findall(".//*/[@guid='{no}']/..".format(no=guid_this)):#--
-						#el_awal.remove(el_awal[0])#--
-						#print(guid_this," = ",el_awal)#--#--
-						#varglo.valueattime_list.append([el_awal,el_add_copy])#--
+					if guid_this in varglo.parent_paramguid: #++
+						append_bind(el_add_copy,guid_this)
 
 			if not ada_shapekey:
 				el_rhs = el_add.find('.//lhs/add/rhs')
 
 				if el_rhs != None:
-
 					if el_rhs[0].tag == 'animated': # new found bind
 						print("    >>> found new bind")
 						type_ani = el_rhs[0].get('type')
@@ -1738,16 +1723,11 @@ def find_di_defs(type):
 						el_defs.remove(el_add)
 
 						if guid_this in varglo.parent_paramguid: #++
-							append_bind(el_add_copy)
-							
-
-						# for el_awal in varglo.root_file.findall(".//*/[@guid='{no}']/..".format(no=guid_this)):
-						# 	el_awal.remove(el_awal[0])
-						# 	print(" === ",el_awal)
-						# 	varglo.valueattime_list.append([el_awal,el_add_copy])
+							append_bind(el_add_copy,guid_this)
 
 					else:
 						if 'guid' in el_rhs[0].attrib:
+							print("    >>> whats?")
 
 							guid_this = el_rhs[0].get('guid')
 							el_rhs[0].attrib.pop('guid',None)
@@ -1777,15 +1757,9 @@ def find_di_defs(type):
 											replace(el_link_temp,varglo.el_influence)
 											el_map.append(el_link_temp) # ADD LINK KE INFLUENCE DATA
 
-							#find_influence_key(el_add_copy)#--
+						
 							if guid_this in varglo.parent_paramguid: #++
-								append_bind(el_add_copy)
-
-							# for el_awal in varglo.root_file.findall(".//*/[@guid='{no}']/..".format(no=guid_this)): #--
-							# 	el_awal.remove(el_awal[0]) #--
-							# 	print("---")
-							# 	print(el_awal)
-							# 	varglo.valueattime_list.append([el_awal,el_add_copy]) #--
+								append_bind(el_add_copy,guid_this)
 
 						else:
 							el_defs.remove(el_add)
@@ -2175,7 +2149,7 @@ def apa_terkoneksi(el_add,id_shapekey,el_defs):
 		
 		varglo.valueattime_elcounter +=1
 		idname = ''
-		guid_this = None
+		#guid_this = None
 
 		idname += 'shapekey_'+str(varglo.valueattime_elcounter)
 		el_tobe_export = copy.deepcopy(el_add[0])
@@ -2304,21 +2278,42 @@ def find_infcontroller():#set to switch data
 
 def get_parentallguid():
 
+	#di sini masih error
+
 	print('    >>> create data parent')
+
+	el_defs = get_defs()
+
+	el_timeloops = el_defs.findall(".//timeloop/link/animated")
+	list_guid_defs = []
+
+	for el_this in el_timeloops:
+		if 'guid' in el_this.attrib: # if animated has guid that mean edit MODE
+			list_guid_defs.append(el_this.get('guid'))
+
+	el_link_basedatas = el_defs.findall('.//lhs/add/rhs/')
+
+	for el_this in el_link_basedatas:# apakah perlu cek data ini lagi jika sama maka edit mode masuk edit current cont
+		if 'guid' in el_this.attrib: # if animated has guid that mean edit MODE
+			list_guid_defs.append(el_this.get('guid'))
 
 	list_layer = varglo.root_file.findall(".//layer")
 
 	for layer in list_layer:
 		for el_this in layer.findall(".//*/[@guid]/.."):
-			if el_this.tag not in ['defs','layer','bones','bone']:
-				guid = el_this[0].get('guid')
+			if len(el_this) == 1:
+				if 'guid' in el_this[0].attrib:
+					guid_this = el_this[0].get('guid')
+					
+					if  guid_this in list_guid_defs:
 
-				if not guid in varglo.parent_paramguid:
-					varglo.parent_paramguid[guid]=[el_this]
-				else:
-					varglo.parent_paramguid[guid].append(el_this)
+						if el_this.tag not in ['defs','layer','bones','bone','entry']:
+							
+							if not guid_this in varglo.parent_paramguid:
+								varglo.parent_paramguid[guid_this]=[el_this]
+							else:
+								varglo.parent_paramguid[guid_this].append(el_this)
 
-				
 def find_controller_and_editkey():
 
 	print('    >>> export temp shapekeys to defs')
