@@ -45,6 +45,7 @@ undo = False
 synfig_above_154= True
 delete_shapekey = False
 shapekey_show = False
+ignore_waypoint = False
 
 controller_data = [] # command injection list
 list_layers = []
@@ -87,3 +88,8 @@ root_bone_guid = None
 total_controller = 0
 clone_guid = None
 name_clone_shapekey = ''
+
+
+#info:
+#el_wps.set("key","delete") : delete waypoint
+#w.set('waypoint','ignore') : positif waypoint soo ignore to add in timeloop/shapekey like in freetime
