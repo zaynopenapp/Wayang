@@ -1,6 +1,6 @@
-# Synfig plugin: Shapekey 1.0
+# Synfig plugin: Wayang(smartbone synfig)
 # Helps controller shape/animated node
-# (c) 2025 2026 ZAINAL IDN
+# (c) 2025/2026 ZAINAL IDN
 
 import varglo
 import math
