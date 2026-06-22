@@ -1,6 +1,37 @@
 <dataumum>
 
-
+<param name="for data shapekey temporary" kunci = "SK_SHAPEKEY_DATA">
+  <add type="vector">
+    <lhs>
+      <vector>
+        <x>-3.0996277332</x>
+        <y>-0.0912007615</y>
+      </vector>
+    </lhs>
+    <rhs>
+      <switch type="vector">
+        <link_off>
+          <vector>
+            <x>0.0000000000</x>
+            <y>0.0000000000</y>
+          </vector>
+        </link_off>
+        <link_on>
+          <vector>
+            <x>0.0000000000</x>
+            <y>0.0000000000</y>
+          </vector>
+        </link_on>
+        <switch>
+          <bool value="false"/>
+        </switch>
+      </switch>
+    </rhs>
+    <scalar>
+      <real value="1.0000000000"/>
+    </scalar>
+  </add>
+</param>
  <param kunci = 'SK2_BOOLTOREAL'>
   <fromreal type="bool">
     <link>
@@ -68,7 +99,7 @@
         <real guid="GUID_add" value="100.0000000000"/>
       </link_on>
       <switch>
-        <bool value="false"/>
+        <bool value="true"/>
       </switch>
   </switch>
 
