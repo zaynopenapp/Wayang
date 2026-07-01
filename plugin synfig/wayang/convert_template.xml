@@ -125,6 +125,14 @@
     </reference>
 </param>
 
+<name kunci="SK_greykode">>
+    <greyed type="string">
+      <link>
+        <string>text name</string>
+      </link>
+    </greyed>
+  </name>
+
 <param name="NAMA_shapekey_at_bone" kunci = "SK_name_sk_bone" >
   <join type="string">
         <strings>
