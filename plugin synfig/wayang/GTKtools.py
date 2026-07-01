@@ -193,14 +193,13 @@ def show_warning(pesan ,parent=None):
 
 def show_shapekey_dialog(awal):
 
-
-
 	Gtk.awal = awal
 	Gtk.tab2 = None
 	Gtk.apa = 'smartkey'
-	Gtk.jenis = 'smartkey'
-	if len(varglo.smartkey_list)!=0:
-		Gtk.jenis = varglo.smartkey_list[0][1]
+	Gtk.jenis = None
+	Gtk.listbone = []
+	#if len(varglo.smartkey_list)!=0:
+		#Gtk.jenis = varglo.smartkey_list[0][1]
 
 	Gtk.wtemplate = True
 	Gtk.IKtemplate = True
@@ -211,14 +210,14 @@ def show_shapekey_dialog(awal):
 
 	class isi_clone(Gtk.Box):
 		def __init__(self):
-			super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+			super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=6)
 
 			self.undo = ''
 			self.set_border_width(10)
 
 			scrolled_window2 = Gtk.ScrolledWindow()
 			scrolled_window2.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-			scrolled_window2.set_min_content_height(260)
+			scrolled_window2.set_min_content_height(300)
 			
 			listbox2 = Gtk.ListBox()
 			listbox2.set_selection_mode(Gtk.SelectionMode.SINGLE)
@@ -249,7 +248,7 @@ def show_shapekey_dialog(awal):
 			cancel_button3 = Gtk.Button(label="Cancel")
 
 			self.pack_start(Gtk.Label(label=nama_label), False, False, 0)
-			self.pack_start(scrolled_window2, True, False, 0)
+			self.pack_start(scrolled_window2, False, False, 0)
 
 		def on_ok_clone_clicked(self, button):
 
@@ -302,7 +301,7 @@ def show_shapekey_dialog(awal):
 			cancel_button3 = Gtk.Button(label="Cancel")
 
 			self.pack_start(Gtk.Label(label="Undo Shapekey"), False, False, 0)
-			self.pack_start(scrolled_window2, True, False, 0)
+			self.pack_start(scrolled_window2, False, False, 0)
 
 		def on_ok_undo_clicked(self, button):
 
@@ -567,7 +566,6 @@ def show_shapekey_dialog(awal):
 
 			value = button.get_active()
 			if value:
-				Gtk.jenis = 'ik'
 				Gtk.ikjenis = jenis
 
 				if jenis in ['ik1','ik3']:
@@ -628,34 +626,22 @@ def show_shapekey_dialog(awal):
 					row_temp2 = row
 	        
 			listbox2.select_row(row_temp2) # slect pertmana
-			button_box3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+			#button_box3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 
-			ok_button3 = Gtk.Button(label="OK")
-			ok_button3.connect("clicked", self.on_ok_merge_clicked)
-			cancel_button3 = Gtk.Button(label="Cancel")
+			#ok_button3 = Gtk.Button(label="OK merge")
+			#ok_button3.connect("clicked", self.on_ok_merge_clicked)
+			#cancel_button3 = Gtk.Button(label="Cancel")
 			#cancel_button3.connect("clicked", self.on_cancel_clicked)
 
-			button_box3.pack_end(ok_button3, False, False, 0)
-			button_box3.pack_end(cancel_button3, False, False, 0)
+			#button_box3.pack_end(ok_button3, False, False, 0)
+			#button_box3.pack_end(cancel_button3, False, False, 0)
 
 			ket = "Skeleton"
 			if len(varglo.skeleton_list)==0:
 				ket = 'Not Skeleton layer found !'
 
 			self.pack_start(Gtk.Label(label=ket), False, False, 0)
-			self.pack_start(scrolled_window2, True, False, 0)
-
-		def on_ok_merge_clicked(self, button):
-
-			if len(self.list_merge)>1:
-				Gtk.jenis = self.list_merge
-				Gtk.apa ='merge'
-				Gtk.main_quit()
-
-			else:
-				print("    !!! skeleton must select 2 layers / no layers skeleton found!!")
-				Gtk.apa = None
-				Gtk.main_quit()
+			self.pack_start(scrolled_window2, False, False, 0)
 
 		def on_skeleton_toggled(self, checkbutton, index):
 
@@ -666,8 +652,13 @@ def show_shapekey_dialog(awal):
 				if index[2] in self.list_merge:
 					self.list_merge.remove(index[2])
 
-			if len(self.list_merge)>0:
+			if len(self.list_merge)>1:
 				Gtk.jenis = self.list_merge
+
+			else:
+				Gtk.jenis = []
+
+			Gtk.listbone = self.list_merge
 
 	class dataisiSmartkey(Gtk.Box):
 		def __init__(self):
@@ -925,25 +916,32 @@ def show_shapekey_dialog(awal):
 
 		def on_ok_clicked(self, button):
 
-			#print("    >>> Ok exit dialog gtk ")
+			print("    >>> Ok exit dialog gtk Enter to",Gtk.apa)
+
+			if Gtk.apa == 'frezze':
+				if Gtk.jenis == None:
+					print("    !!! Please select your shapekey!")
+					Gtk.apa = None
 
 			if Gtk.apa == 'new smartkey':
 				if not Gtk.tab2 == None:
 					Gtk.jenis = Gtk.tab2
 
 			if Gtk.apa == 'merge':
-				if len(varglo.skeleton_list)== 0:
+				if len(Gtk.listbone) < 2:
 					Gtk.apa = None
 					Gtk.jenis = None
 
-				else:
-					if len(Gtk.jenis)<2:
-						Gtk.apa = None
-						Gtk.jenis = None
-						print("    !!! merge need minimal need 2 skeleton")
+					print("    !!! merge fail, need minimal need 2 skeleton layers")
 
+				else:
+					Gtk.jenis =Gtk.listbone
+					
 			if Gtk.apa == 'edit':
-				pass
+				if Gtk.jenis == None:
+					print("    !!! Please select your shapekey!")
+					Gtk.apa = None
+					
  
 			if Gtk.apa == 'undo':
 				Gtk.jenis = Gtk.undo
