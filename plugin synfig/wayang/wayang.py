@@ -878,7 +878,7 @@ def get_totalcontroller(mode):
 			total_cont.set('content',str(varglo.controller))
 
 		else:
-			name_SK = get_shapekey_aktif()
+			name_SK = get_shapekey_cur()
 			name_cont = varglo.nama_controller
 			varglo.nama_controller ,varglo.id_controller = get_guid_SK(name_SK)
 
@@ -1072,7 +1072,6 @@ def convert_to_timeloop(el_param,base_ik):
 				if el != None:
 					replace(el,el_temp_valueattime[0])
 
-
 	if el_param[0].get('type') in ['angle','integer','time']:
 		el_tambahan = None
 
@@ -1138,7 +1137,6 @@ def ganti_animated_zero(el_animated):
 				wp[0].attrib.pop('guid',None)
 
 				if el_animated.get('type')== 'vector':
-
 					wp[0].attrib.pop('guid',None)
 					vec_x_new = float(wp[0][0].text)
 					vec_y_new = float(wp[0][1].text)
@@ -1206,8 +1204,8 @@ def find_wptime(el_layer_f,selisih_time, influence = False):
 				timef = float(timet.strip("s"))
 				timer = round(timef, 3)
 
-				if  timer >= (varglo.time_left) and timer <= (varglo.time_right): #wilayah input frame
-					if timer == varglo.time_left: # ambil base value
+				if  timer >= (varglo.time_left) and timer <= (varglo.time_right): #at frame input key
+					if timer == varglo.time_left: # copy base value
 						base_wp = copy.deepcopy(wp)
 
 					if timer == varglo.time_right:
@@ -1239,18 +1237,17 @@ def find_wptime(el_layer_f,selisih_time, influence = False):
 				if key_total >1: # jika last key not in time_right /-2.8
 
 					if not last_key:
-						print("    >>> missing waypoint End time on [ "+(el_layer_f.tag)+" ] auto create new waypoint at End time")
+						print("    >>> missing waypoint end time on [ "+(el_layer_f.tag)+" ] auto create new waypoint at End time")
 						new_timer = round(selisih_time+varglo.time_right,6)
 						end_wp.set('time',str(new_timer)+'s')
 						el_ani_f.append(end_wp) # append close wp. with last wp
 				
 				base_wp.attrib.pop('guid',None)
-
 				base_wp.set('time',str(varglo.time_base)+'s')
 				el_ani_f.append(base_wp)
 				animated = True
 
-			else:
+			else:# user forget input begin waypoint
 				print("    >>> waypoint start missing on [ "+(el_layer_f.tag)+" ] auto create new waypoint at start time")
 
 				if key_total == 1: 
@@ -1258,9 +1255,7 @@ def find_wptime(el_layer_f,selisih_time, influence = False):
 
 				if begin_wp != None:
 					guid_el = begin_wp[0]
-					
 					guid_el.attrib.pop('guid',None)
-
 					new_timer = round(selisih_time+varglo.time_left,6)
 					begin_wp.set('time',str(new_timer)+'s')
 					el_ani_f.insert(0,begin_wp)
@@ -1320,7 +1315,6 @@ def convert_time_toreal(el_this):
 def cek_wp_negatif(el_animated):
 
 	negatifwp = False
-	
 	wps = el_animated.findall('.//waypoint')
 	parent = el_animated.find(".//animated")
 	list_wp = []
@@ -1339,6 +1333,10 @@ def cek_wp_negatif(el_animated):
 		varglo.ignore_waypoint = True
 		for w in list_wp:
 			w.set('waypoint','ignore')
+
+	else:
+		for w in list_wp: #remove waypoint not used
+			parent.remove(w)
 
 	return negatifwp
 
@@ -1370,6 +1368,7 @@ def convert_to_realcolor(el_this):
 	replace(el_this,el_color[0])
 
 def cek_waypoint_atcont(): # check is waypoints in controller angle, if yes remove all animated at contoller angle
+	#if user set waypoint in controller this will erase all waypoint couse not allowed!!
 
 	def print_tipe(tipe):
 
@@ -1432,7 +1431,6 @@ def cek_waypoint_atcont(): # check is waypoints in controller angle, if yes remo
 		# 		set_to_nonanimated(el_this,up_el,'angle')
 						
 		if el_this.tag == "scalelx":
-			print_tipe("scalelx")
 			set_to_nonanimated(el_this,el_this,el_this.tag,bones)
 
 		if el_this.tag == "lhs":
@@ -1440,7 +1438,6 @@ def cek_waypoint_atcont(): # check is waypoints in controller angle, if yes remo
 
 			if up_el:
 				if up_el.tag == 'origin': # origin of controller??
-					print_tipe("origin")
 					set_to_nonanimated(el_this,up_el,'origin',bones)
 
 def set_guid_listinf():
@@ -1460,31 +1457,44 @@ def waypoint_samevalue(el_param_f):
 
 	same_value = False
 	waypoints = el_param_f.findall('.//waypoint')
-
-	if len(waypoints)>= 2:
+	wp = len(waypoints)
+	if wp >= 2:
 		if waypoints[0][0].tag == 'vector':
 			x_t1 = waypoints[0][0][0].text
 			y_t1 = waypoints[0][0][1].text
-			x_t2 = waypoints[1][0][0].text
-			y_t2 = waypoints[1][0][1].text
+			found_def = False
 
-			if x_t1 == x_t2:
-				if y_t1 == y_t2:
-					same_value = True
-					el_vector = copy.deepcopy(waypoints[0][0])
-					el_vector.attrib.pop('guid',None)
+			for idx in range(wp-1):
+				x_t2 = waypoints[idx+1][0][0].text
+				y_t2 = waypoints[idx+1][0][1].text
 
-					replace(el_param_f,el_vector)
+				if (x_t1 == x_t2) and (y_t1 == y_t2):
+					pass
+
+				else:
+					if not found_def:
+						found_def = True
+
+			if not found_def:
+				same_value = True
+				el_vector = copy.deepcopy(waypoints[0][0])
+				el_vector.attrib.pop('guid',None)
+				replace(el_param_f,el_vector)
 		else:
 			if waypoints[0][0].tag == 'color':
 				return False
 
-			if waypoints[0][0].get('value') == waypoints[1][0].get('value'):
-				same_value = True
-				el_value = copy.deepcopy(waypoints[0][0])
+			found_def = False
+			for idx in range(wp-1):
+				if waypoints[0][0].get('value') != waypoints[idx+1][0].get('value'):
+					if not found_def:
+						found_def = True
 
-				el_value.attrib.pop('guid',None)
-				replace(el_param_f,el_value)	
+				if not found_def:
+					same_value = True
+					el_value = copy.deepcopy(waypoints[0][0])
+					el_value.attrib.pop('guid',None)
+					replace(el_param_f,el_value)	
 
 	return same_value
 
@@ -1610,11 +1620,8 @@ def update_all_base(el_add,el_ani): #basedata
 						vec_x_current = float(wp[0][0].text)
 						vec_y_current = float(wp[0][1].text)
 
-						vec_temp_x = (vec_x_current+vec_x_awal)-vec_x
-						vec_temp_y = (vec_y_current+vec_y_awal)-vec_y
-
-						wp[0][0].text = str(vec_temp_x)
-						wp[0][1].text = str(vec_temp_y)
+						wp[0][0].text = str((vec_x_current+vec_x_awal)-vec_x)
+						wp[0][1].text = str((vec_y_current+vec_y_awal)-vec_y)
 
 					if type_ani in ['real','angle','integer']:
 						real_value = float(el_wp_base[0].get('value'))
@@ -1641,14 +1648,12 @@ def find_thisname(this_name,el_add_copy,el_defs):
 def erase_shapekey():
 
 	for el_ani in varglo.root_file.findall('.//animated'):
-
 		if 'key' in el_ani.attrib:
 			pass
 
 		wps = el_ani.findall('.//waypoint')
 
 		if len(wps) == 0:
-
 			el_ani.set('temp','shapekey')
 			el_ani_parent = varglo.root_file.find(".//*[@temp='shapekey']/../../../../../..")
 			
@@ -1663,20 +1668,16 @@ def erase_shapekey():
 					el_base_rhs = el_base.find('.//add/lhs/add/rhs')
 					el_base_value = copy.deepcopy(el_base_rhs[0])
 
-					#if 'guid' in el_base_value.attrib:
 					el_base_value.attrib.pop('guid',None)
-
 					replace(el_base,el_base_value)
 
 				else:
 					value_this -= 1
-					el_skalar.set('value',str(value_this)) # isi dengan yaang baru
-
+					el_skalar.set('value',str(value_this)) # new counting
 					#del entry
 					el_ani_entry = varglo.root_file.find(".//*[@temp='shapekey']/../../..")
 					el_average = el_ani_parent[0][0]
 					el_average.remove(el_ani_entry)
-
 					el_ani.attrib.pop('temp',None)
 
 def unbind(el_add_copy):# delete some node from current controller in edit mode
@@ -1722,7 +1723,6 @@ def find_in_defs(type):
 			ada_shapekey = False
 			
 			for el_entry in el_add.findall(".//average/entry"):
-				
 				if 'shapekey' in el_entry.attrib: # jika mode edit dan masuk ke dalam edit aktif
 					ada_shapekey = True
 					
@@ -1756,7 +1756,6 @@ def find_in_defs(type):
 						print("    >>> found new bind")
 						type_ani = el_rhs[0].get('type')
 						find_wptime(el_rhs,selisih_time)
-
 						el_ani_timeloop = copy.deepcopy(el_rhs[0])
 
 						if 'guid' in el_ani_timeloop.attrib:
@@ -1767,7 +1766,6 @@ def find_in_defs(type):
 						el_temp_timeloop = load_template(".//*[@kunci='SK_shapekey145']")
 
 						for el_type in el_temp_timeloop.findall(".//*[@type='tipe_key']"):
-
 							if type_ani in  ['angle','integer']:
 								el_type.set('type','real')
 
@@ -1809,11 +1807,9 @@ def find_in_defs(type):
 
 						else:
 							el_defs.remove(el_add)
-							#print("    >>> del export no related")
 
 	else:
 		print('    >>> not found in defs')
-
 
 def convert_keys_tolinear(file):
 
@@ -1848,24 +1844,24 @@ def set_codetoreverse(bone):
 	el_name_copy = copy.deepcopy(el_grey[0])
 	varglo.controller_data.append([el_name,el_name_copy,"replace"])
 
-def set_shapekey_aktif(name_SK,aktifkan):
+def set_shapekey_aktif(name_SK,on_):
 
 	meta_shapekey = varglo.root_file.find(".//*[@name='shapekey_aktif']")
 
 	if meta_shapekey == None:
-		if aktifkan:
+		if on_:
 			add_metamenu('shapekey_aktif',varglo.nama_controller)
 		else:
 			add_metamenu('shapekey_aktif',name_SK)
 
 	else:
-		if aktifkan:
+		if on_:
 			meta_shapekey.set('content',varglo.nama_controller)
 			
 		else:
 			meta_shapekey.set('content',name_SK)
 
-def get_shapekey_aktif():
+def get_shapekey_cur():
 
 	meta_shapekey = varglo.root_file.find(".//*[@name='shapekey_aktif']")
 
