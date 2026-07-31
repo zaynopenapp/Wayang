@@ -4,5 +4,5 @@
    <author>zainal ab.(robert.mailcat@gmail.com)</author>
    <version>1</version>
    <release>0.1</release>
-   <exec stdout="log" strerr="message">wayang.py</exec>
+   <exec strerr="message">wayang.py</exec>
 </plugin>
