@@ -1054,10 +1054,26 @@ def convert_to_timeloop(el_param,base_ik):
 
 	el_link = el_temp_valueattime.find(".//*[@nama='SK_gantisesuaijenis']/..")
 	el_rhs = el_temp_valueattime.find(".//*[@nama='SK_base_value']/..")
+	el_scale = el_temp_valueattime.find(".//*[@value='SK_scale']")
 	el_base = el_param.find(".//*[@time='-2s']/")
-
+	el_scale.set('value','0.0')
 	replace(el_rhs,el_base)
-	replace(el_link,el_base)
+	#base set to zero pos # new methode juli 26
+	if el_base.tag == 'vector':
+		el_base_new = copy.deepcopy(el_base)
+		el_base_new.attrib.pop('guid',None)
+		el_base_new[0].text = '0.0'
+		el_base_new[1].text = '0.0'
+		#el_scale.set('value','1')
+		replace(el_link,el_base_new)
+		
+	else:
+		el_base_new = copy.deepcopy(el_base)
+		el_base_new.attrib.pop('guid',None)
+		el_base_new.set('value','0.0')
+		
+		replace(el_link,el_base_new)
+
 	isi_timelooptemplate(el_temp_valueattime,el_param[0])
 	guid_this = None
 
@@ -1458,6 +1474,7 @@ def waypoint_samevalue(el_param_f):
 	same_value = False
 	waypoints = el_param_f.findall('.//waypoint')
 	wp = len(waypoints)
+	
 	if wp >= 2:
 		if waypoints[0][0].tag == 'vector':
 			x_t1 = waypoints[0][0][0].text
@@ -1522,9 +1539,15 @@ def find_in_layer(): # common layers
 
 	selisih_time = get_selisih_time()
 	cek_waypoint_atcont() #if shapekey in controller evoid except angle controller
+
+	el_defs = varglo.root_file.find(".//defs")
+
 	el_animateds = varglo.root_file.findall(".//animated/..")
 
 	for el_param_f in el_animateds:
+		if el_param_f.tag == 'link':
+			parent_this = get_parent(el_param_f,1)
+
 		if el_param_f.tag == 'defs':
 			print("    >>> animated in exported not processing!!")
 			continue
@@ -1536,7 +1559,7 @@ def find_in_layer(): # common layers
 			#continue
 		
 		if waypoint_samevalue(el_param_f): #delete waypoint if value indentical
-			print("    >>> found waypoint the same value at :[",el_param_f.tag ,"]")
+			#print("    >>> found waypoint the same value at :[",el_param_f.tag ,"]")
 			continue
 
 		base_ik = False
@@ -1588,8 +1611,13 @@ def update_all_base(el_add,el_ani): #basedata
 		el_rhs = el_add.find('.//lhs/add/rhs')
 		replace(el_rhs,el_base[0])
 
-		el_link = el_add.find('.//lhs//link')
-		replace(el_link,el_base[0])
+		#NEW METHODE
+		#el_link = el_add.find('.//lhs//link')
+		#replace(el_link,el_base[0]) # awal ada tidak perlu diubah
+		el_scalar = el_add.find('lhs//scale/scalar/')
+		el_scalar.set('value','0.0') # make sure locked with zero value
+		#</NEW METHODE>
+
 		#GANTI ANIMASI BASE YANG LAIN
 
 		for el_entry in el_add.findall('.//entry/timeloop/..'):
@@ -1600,9 +1628,7 @@ def update_all_base(el_add,el_ani): #basedata
 			replace(el_2s,el_base[0]) # update bagian -2s
 
 			type_ani = el_animated.get('type')
-			vec_x = 0
-			vec_y = 0
-			real_v = 0
+			vec_x=vec_y=real_v = 0
 
 			for wp in el_animated.findall(".//waypoint"):
 				timet = wp.get('time')
@@ -1611,19 +1637,14 @@ def update_all_base(el_add,el_ani): #basedata
 			
 				if not timef in [-7.2,-2.0]:
 					if type_ani == "vector":
-						vec_x = float(el_base[0][0].text)
-						vec_y = float(el_base[0][1].text)
-
 						vec_x_awal = float(el_wp_base[0][0].text)
 						vec_y_awal = float(el_wp_base[0][1].text)
 
-						vec_x_current = float(wp[0][0].text)
-						vec_y_current = float(wp[0][1].text)
+						wp[0][0].text = str((float(wp[0][0].text)+vec_x_awal)-float(el_base[0][0].text))
+						wp[0][1].text = str((float(wp[0][1].text)+vec_y_awal)-float(el_base[0][1].text))
 
-						wp[0][0].text = str((vec_x_current+vec_x_awal)-vec_x)
-						wp[0][1].text = str((vec_y_current+vec_y_awal)-vec_y)
-
-					if type_ani in ['real','angle','integer']:
+					#if type_ani in ['real','angle','integer']:
+					else:
 						real_value = float(el_wp_base[0].get('value'))
 						real_value_awal = float(wp[0].get('value'))
 						real_value_baru = float(el_base[0].get('value'))
@@ -1707,13 +1728,20 @@ def find_in_defs(type):
 
 	print("    >>> searching data shapekeys in defs")
 
+	list_guid ={}
+
 	def append_bind(el_add_copy,guid_this):
 
-		el_awal = varglo.parent_paramguid[guid_this][0]#++
-		if len(el_awal)!= 0:
-			el_awal.remove(el_awal[0])#++
-
-		varglo.valueattime_list.append([el_awal,el_add_copy])#++
+		for el_awal in varglo.parent_paramguid[guid_this]:# isi semua dgn data yng sama
+			if len(el_awal) != 0:
+				el_awal.remove(el_awal[0])#++
+				varglo.valueattime_list.append([el_awal,el_add_copy])#++
+			
+			else:
+				# for data in varglo.valueattime_list:
+				#  	if data[0] == el_awal:
+				#  		print("found")
+				continue
 
 	el_defs = varglo.root_file.find(".//defs")
 	if el_defs != None:
@@ -1725,20 +1753,22 @@ def find_in_defs(type):
 			for el_entry in el_add.findall(".//average/entry"):
 				if 'shapekey' in el_entry.attrib: # jika mode edit dan masuk ke dalam edit aktif
 					ada_shapekey = True
-					
+
+					#el_entry.attrib.pop('shapekey') #new juli
 					el_add_parent = el_entry[0] #new way ++
 					el_link = el_add_parent[0] #new way ++
-				
 					el_add_parent.attrib.pop('guid',None)
+					guid_this = el_link[0].get('guid')
+
+					#if guid_this in varglo.parent_paramguid: #++
+						#continue
 
 					move_timeto_data(el_link[0],selisih_time)
+
 					update_all_base(el_add,el_link[0])
 
-					guid_this = el_link[0].get('guid')
 					el_add_copy = copy.deepcopy(el_add)
-
 					el_add_copy.attrib.pop('id')
-					el_defs.remove(el_add) #
 
 					el_del = el_add_copy.find(".//*[@key='delete']")
 
@@ -1747,6 +1777,10 @@ def find_in_defs(type):
 					
 					if guid_this in varglo.parent_paramguid: #++
 						append_bind(el_add_copy,guid_this)
+
+
+				else:
+					print("tidak ada sk")
 
 			if not ada_shapekey:
 				el_rhs = el_add.find('.//lhs/add/rhs')
@@ -1808,6 +1842,8 @@ def find_in_defs(type):
 						else:
 							el_defs.remove(el_add)
 
+			else:
+				el_defs.remove(el_add)
 	else:
 		print('    >>> not found in defs')
 
@@ -2328,14 +2364,15 @@ def get_parentallguid():
 			if len(el_this) == 1:
 				if 'guid' in el_this[0].attrib:
 					guid_this = el_this[0].get('guid')
-					
+
 					if  guid_this in list_guid_defs:
 						if el_this.tag not in ['defs','layer','bones','bone','entry','waypoints']:
 							if not guid_this in varglo.parent_paramguid:
 								varglo.parent_paramguid[guid_this]=[el_this]
-
+								
 							else:
 								varglo.parent_paramguid[guid_this].append(el_this)
+								
 
 def convert_skcontroller():
 
@@ -3500,7 +3537,7 @@ def append_timeloop():
 
 	for val in varglo.valueattime_list:
 		val[0].append(val[1])
-
+		
 def influence_data(bone):
 
 	print('    >>> create data influence')
@@ -4794,15 +4831,16 @@ def update_file():
 
 	if((len(sys.argv) > 2 )):
 		hasil = sys.argv[2]
+
 		if varglo.developer:
+
 			el_tree = ET.ElementTree(varglo.root_file)
 			with open(hasil, "wb") as filesnew:
 				el_tree.write(filesnew)
+				
 	else:
 		
 		if varglo.developer:
-			return
-
 			hasil = os.path.join(os.path.dirname(sys.argv[0]), varglo.namafile)
 			varglo.root_file=varglo.raw_file
 
@@ -4819,7 +4857,7 @@ def inti():
 	print(" ")
 	print(bcolors.UNDERLINE + "|||||     Wayang plugin.....processing!     |||||" + bcolors.ENDC)
 	onsynfig = len(sys.argv)
-
+	print(sys.argv)
 	if onsynfig == 1: 
 		varglo.developer = True #only run in IDE
 		#template_filename = os.path.join(os.path.dirname(sys.argv[0]), varglo.namafile)
@@ -4848,7 +4886,16 @@ def inti():
 
 		akar_file = ET.parse(sys.argv[1]).getroot()
 		wayang(akar_file,varglo.namafile)
-		update_file()
+
+		hasil = sys.argv[1]
+
+		print(sys.argv)
+
+		el_tree = ET.ElementTree(varglo.root_file)
+		with open(hasil, "wb") as filesnew:
+			el_tree.write(filesnew)
+			print("masukk2")
+		#update_file()
 		
 if __name__ == "__main__":	
 	inti()
