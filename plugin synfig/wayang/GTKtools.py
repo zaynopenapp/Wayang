@@ -931,6 +931,7 @@ def show_shapekey_dialog(awal):
 				if len(Gtk.listbone) < 2:
 					Gtk.apa = None
 					Gtk.jenis = None
+
 					print("    !!! merge fail, need minimal need 2 skeleton layers")
 
 				else:
