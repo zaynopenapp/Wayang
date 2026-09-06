@@ -48,7 +48,8 @@ If you want to create a controller without a template, make sure to add the code
 2. <details><summary>Tutorial</summary>
     
     - [Make controller with IK bone ](https://youtu.be/JMWsmjfSqi8)
-    - .[simple smartbone w/o template](https://youtu.be/BY5hbWYix9Y)
+    - [Add smartbone v1 w/o template](https://youtu.be/BY5hbWYix9Y)
+    - [Add smartbone v2 IK controller](https://youtu.be/cMoS7iAaAZc)
       
    </details>
 
