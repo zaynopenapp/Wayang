@@ -31,7 +31,7 @@ To run the plugin, there are several steps. First, open the menu and choose the 
 
 ## Special Code
 
-If you want to create a controller without a template, make sure to add the code to the bone name using the "greyed" converter. For IK, two converters are required: "greyed" and "reverse"
+If you want to create a controller without a template, make sure to add the code to the bone name using the "greyed" converter. For IK, two converters are required: "greyed" as target bone and "reverse" as pole bone (shoulder).
 
 <img width="546" height="218" alt="greyedcode" src="https://github.com/user-attachments/assets/3d7ef551-8cee-4fc2-b7ea-1926f82d5554" />
 
@@ -48,7 +48,7 @@ If you want to create a controller without a template, make sure to add the code
 2. <details><summary>Tutorial</summary>
     
     - [Make controller with IK bone ](https://youtu.be/JMWsmjfSqi8)
-    - *Tuto2 coming soon*
+    - .[simple smartbone w/o template](https://youtu.be/BY5hbWYix9Y)
       
    </details>
 
