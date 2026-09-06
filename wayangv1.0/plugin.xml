@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+   <name>Wayang</name>
+   <author>zainal ab.(robert.mailcat@gmail.com)</author>
+   <description> create smart controller </description>
+   <version>1</version>
+   <release>0.1</release>
+   <exec stdout="log" strerr="message">wayang.py</exec>
+</plugin>

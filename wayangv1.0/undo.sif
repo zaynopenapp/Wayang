@@ -1,0 +1,1643 @@
+<canvas version="1.2" width="1920" height="1080" xres="2834.645669" yres="2834.645669" gamma-r="1.000000" gamma-g="1.000000" gamma-b="1.000000" view-box="-16.000000 9.000000 16.000000 -9.000000" antialias="1" fps="25" begin-time="-4s -20f" end-time="-2s -20f" bgcolor="0.500000 0.500000 0.500000 1.000000">
+  <defs>
+    
+  </defs>
+<name>awal2.sif</name>
+  <meta name="background_first_color" content="0.880000 0.880000 0.880000" />
+  <meta name="background_rendering" content="0" />
+  <meta name="background_second_color" content="0.650000 0.650000 0.650000" />
+  <meta name="background_size" content="15.000000 15.000000" />
+  <meta name="end-time" content="5s" />
+  <meta name="grid_color" content="0.623529 0.623529 0.623529" />
+  <meta name="grid_show" content="0" />
+  <meta name="grid_size" content="0.250000 0.250000" />
+  <meta name="grid_snap" content="0" />
+  <meta name="guide_color" content="0.435294 0.435294 1.000000" />
+  <meta name="guide_lock" content="0" />
+  <meta name="guide_show" content="1" />
+  <meta name="guide_snap" content="0" />
+  <meta name="ik_menu 0" content="human rig" />
+  <meta name="ik_menu 1" content="single_ik" />
+  <meta name="ik_menu 2" content="single leg ik 3 joint" />
+  <meta name="ik_menu 3" content="dinosaurus_rig" />
+  <meta name="ik_menu 4 (custom)" content="rig_dog" />
+  <meta name="ik_menu 5 (custom)" content="trex" />
+  <meta name="ik_menu ?" content="5" />
+  <meta name="jack_offset" content="0.000000" />
+  <meta name="onion_skin" content="0" />
+  <meta name="onion_skin_future" content="0" />
+  <meta name="onion_skin_keyframes" content="1" />
+  <meta name="onion_skin_past" content="1" />
+  <meta name="shapekey_mode" content="inputkey" />
+  <meta name="status_ruler" content="1" />
+  <keyframe time="-4s -20f" active="true" />
+  <keyframe time="-2s" active="false" />
+  <keyframe time="0f" active="false" />
+  <bones>
+    <bone_root type="bone_object" guid="09337D0EFFFFE41EFFFFB2CDFFFF7B4A" />
+    <bone type="bone_object" guid="33456C14FFFF8F23FFFFB0DEFFFF674E">
+      <name>
+        <greyed type="string">
+          <link>
+            <string>code grey as target IK</string>
+          </link>
+        </greyed>
+      </name>
+      <parent>
+        <bone_valuenode type="bone_object" guid="09337D0EFFFFE41EFFFFB2CDFFFF7B4A" />
+      </parent>
+      <origin>
+        <ik guid="B3231E56FFFF989AFFFFBCF2FFFF43F9" type="vector">
+          <link_pole>
+            <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+              <x>-3.5180685520</x>
+              <y>-0.0724751800</y>
+            </vector>
+          </link_pole>
+          <link_target>
+            <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+              <waypoint time="-4.80000019s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4694237709</x>
+                  <y>-7.1011600494</y>
+                </vector>
+              </waypoint>
+              <waypoint time="-2.79999995s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4192631245</x>
+                  <y>-3.2515175343</y>
+                </vector>
+              </waypoint>
+            </animated>
+          </link_target>
+          <length_bone1>
+            <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+          </length_bone1>
+          <length_bone2>
+            <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+          </length_bone2>
+          <length_bone3>
+            <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+          </length_bone3>
+          <flip>
+            <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+              <lhs>
+                <fromangle type="real">
+                  <link>
+                    <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                  </link>
+                </fromangle>
+              </lhs>
+              <rhs>
+                <real value="-90.0000000000" />
+              </rhs>
+              <greater>
+                <bool value="true" />
+              </greater>
+              <equal>
+                <bool value="false" />
+              </equal>
+              <less>
+                <bool value="false" />
+              </less>
+            </compare>
+          </flip>
+          <joint_bone>
+            <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+          </joint_bone>
+          <t_bone>
+            <integer value="1" />
+          </t_bone>
+          <f_bone>
+            <integer value="2" />
+          </f_bone>
+          <weight>
+            <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+          </weight>
+        </ik>
+      </origin>
+      <angle>
+        <vectorangle type="angle">
+          <vector>
+            <subtract type="vector">
+              <lhs>
+                <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+                  <waypoint time="-4.80000019s" before="linear" after="linear">
+                    <vector>
+                      <x>-3.4694237709</x>
+                      <y>-7.1011600494</y>
+                    </vector>
+                  </waypoint>
+                  <waypoint time="-2.79999995s" before="linear" after="linear">
+                    <vector>
+                      <x>-3.4192631245</x>
+                      <y>-3.2515175343</y>
+                    </vector>
+                  </waypoint>
+                </animated>
+              </lhs>
+              <rhs>
+                <ik guid="B3231E56FFFF989AFFFFBCF2FFFF43F9" type="vector">
+                  <link_pole>
+                    <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+                      <x>-3.5180685520</x>
+                      <y>-0.0724751800</y>
+                    </vector>
+                  </link_pole>
+                  <link_target>
+                    <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4694237709</x>
+                          <y>-7.1011600494</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4192631245</x>
+                          <y>-3.2515175343</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link_target>
+                  <length_bone1>
+                    <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+                  </length_bone1>
+                  <length_bone2>
+                    <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+                  </length_bone2>
+                  <length_bone3>
+                    <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+                  </length_bone3>
+                  <flip>
+                    <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+                      <lhs>
+                        <fromangle type="real">
+                          <link>
+                            <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                          </link>
+                        </fromangle>
+                      </lhs>
+                      <rhs>
+                        <real value="-90.0000000000" />
+                      </rhs>
+                      <greater>
+                        <bool value="true" />
+                      </greater>
+                      <equal>
+                        <bool value="false" />
+                      </equal>
+                      <less>
+                        <bool value="false" />
+                      </less>
+                    </compare>
+                  </flip>
+                  <joint_bone>
+                    <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+                  </joint_bone>
+                  <t_bone>
+                    <integer value="1" />
+                  </t_bone>
+                  <f_bone>
+                    <integer value="2" />
+                  </f_bone>
+                  <weight>
+                    <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+                  </weight>
+                </ik>
+              </rhs>
+              <scalar>
+                <real value="1.0000000000" />
+              </scalar>
+            </subtract>
+          </vector>
+        </vectorangle>
+      </angle>
+      <scalelx>
+        <ik type="real">
+          <link_pole>
+            <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+              <x>-3.5180685520</x>
+              <y>-0.0724751800</y>
+            </vector>
+          </link_pole>
+          <link_target>
+            <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+              <waypoint time="-4.80000019s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4694237709</x>
+                  <y>-7.1011600494</y>
+                </vector>
+              </waypoint>
+              <waypoint time="-2.79999995s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4192631245</x>
+                  <y>-3.2515175343</y>
+                </vector>
+              </waypoint>
+            </animated>
+          </link_target>
+          <length_bone1>
+            <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+          </length_bone1>
+          <length_bone2>
+            <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+          </length_bone2>
+          <length_bone3>
+            <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+          </length_bone3>
+          <flip>
+            <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+              <lhs>
+                <fromangle type="real">
+                  <link>
+                    <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                  </link>
+                </fromangle>
+              </lhs>
+              <rhs>
+                <real value="-90.0000000000" />
+              </rhs>
+              <greater>
+                <bool value="true" />
+              </greater>
+              <equal>
+                <bool value="false" />
+              </equal>
+              <less>
+                <bool value="false" />
+              </less>
+            </compare>
+          </flip>
+          <joint_bone>
+            <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+          </joint_bone>
+          <t_bone>
+            <integer value="1" />
+          </t_bone>
+          <f_bone>
+            <integer value="3" />
+          </f_bone>
+          <weight>
+            <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+          </weight>
+        </ik>
+      </scalelx>
+      <width>
+        <real value="0.2500000000" />
+      </width>
+      <scalex>
+        <real value="1.0000000000" />
+      </scalex>
+      <tipwidth>
+        <real value="0.1000000000" />
+      </tipwidth>
+      <bone_depth>
+        <real value="0.0000000000" />
+      </bone_depth>
+      <length>
+        <real value="1.0000000000" />
+      </length>
+    </bone>
+    <bone type="bone_object" guid="4C24A6A2FFFFA06BFFFFB5CEFFFF7C90">
+      <name>
+        <string>target bone</string>
+      </name>
+      <parent>
+        <bone_valuenode type="bone_object" guid="09337D0EFFFFE41EFFFFB2CDFFFF7B4A" />
+      </parent>
+      <origin>
+        <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+          <waypoint time="-4.80000019s" before="linear" after="linear">
+            <vector>
+              <x>-3.4694237709</x>
+              <y>-7.1011600494</y>
+            </vector>
+          </waypoint>
+          <waypoint time="-2.79999995s" before="linear" after="linear">
+            <vector>
+              <x>-3.4192631245</x>
+              <y>-3.2515175343</y>
+            </vector>
+          </waypoint>
+        </animated>
+      </origin>
+      <angle>
+        <angle value="-4.495282" />
+      </angle>
+      <scalelx>
+        <real value="1.1753017663" />
+      </scalelx>
+      <width>
+        <real value="0.2500000000" />
+      </width>
+      <scalex>
+        <real value="1.0000000000" />
+      </scalex>
+      <tipwidth>
+        <real value="0.1000000000" />
+      </tipwidth>
+      <bone_depth>
+        <real value="0.0000000000" />
+      </bone_depth>
+      <length>
+        <real value="1.0000000000" />
+      </length>
+    </bone>
+    <bone type="bone_object" guid="4DBDAA42FFFFC596FFFFBC1AFFFF772D">
+      <name>
+        <reverse type="string">
+          <link>
+            <string>pole bone reverse code</string>
+          </link>
+        </reverse>
+      </name>
+      <parent>
+        <bone_valuenode type="bone_object" guid="09337D0EFFFFE41EFFFFB2CDFFFF7B4A" />
+      </parent>
+      <origin>
+        <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+          <x>-3.5180685520</x>
+          <y>-0.0724751800</y>
+        </vector>
+      </origin>
+      <angle>
+        <vectorangle type="angle">
+          <vector>
+            <subtract type="vector">
+              <lhs>
+                <ik guid="17C24F4DFFFFD048FFFFBB13FFFF4C8B" type="vector">
+                  <link_pole>
+                    <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+                      <x>-3.5180685520</x>
+                      <y>-0.0724751800</y>
+                    </vector>
+                  </link_pole>
+                  <link_target>
+                    <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4694237709</x>
+                          <y>-7.1011600494</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4192631245</x>
+                          <y>-3.2515175343</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link_target>
+                  <length_bone1>
+                    <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+                  </length_bone1>
+                  <length_bone2>
+                    <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+                  </length_bone2>
+                  <length_bone3>
+                    <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+                  </length_bone3>
+                  <flip>
+                    <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+                      <lhs>
+                        <fromangle type="real">
+                          <link>
+                            <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                          </link>
+                        </fromangle>
+                      </lhs>
+                      <rhs>
+                        <real value="-90.0000000000" />
+                      </rhs>
+                      <greater>
+                        <bool value="true" />
+                      </greater>
+                      <equal>
+                        <bool value="false" />
+                      </equal>
+                      <less>
+                        <bool value="false" />
+                      </less>
+                    </compare>
+                  </flip>
+                  <joint_bone>
+                    <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+                  </joint_bone>
+                  <t_bone>
+                    <integer value="1" />
+                  </t_bone>
+                  <f_bone>
+                    <integer value="1" />
+                  </f_bone>
+                  <weight>
+                    <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+                  </weight>
+                </ik>
+              </lhs>
+              <rhs>
+                <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+                  <x>-3.5180685520</x>
+                  <y>-0.0724751800</y>
+                </vector>
+              </rhs>
+              <scalar>
+                <real value="1.0000000000" />
+              </scalar>
+            </subtract>
+          </vector>
+        </vectorangle>
+      </angle>
+      <scalelx>
+        <ik type="real">
+          <link_pole>
+            <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+              <x>-3.5180685520</x>
+              <y>-0.0724751800</y>
+            </vector>
+          </link_pole>
+          <link_target>
+            <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+              <waypoint time="-4.80000019s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4694237709</x>
+                  <y>-7.1011600494</y>
+                </vector>
+              </waypoint>
+              <waypoint time="-2.79999995s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4192631245</x>
+                  <y>-3.2515175343</y>
+                </vector>
+              </waypoint>
+            </animated>
+          </link_target>
+          <length_bone1>
+            <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+          </length_bone1>
+          <length_bone2>
+            <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+          </length_bone2>
+          <length_bone3>
+            <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+          </length_bone3>
+          <flip>
+            <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+              <lhs>
+                <fromangle type="real">
+                  <link>
+                    <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                  </link>
+                </fromangle>
+              </lhs>
+              <rhs>
+                <real value="-90.0000000000" />
+              </rhs>
+              <greater>
+                <bool value="true" />
+              </greater>
+              <equal>
+                <bool value="false" />
+              </equal>
+              <less>
+                <bool value="false" />
+              </less>
+            </compare>
+          </flip>
+          <joint_bone>
+            <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+          </joint_bone>
+          <t_bone>
+            <integer value="1" />
+          </t_bone>
+          <f_bone>
+            <integer value="1" />
+          </f_bone>
+          <weight>
+            <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+          </weight>
+        </ik>
+      </scalelx>
+      <width>
+        <real value="0.2500000000" />
+      </width>
+      <scalex>
+        <real value="1.0000000000" />
+      </scalex>
+      <tipwidth>
+        <real value="0.1000000000" />
+      </tipwidth>
+      <bone_depth>
+        <real value="0.0000000000" />
+      </bone_depth>
+      <length>
+        <real value="1.0000000000" />
+      </length>
+    </bone>
+    <bone type="bone_object" guid="182F9A5BFFFF06D2FFFFBFB7FFFF48A8">
+      <name>
+        <string>controller flip</string>
+      </name>
+      <parent>
+        <bone_valuenode type="bone_object" guid="09337D0EFFFFE41EFFFFB2CDFFFF7B4A" />
+      </parent>
+      <origin>
+        <add type="vector">
+          <lhs>
+            <vector>
+              <x>-0.1681722105</x>
+              <y>-0.2155365050</y>
+            </vector>
+          </lhs>
+          <rhs>
+            <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+              <x>-3.5180685520</x>
+              <y>-0.0724751800</y>
+            </vector>
+          </rhs>
+          <scalar>
+            <real value="1.0000000000" />
+          </scalar>
+        </add>
+      </origin>
+      <angle>
+        <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+      </angle>
+      <scalelx>
+        <real value="1.0000000000" />
+      </scalelx>
+      <width>
+        <real value="0.2500000000" />
+      </width>
+      <scalex>
+        <real value="1.0000000000" />
+      </scalex>
+      <tipwidth>
+        <real value="0.1000000000" />
+      </tipwidth>
+      <bone_depth>
+        <real value="0.0000000000" />
+      </bone_depth>
+      <length>
+        <real value="1.0000000000" />
+      </length>
+    </bone>
+    <bone type="bone_object" guid="B6B4AB58FFFF4124FFFFB1C9FFFF62DC">
+      <name>
+        <string>bone 2</string>
+      </name>
+      <parent>
+        <bone_valuenode type="bone_object" guid="09337D0EFFFFE41EFFFFB2CDFFFF7B4A" />
+      </parent>
+      <origin>
+        <ik guid="17C24F4DFFFFD048FFFFBB13FFFF4C8B" type="vector">
+          <link_pole>
+            <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+              <x>-3.5180685520</x>
+              <y>-0.0724751800</y>
+            </vector>
+          </link_pole>
+          <link_target>
+            <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+              <waypoint time="-4.80000019s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4694237709</x>
+                  <y>-7.1011600494</y>
+                </vector>
+              </waypoint>
+              <waypoint time="-2.79999995s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4192631245</x>
+                  <y>-3.2515175343</y>
+                </vector>
+              </waypoint>
+            </animated>
+          </link_target>
+          <length_bone1>
+            <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+          </length_bone1>
+          <length_bone2>
+            <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+          </length_bone2>
+          <length_bone3>
+            <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+          </length_bone3>
+          <flip>
+            <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+              <lhs>
+                <fromangle type="real">
+                  <link>
+                    <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                  </link>
+                </fromangle>
+              </lhs>
+              <rhs>
+                <real value="-90.0000000000" />
+              </rhs>
+              <greater>
+                <bool value="true" />
+              </greater>
+              <equal>
+                <bool value="false" />
+              </equal>
+              <less>
+                <bool value="false" />
+              </less>
+            </compare>
+          </flip>
+          <joint_bone>
+            <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+          </joint_bone>
+          <t_bone>
+            <integer value="1" />
+          </t_bone>
+          <f_bone>
+            <integer value="1" />
+          </f_bone>
+          <weight>
+            <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+          </weight>
+        </ik>
+      </origin>
+      <angle>
+        <vectorangle type="angle">
+          <vector>
+            <subtract type="vector">
+              <lhs>
+                <ik guid="B3231E56FFFF989AFFFFBCF2FFFF43F9" type="vector">
+                  <link_pole>
+                    <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+                      <x>-3.5180685520</x>
+                      <y>-0.0724751800</y>
+                    </vector>
+                  </link_pole>
+                  <link_target>
+                    <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4694237709</x>
+                          <y>-7.1011600494</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4192631245</x>
+                          <y>-3.2515175343</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link_target>
+                  <length_bone1>
+                    <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+                  </length_bone1>
+                  <length_bone2>
+                    <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+                  </length_bone2>
+                  <length_bone3>
+                    <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+                  </length_bone3>
+                  <flip>
+                    <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+                      <lhs>
+                        <fromangle type="real">
+                          <link>
+                            <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                          </link>
+                        </fromangle>
+                      </lhs>
+                      <rhs>
+                        <real value="-90.0000000000" />
+                      </rhs>
+                      <greater>
+                        <bool value="true" />
+                      </greater>
+                      <equal>
+                        <bool value="false" />
+                      </equal>
+                      <less>
+                        <bool value="false" />
+                      </less>
+                    </compare>
+                  </flip>
+                  <joint_bone>
+                    <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+                  </joint_bone>
+                  <t_bone>
+                    <integer value="1" />
+                  </t_bone>
+                  <f_bone>
+                    <integer value="2" />
+                  </f_bone>
+                  <weight>
+                    <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+                  </weight>
+                </ik>
+              </lhs>
+              <rhs>
+                <ik guid="17C24F4DFFFFD048FFFFBB13FFFF4C8B" type="vector">
+                  <link_pole>
+                    <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+                      <x>-3.5180685520</x>
+                      <y>-0.0724751800</y>
+                    </vector>
+                  </link_pole>
+                  <link_target>
+                    <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+                      <waypoint time="-4.80000019s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4694237709</x>
+                          <y>-7.1011600494</y>
+                        </vector>
+                      </waypoint>
+                      <waypoint time="-2.79999995s" before="linear" after="linear">
+                        <vector>
+                          <x>-3.4192631245</x>
+                          <y>-3.2515175343</y>
+                        </vector>
+                      </waypoint>
+                    </animated>
+                  </link_target>
+                  <length_bone1>
+                    <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+                  </length_bone1>
+                  <length_bone2>
+                    <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+                  </length_bone2>
+                  <length_bone3>
+                    <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+                  </length_bone3>
+                  <flip>
+                    <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+                      <lhs>
+                        <fromangle type="real">
+                          <link>
+                            <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                          </link>
+                        </fromangle>
+                      </lhs>
+                      <rhs>
+                        <real value="-90.0000000000" />
+                      </rhs>
+                      <greater>
+                        <bool value="true" />
+                      </greater>
+                      <equal>
+                        <bool value="false" />
+                      </equal>
+                      <less>
+                        <bool value="false" />
+                      </less>
+                    </compare>
+                  </flip>
+                  <joint_bone>
+                    <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+                  </joint_bone>
+                  <t_bone>
+                    <integer value="1" />
+                  </t_bone>
+                  <f_bone>
+                    <integer value="1" />
+                  </f_bone>
+                  <weight>
+                    <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+                  </weight>
+                </ik>
+              </rhs>
+              <scalar>
+                <real value="1.0000000000" />
+              </scalar>
+            </subtract>
+          </vector>
+        </vectorangle>
+      </angle>
+      <scalelx>
+        <ik type="real">
+          <link_pole>
+            <vector guid="E6FCA8FBFFFF2673FFFFBD4CFFFF7F5D">
+              <x>-3.5180685520</x>
+              <y>-0.0724751800</y>
+            </vector>
+          </link_pole>
+          <link_target>
+            <animated guid="C1F8D61CFFFFFD8EFFFFB785FFFF7D28" type="vector">
+              <waypoint time="-4.80000019s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4694237709</x>
+                  <y>-7.1011600494</y>
+                </vector>
+              </waypoint>
+              <waypoint time="-2.79999995s" before="linear" after="linear">
+                <vector>
+                  <x>-3.4192631245</x>
+                  <y>-3.2515175343</y>
+                </vector>
+              </waypoint>
+            </animated>
+          </link_target>
+          <length_bone1>
+            <real guid="7DB1DDA1FFFF5871FFFFBC7AFFFF4FF4" value="2.3647184059" />
+          </length_bone1>
+          <length_bone2>
+            <real guid="C0FAE520FFFFAE39FFFFB4CAFFFF6643" value="2.1288081629" />
+          </length_bone2>
+          <length_bone3>
+            <real guid="B169B397FFFF1F3AFFFFB6B2FFFF7F68" value="2.4750849172" />
+          </length_bone3>
+          <flip>
+            <compare guid="776EC727FFFF740DFFFFB8E7FFFF5458" type="bool">
+              <lhs>
+                <fromangle type="real">
+                  <link>
+                    <angle guid="A0835F2CFFFFFB3FFFFFB5E4FFFF4161" value="-76.447121" />
+                  </link>
+                </fromangle>
+              </lhs>
+              <rhs>
+                <real value="-90.0000000000" />
+              </rhs>
+              <greater>
+                <bool value="true" />
+              </greater>
+              <equal>
+                <bool value="false" />
+              </equal>
+              <less>
+                <bool value="false" />
+              </less>
+            </compare>
+          </flip>
+          <joint_bone>
+            <integer guid="1CCD9BE0FFFFAE43FFFFB41CFFFF56A2" value="2" />
+          </joint_bone>
+          <t_bone>
+            <integer value="1" />
+          </t_bone>
+          <f_bone>
+            <integer value="2" />
+          </f_bone>
+          <weight>
+            <real guid="5A18AD18FFFFD276FFFFB126FFFF683C" value="50.0000000000" />
+          </weight>
+        </ik>
+      </scalelx>
+      <width>
+        <real value="0.2500000000" />
+      </width>
+      <scalex>
+        <real value="1.0000000000" />
+      </scalex>
+      <tipwidth>
+        <real value="0.1000000000" />
+      </tipwidth>
+      <bone_depth>
+        <real value="0.0000000000" />
+      </bone_depth>
+      <length>
+        <real value="1.0000000000" />
+      </length>
+    </bone>
+  </bones>
+  <layer type="solid_color" active="true" exclude_from_rendering="false" version="0.1" desc="Background">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="0" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.000000</r>
+        <g>0.310000</g>
+        <b>0.253446</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+  </layer>
+  <layer type="skeleton" active="true" exclude_from_rendering="true" version="0.1" desc="(3 joint bones)_1_Skeleton">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="0.5000000000" />
+    </param>
+    <param name="name">
+      <string>skeleton</string>
+    </param>
+    <param name="blend_method">
+      <integer value="0" />
+    </param>
+    <param name="color">
+      <color>
+        <r>1.000000</r>
+        <g>0.997798</g>
+        <b>0.000000</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="bones">
+      <static_list type="bone_object">
+        <entry>
+          <bone type="bone_object" guid="182F9A5BFFFF06D2FFFFBFB7FFFF48A8" />
+        </entry>
+        <entry>
+          <bone type="bone_object" guid="4C24A6A2FFFFA06BFFFFB5CEFFFF7C90" />
+        </entry>
+        <entry>
+          <bone type="bone_object" guid="33456C14FFFF8F23FFFFB0DEFFFF674E" />
+        </entry>
+        <entry>
+          <bone type="bone_object" guid="B6B4AB58FFFF4124FFFFB1C9FFFF62DC" />
+        </entry>
+        <entry>
+          <bone type="bone_object" guid="4DBDAA42FFFFC596FFFFBC1AFFFF772D" />
+        </entry>
+      </static_list>
+    </param>
+  </layer>
+  <layer type="group" active="true" exclude_from_rendering="true" version="0.3" desc="INFO_temporary">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="0" static="true" />
+    </param>
+    <param name="origin">
+      <vector>
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="transformation">
+      <composite type="transformation">
+        <offset>
+          <vector>
+            <x>0.0000000000</x>
+            <y>0.0000000000</y>
+          </vector>
+        </offset>
+        <angle>
+          <angle value="0.000000" />
+        </angle>
+        <skew_angle>
+          <angle value="0.000000" />
+        </skew_angle>
+        <scale>
+          <vector>
+            <x>1.0000000000</x>
+            <y>1.0000000000</y>
+          </vector>
+        </scale>
+      </composite>
+    </param>
+    <param name="canvas">
+      <canvas>
+        <layer type="rectangle" active="true" exclude_from_rendering="false" version="0.2" desc="info">
+          <param name="z_depth">
+            <real value="0.0000000000" />
+          </param>
+          <param name="amount">
+            <real value="1.0000000000" />
+          </param>
+          <param name="blend_method">
+            <integer value="0" static="true" />
+          </param>
+          <param name="color">
+            <composite type="color">
+              <red>
+                <real value="0.0000000000" />
+              </red>
+              <green>
+                <real value="0.1430629194" />
+              </green>
+              <blue>
+                <real value="1.0000000000" />
+              </blue>
+              <alpha>
+                <real value="1.0000000000" />
+              </alpha>
+            </composite>
+          </param>
+          <param name="point1">
+            <vector>
+              <x>-15.8532819748</x>
+              <y>8.8586750031</y>
+            </vector>
+          </param>
+          <param name="point2">
+            <vector>
+              <x>-11.6587562561</x>
+              <y>8.0634031296</y>
+            </vector>
+          </param>
+          <param name="expand">
+            <real value="0.0000000000" />
+          </param>
+          <param name="invert">
+            <bool value="false" />
+          </param>
+          <param name="feather_x">
+            <real value="0.0000000000" />
+          </param>
+          <param name="feather_y">
+            <real value="0.0000000000" />
+          </param>
+          <param name="bevel">
+            <real value="0.0000000000" />
+          </param>
+          <param name="bevCircle">
+            <bool value="true" />
+          </param>
+        </layer>
+        <layer type="text" active="true" exclude_from_rendering="false" version="0.5" desc="input key">
+          <param name="z_depth">
+            <real value="0.0000000000" />
+          </param>
+          <param name="amount">
+            <real value="1.0000000000" />
+          </param>
+          <param name="blend_method">
+            <integer value="0" static="true" />
+          </param>
+          <param name="text">
+            <string>create shapekey</string>
+          </param>
+          <param name="color">
+            <color>
+              <r>1.000000</r>
+              <g>1.000000</g>
+              <b>1.000000</b>
+              <a>1.000000</a>
+            </color>
+          </param>
+          <param name="family">
+            <string>Sans Serif</string>
+          </param>
+          <param name="style">
+            <integer value="0" static="true" />
+          </param>
+          <param name="weight">
+            <integer value="400" static="true" />
+          </param>
+          <param name="direction">
+            <integer value="0" static="true" />
+          </param>
+          <param name="compress">
+            <real value="1.0000000000" />
+          </param>
+          <param name="vcompress">
+            <real value="1.0000000000" />
+          </param>
+          <param name="size">
+            <vector>
+              <x>0.1833333373</x>
+              <y>0.1833333373</y>
+            </vector>
+          </param>
+          <param name="orient">
+            <vector>
+              <x>0.5000000000</x>
+              <y>0.5000000000</y>
+            </vector>
+          </param>
+          <param name="origin">
+            <vector>
+              <x>-13.4011993408</x>
+              <y>8.4766035080</y>
+            </vector>
+          </param>
+          <param name="use_kerning">
+            <bool value="true" />
+          </param>
+          <param name="grid_fit">
+            <bool value="false" />
+          </param>
+          <param name="invert">
+            <bool value="false" />
+          </param>
+        </layer>
+        <layer type="circle" active="true" exclude_from_rendering="false" version="0.2" desc="only when edit,inputmode">
+          <param name="z_depth">
+            <real value="0.0000000000" />
+          </param>
+          <param name="amount">
+            <real value="1.0000000000" />
+          </param>
+          <param name="blend_method">
+            <integer value="0" static="true" />
+          </param>
+          <param name="color">
+            <color>
+              <r>1.000000</r>
+              <g>1.000000</g>
+              <b>1.000000</b>
+              <a>1.000000</a>
+            </color>
+          </param>
+          <param name="radius">
+            <real value="0.2403819007" />
+          </param>
+          <param name="feather">
+            <real value="0.0000000000" />
+          </param>
+          <param name="origin">
+            <vector>
+              <x>-15.3708677292</x>
+              <y>8.4397315979</y>
+            </vector>
+          </param>
+          <param name="invert">
+            <bool value="false" />
+          </param>
+        </layer>
+      </canvas>
+    </param>
+    <param name="time_dilation">
+      <real value="1.0000000000" />
+    </param>
+    <param name="time_offset">
+      <time value="0s" />
+    </param>
+    <param name="children_lock">
+      <bool value="false" static="true" />
+    </param>
+    <param name="outline_grow">
+      <real value="0.0000000000" />
+    </param>
+    <param name="z_range">
+      <bool value="false" static="true" />
+    </param>
+    <param name="z_range_position">
+      <real value="0.0000000000" />
+    </param>
+    <param name="z_range_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="z_range_blur">
+      <real value="0.0000000000" />
+    </param>
+  </layer>
+  <layer type="region" active="true" exclude_from_rendering="false" version="0.1" desc="Circle251 Region">
+    <param name="z_depth">
+      <real value="0.0000000000" />
+    </param>
+    <param name="amount">
+      <real value="1.0000000000" />
+    </param>
+    <param name="blend_method">
+      <integer value="0" static="true" />
+    </param>
+    <param name="color">
+      <color>
+        <r>0.787800</r>
+        <g>0.186343</g>
+        <b>0.000000</b>
+        <a>1.000000</a>
+      </color>
+    </param>
+    <param name="origin">
+      <vector>
+        <x>0.0000000000</x>
+        <y>0.0000000000</y>
+      </vector>
+    </param>
+    <param name="invert">
+      <bool value="false" />
+    </param>
+    <param name="antialias">
+      <bool value="true" />
+    </param>
+    <param name="feather">
+      <real value="0.0000000000" />
+    </param>
+    <param name="blurtype">
+      <integer value="1" static="true" />
+    </param>
+    <param name="winding_style">
+      <integer value="0" static="true" />
+    </param>
+    <param name="bline">
+      <bline type="bline_point" loop="true">
+        <entry>
+          <bone_link guid="46A94E088552240BD3D7E1A2AA94CF27" type="bline_point">
+            <bone>
+              <bone_valuenode type="bone_object" guid="4DBDAA42FFFFC596FFFFBC1AFFFF772D" />
+            </bone>
+            <base_value>
+              <composite type="bline_point">
+                <point>
+                  <vector>
+                    <x>0.5027513504</x>
+                    <y>0.4283884764</y>
+                  </vector>
+                </point>
+                <width>
+                  <real value="1.0000000000" />
+                </width>
+                <origin>
+                  <real value="0.5000000000" />
+                </origin>
+                <split>
+                  <bool value="false" />
+                </split>
+                <t1>
+                  <radial_composite type="vector">
+                    <radius>
+                      <real value="0.3198837899" />
+                    </radius>
+                    <theta>
+                      <angle value="179.054306" />
+                    </theta>
+                  </radial_composite>
+                </t1>
+                <t2>
+                  <radial_composite type="vector">
+                    <radius>
+                      <real value="0.3198838250" />
+                    </radius>
+                    <theta>
+                      <angle value="179.054306" />
+                    </theta>
+                  </radial_composite>
+                </t2>
+                <split_radius>
+                  <bool value="true" />
+                </split_radius>
+                <split_angle>
+                  <bool value="false" />
+                </split_angle>
+              </composite>
+            </base_value>
+            <translate>
+              <bool value="true" />
+            </translate>
+            <rotate>
+              <bool value="true" />
+            </rotate>
+            <skew>
+              <bool value="true" />
+            </skew>
+            <scale_x>
+              <bool value="true" />
+            </scale_x>
+            <scale_y>
+              <bool value="true" />
+            </scale_y>
+          </bone_link>
+        </entry>
+        <entry>
+          <bone_link guid="21D1EBE42DB8E4B80C5A49965D6721E3" type="bline_point">
+            <bone>
+              <bone_valuenode type="bone_object" guid="4DBDAA42FFFFC596FFFFBC1AFFFF772D" />
+            </bone>
+            <base_value>
+              <composite type="bline_point">
+                <point>
+                  <animated type="vector">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <vector>
+                        <x>0.3083745539</x>
+                        <y>-0.0288582295</y>
+                      </vector>
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <vector>
+                        <x>0.1907008141</x>
+                        <y>-0.0502291173</y>
+                      </vector>
+                    </waypoint>
+                  </animated>
+                </point>
+                <width>
+                  <animated type="real">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <real value="1.0000000000" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <real value="1.0000000000" />
+                    </waypoint>
+                  </animated>
+                </width>
+                <origin>
+                  <animated type="real">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <real value="0.5000000000" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <real value="0.5000000000" />
+                    </waypoint>
+                  </animated>
+                </origin>
+                <split>
+                  <animated type="bool">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                  </animated>
+                </split>
+                <t1>
+                  <radial_composite type="vector">
+                    <radius>
+                      <animated type="real">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <real value="0.7628734111" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <real value="0.7628733866" />
+                        </waypoint>
+                      </animated>
+                    </radius>
+                    <theta>
+                      <animated type="angle">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <angle value="-90.166237" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <angle value="-90.166237" />
+                        </waypoint>
+                      </animated>
+                    </theta>
+                  </radial_composite>
+                </t1>
+                <t2>
+                  <radial_composite type="vector">
+                    <radius>
+                      <animated type="real">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <real value="0.7628732558" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <real value="0.7628732150" />
+                        </waypoint>
+                      </animated>
+                    </radius>
+                    <theta>
+                      <animated type="angle">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <angle value="-90.166237" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <angle value="-90.166237" />
+                        </waypoint>
+                      </animated>
+                    </theta>
+                  </radial_composite>
+                </t2>
+                <split_radius>
+                  <animated type="bool">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <bool value="true" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <bool value="true" />
+                    </waypoint>
+                  </animated>
+                </split_radius>
+                <split_angle>
+                  <animated type="bool">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                  </animated>
+                </split_angle>
+              </composite>
+            </base_value>
+            <translate>
+              <bool value="true" />
+            </translate>
+            <rotate>
+              <bool value="true" />
+            </rotate>
+            <skew>
+              <bool value="true" />
+            </skew>
+            <scale_x>
+              <bool value="true" />
+            </scale_x>
+            <scale_y>
+              <bool value="true" />
+            </scale_y>
+          </bone_link>
+        </entry>
+        <entry>
+          <bone_link guid="8F8AACED81E809839C80B26950BC8D96" type="bline_point">
+            <bone>
+              <bone_valuenode type="bone_object" guid="4DBDAA42FFFFC596FFFFBC1AFFFF772D" />
+            </bone>
+            <base_value>
+              <composite type="bline_point">
+                <point>
+                  <vector>
+                    <x>0.5000793934</x>
+                    <y>-0.4924773872</y>
+                  </vector>
+                </point>
+                <width>
+                  <real value="1.0000000000" />
+                </width>
+                <origin>
+                  <real value="0.5000000000" />
+                </origin>
+                <split>
+                  <bool value="false" />
+                </split>
+                <t1>
+                  <radial_composite type="vector">
+                    <radius>
+                      <real value="0.3198837948" />
+                    </radius>
+                    <theta>
+                      <angle value="-0.945723" />
+                    </theta>
+                  </radial_composite>
+                </t1>
+                <t2>
+                  <radial_composite type="vector">
+                    <radius>
+                      <real value="0.3198838479" />
+                    </radius>
+                    <theta>
+                      <angle value="-0.945723" />
+                    </theta>
+                  </radial_composite>
+                </t2>
+                <split_radius>
+                  <bool value="true" />
+                </split_radius>
+                <split_angle>
+                  <bool value="false" />
+                </split_angle>
+              </composite>
+            </base_value>
+            <translate>
+              <bool value="true" />
+            </translate>
+            <rotate>
+              <bool value="true" />
+            </rotate>
+            <skew>
+              <bool value="true" />
+            </skew>
+            <scale_x>
+              <bool value="true" />
+            </scale_x>
+            <scale_y>
+              <bool value="true" />
+            </scale_y>
+          </bone_link>
+        </entry>
+        <entry>
+          <bone_link guid="5CCF3A9210A9C8D4EE1B515A47492276" type="bline_point">
+            <bone>
+              <bone_valuenode type="bone_object" guid="4DBDAA42FFFFC596FFFFBC1AFFFF772D" />
+            </bone>
+            <base_value>
+              <composite type="bline_point">
+                <point>
+                  <animated type="vector">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <vector>
+                        <x>0.6944558620</x>
+                        <y>-0.0352309383</y>
+                      </vector>
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <vector>
+                        <x>0.8166633248</x>
+                        <y>0.0016496961</y>
+                      </vector>
+                    </waypoint>
+                  </animated>
+                </point>
+                <width>
+                  <animated type="real">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <real value="1.0000000000" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <real value="1.0000000000" />
+                    </waypoint>
+                  </animated>
+                </width>
+                <origin>
+                  <animated type="real">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <real value="0.5000000000" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <real value="0.5000000000" />
+                    </waypoint>
+                  </animated>
+                </origin>
+                <split>
+                  <animated type="bool">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                  </animated>
+                </split>
+                <t1>
+                  <radial_composite type="vector">
+                    <radius>
+                      <animated type="real">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <real value="0.7628734120" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <real value="0.7628733873" />
+                        </waypoint>
+                      </animated>
+                    </radius>
+                    <theta>
+                      <animated type="angle">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <angle value="89.833763" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <angle value="89.833763" />
+                        </waypoint>
+                      </animated>
+                    </theta>
+                  </radial_composite>
+                </t1>
+                <t2>
+                  <radial_composite type="vector">
+                    <radius>
+                      <animated type="real">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <real value="0.7628732554" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <real value="0.7628732125" />
+                        </waypoint>
+                      </animated>
+                    </radius>
+                    <theta>
+                      <animated type="angle">
+                        <waypoint time="-4.80000019s" before="linear" after="linear">
+                          <angle value="89.833763" />
+                        </waypoint>
+                        <waypoint time="-2.79999995s" before="linear" after="linear">
+                          <angle value="89.833763" />
+                        </waypoint>
+                      </animated>
+                    </theta>
+                  </radial_composite>
+                </t2>
+                <split_radius>
+                  <animated type="bool">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <bool value="true" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <bool value="true" />
+                    </waypoint>
+                  </animated>
+                </split_radius>
+                <split_angle>
+                  <animated type="bool">
+                    <waypoint time="-4.80000019s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                    <waypoint time="-2.79999995s" before="linear" after="linear">
+                      <bool value="false" />
+                    </waypoint>
+                  </animated>
+                </split_angle>
+              </composite>
+            </base_value>
+            <translate>
+              <bool value="true" />
+            </translate>
+            <rotate>
+              <bool value="true" />
+            </rotate>
+            <skew>
+              <bool value="true" />
+            </skew>
+            <scale_x>
+              <bool value="true" />
+            </scale_x>
+            <scale_y>
+              <bool value="true" />
+            </scale_y>
+          </bone_link>
+        </entry>
+      </bline>
+    </param>
+  </layer>
+</canvas>
